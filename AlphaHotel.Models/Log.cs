@@ -13,6 +13,8 @@ namespace AlphaHotel.Models
         public User Author { get; set; }
         public int StatusId { get; set; }
         public Status Status { get; set; }
+        public int LogBookId { get; set; }
+        public LogBook LogBook { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public DateTime CreatedOn { get; set; }
