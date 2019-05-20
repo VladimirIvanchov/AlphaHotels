@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using AlphaHotel.Models;
-using AlphaHotel.Services;
 using Microsoft.AspNetCore.Mvc;
 using AlphaHotel.Data;
 
@@ -33,9 +32,6 @@ namespace AlphaHotel
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<AlphaHotelDbContext>()
                 .AddDefaultTokenProviders();
-
-            // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2); ;
         }

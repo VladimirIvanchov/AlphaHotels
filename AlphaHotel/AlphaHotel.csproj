@@ -23,9 +23,6 @@
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\" />
-    <Folder Include="Areas\Identity\Controllers\" />
-    <Folder Include="Areas\Identity\Models\" />
-    <Folder Include="Areas\Identity\Views\" />
     <Folder Include="Areas\Manager\" />
     <Folder Include="Areas\Moderator\" />
     <Folder Include="wwwroot\css\" />
