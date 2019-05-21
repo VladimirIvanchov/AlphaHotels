@@ -23,5 +23,9 @@ namespace AlphaHotel.Areas.Identity.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Role is required!")]
+        [Display(Name = "Role")]
+        public string Role { get; set; }
     }
 }

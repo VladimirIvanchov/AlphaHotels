@@ -16,11 +16,11 @@
   <ItemGroup>
     <ProjectReference Include="..\AlphaHotel.Data\AlphaHotel.Data.csproj" />
     <ProjectReference Include="..\AlphaHotel.Models\AlphaHotel.Models.csproj" />
+    <ProjectReference Include="..\AlphaHotel.Services\AlphaHotel.Services.csproj" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\" />
     <Folder Include="Areas\Manager\" />

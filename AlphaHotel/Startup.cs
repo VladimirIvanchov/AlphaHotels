@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using AlphaHotel.Models;
 using Microsoft.AspNetCore.Mvc;
 using AlphaHotel.Data;
+using AlphaHotel.Services.Contracts;
+using AlphaHotel.Services;
+using AlphaHotel.Services.Utilities;
 
 namespace AlphaHotel
 {
@@ -28,6 +31,9 @@ namespace AlphaHotel
         {
             services.AddDbContext<AlphaHotelDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IDateTimeWrapper, DateTimeWrapper>();
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<AlphaHotelDbContext>()

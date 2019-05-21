@@ -47,7 +47,6 @@ namespace AlphaHotel.Areas.Identity.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
@@ -89,6 +88,8 @@ namespace AlphaHotel.Areas.Identity.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -96,6 +97,7 @@ namespace AlphaHotel.Areas.Identity.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
@@ -107,7 +109,7 @@ namespace AlphaHotel.Areas.Identity.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    //TODO: await userManager.AddToRoleAsync(user, UserRoles.User.ToString());
+                    await _userManager.AddToRoleAsync(user, model.Role);
                     _logger.LogInformation("User created a new account with password.");
                     return RedirectToLocal(returnUrl);
                 }
