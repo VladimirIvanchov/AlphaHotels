@@ -8,7 +8,7 @@ namespace AlphaHotel.Areas.Admin.Controllers
 {
     public class AccountController : Controller
     {
-        public IActionResult CreateUser()
+        public IActionResult EditAccount()
         {
 
             return View();
