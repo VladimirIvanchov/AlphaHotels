@@ -1,7 +1,5 @@
 ﻿using AlphaHotel.Models.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AlphaHotel.Models
 {

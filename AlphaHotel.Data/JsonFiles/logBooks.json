@@ -1,0 +1,47 @@
+[
+  {
+    "Id": 1,
+    "Name": "Hotel Part",
+    "BusinessId": 1
+  },
+  {
+    "Id": 2,
+    "Name": "Restaurant",
+    "BusinessId": 1
+  },
+  {
+    "Id": 3,
+    "Name": "Spa",
+    "BusinessId": 1
+  },
+  {
+    "Id": 4,
+    "Name": "Hotel Part",
+    "BusinessId": 2
+  },
+  {
+    "Id": 5,
+    "Name": "Restaurant",
+    "BusinessId": 2
+  },
+  {
+    "Id": 6,
+    "Name": "Spa",
+    "BusinessId": 2
+  },
+  {
+    "Id": 7,
+    "Name": "Hotel Part",
+    "BusinessId": 3
+  },
+  {
+    "Id": 8,
+    "Name": "Restaurant",
+    "BusinessId": 3
+  },
+  {
+    "Id": 9,
+    "Name": "Spa",
+    "BusinessId": 3
+  }
+]

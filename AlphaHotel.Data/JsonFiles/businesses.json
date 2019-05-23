@@ -1,0 +1,17 @@
+[
+  {
+    "Id": 1,
+    "Name": "Hilton Sofia",
+    "Location": "1, Bulgaraa Blvd., Sofia 1421, Bulgaria"
+  },
+  {
+    "Id": 2,
+    "Name": "Marinela Sofia",
+    "Location": "100, James Bourchier Blvd., Sofia 1407, Bulgaria"
+  },
+  {
+    "Id": 3,
+    "Name": "Metropolitan Hotel",
+    "Location": "64, Tsarigradsko shosse Blvd., Sofia 1784, Bulgaria"
+  }
+]

@@ -5,9 +5,47 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190523165835_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523165835_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523165923_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523165923_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523170651_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523170651_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523171158_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523171158_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523171350_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523171350_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523171528_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523171528_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523171737_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523171737_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523171915_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523171915_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523172120_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523172120_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523173035_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523173035_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523173211_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523173211_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523174049_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523174049_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523174131_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523174131_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523180223_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523180223_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523180449_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523180449_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523180906_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523180906_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190523182117_databaseSeeding.cs" />
+    <Compile Remove="Migrations\20190523182117_databaseSeeding.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,92 @@
+[
+  {
+    "Id": 1,
+    "Description": "Problem with the toilet in room 405",
+    "AuthorId": "45488c85-6e76-4280-9acb-d81be65aca3b",
+    "StatusId": 1,
+    "LogBookId": 1,
+    "CategoryId": 1,
+    "CreatedOn": "2019/05/23 17:40:44",
+    "IsDeleted": false
+  },
+  {
+    "Id": 2,
+    "Description": "Broken chair in the fish part.",
+    "AuthorId": "45488c85-6e76-4280-9acb-d81be65aca3b",
+    "StatusId": 1,
+    "LogBookId": 2,
+    "CategoryId": 2,
+    "CreatedOn": "2019/05/21",
+    "IsDeleted": false
+  },
+  {
+    "Id": 3,
+    "Description": "Problem with the sauna.",
+    "AuthorId": "45488c85-6e76-4280-9acb-d81be65aca3b",
+    "StatusId": 2,
+    "LogBookId": 3,
+    "CategoryId": 3,
+    "CreatedOn": "2019/05/22",
+    "IsDeleted": false
+  },
+  {
+    "Id": 4,
+    "Description": "Problem with mirror in room 209",
+    "AuthorId": "45488c85-6e76-4280-9acb-d81be65aca3b",
+    "StatusId": 1,
+    "LogBookId": 4,
+    "CategoryId": 1,
+    "CreatedOn": "2019/05/19",
+    "IsDeleted": false
+  },
+  {
+    "Id": 5,
+    "Description": "Broken table in the italian part.",
+    "AuthorId": "45488c85-6e76-4280-9acb-d81be65aca3b",
+    "StatusId": 1,
+    "LogBookId": 5,
+    "CategoryId": 2,
+    "CreatedOn": "2019/05/23",
+    "IsDeleted": false
+  },
+  {
+    "Id": 6,
+    "Description": "Problem with the jacuzzi.",
+    "AuthorId": "45488c85-6e76-4280-9acb-d81be65aca3b",
+    "StatusId": 2,
+    "LogBookId": 6,
+    "CategoryId": 3,
+    "CreatedOn": "2019/05/21",
+    "IsDeleted": false
+  },
+  {
+    "Id": 7,
+    "Description": "Problem with the door of room 302",
+    "AuthorId": "45488c85-6e76-4280-9acb-d81be65aca3b",
+    "StatusId": 1,
+    "LogBookId": 7,
+    "CategoryId": 1,
+    "CreatedOn": "2019/05/22",
+    "IsDeleted": false
+  },
+  {
+    "Id": 8,
+    "Description": "Broken chair in the fish part.",
+    "AuthorId": "45488c85-6e76-4280-9acb-d81be65aca3b",
+    "StatusId": 1,
+    "LogBookId": 8,
+    "CategoryId": 2,
+    "CreatedOn": "2019/05/19",
+    "IsDeleted": false
+  },
+  {
+    "Id": 9,
+    "Description": "Problem with the sauna.",
+    "AuthorId": "45488c85-6e76-4280-9acb-d81be65aca3b",
+    "StatusId": 2,
+    "LogBookId": 9,
+    "CategoryId": 3,
+    "CreatedOn": "2019/05/22",
+    "IsDeleted": false
+  }
+]

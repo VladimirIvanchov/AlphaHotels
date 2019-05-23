@@ -4,14 +4,16 @@ using AlphaHotel.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AlphaHotel.Data.Migrations
 {
     [DbContext(typeof(AlphaHotelDbContext))]
-    partial class AlphaHotelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190523180637_updatedBusinessNameLength")]
+    partial class updatedBusinessNameLength
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,26 +38,6 @@ namespace AlphaHotel.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Businesses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Location = "1, Bulgaraa Blvd., Sofia 1421, Bulgaria",
-                            Name = "Hilton Sofia"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Location = "100, James Bourchier Blvd., Sofia 1407, Bulgaria",
-                            Name = "Marinela Sofia"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Location = "64, Tsarigradsko shosse Blvd., Sofia 1784, Bulgaria",
-                            Name = "Metropolitan Hotel"
-                        });
                 });
 
             modelBuilder.Entity("AlphaHotel.Models.Category", b =>
@@ -71,28 +53,6 @@ namespace AlphaHotel.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "TODO"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Maintenance"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Urgent"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Event"
-                        });
                 });
 
             modelBuilder.Entity("AlphaHotel.Models.Feedback", b =>
@@ -124,37 +84,6 @@ namespace AlphaHotel.Data.Migrations
                     b.HasIndex("BusinessId");
 
                     b.ToTable("Feedbacks");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Author = "Ivan",
-                            BusinessId = 1,
-                            CreatedOn = new DateTime(2019, 5, 23, 17, 40, 44, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Rate = 5,
-                            Text = "One of the best hotels ever!!!"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BusinessId = 2,
-                            CreatedOn = new DateTime(2019, 5, 22, 13, 51, 34, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Rate = 4,
-                            Text = "Perfect disco"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Author = "Petar",
-                            BusinessId = 3,
-                            CreatedOn = new DateTime(2019, 5, 21, 20, 39, 44, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Rate = 4,
-                            Text = "Good breakfast"
-                        });
                 });
 
             modelBuilder.Entity("AlphaHotel.Models.Log", b =>
@@ -199,107 +128,6 @@ namespace AlphaHotel.Data.Migrations
                     b.HasIndex("StatusId");
 
                     b.ToTable("Logs");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AuthorId = "45488c85-6e76-4280-9acb-d81be65aca3b",
-                            CategoryId = 1,
-                            CreatedOn = new DateTime(2019, 5, 23, 17, 40, 44, 0, DateTimeKind.Unspecified),
-                            Description = "Problem with the toilet in room 405",
-                            IsDeleted = false,
-                            LogBookId = 1,
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AuthorId = "45488c85-6e76-4280-9acb-d81be65aca3b",
-                            CategoryId = 2,
-                            CreatedOn = new DateTime(2019, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Broken chair in the fish part.",
-                            IsDeleted = false,
-                            LogBookId = 2,
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AuthorId = "45488c85-6e76-4280-9acb-d81be65aca3b",
-                            CategoryId = 3,
-                            CreatedOn = new DateTime(2019, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Problem with the sauna.",
-                            IsDeleted = false,
-                            LogBookId = 3,
-                            StatusId = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AuthorId = "45488c85-6e76-4280-9acb-d81be65aca3b",
-                            CategoryId = 1,
-                            CreatedOn = new DateTime(2019, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Problem with mirror in room 209",
-                            IsDeleted = false,
-                            LogBookId = 4,
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            AuthorId = "45488c85-6e76-4280-9acb-d81be65aca3b",
-                            CategoryId = 2,
-                            CreatedOn = new DateTime(2019, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Broken table in the italian part.",
-                            IsDeleted = false,
-                            LogBookId = 5,
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            AuthorId = "45488c85-6e76-4280-9acb-d81be65aca3b",
-                            CategoryId = 3,
-                            CreatedOn = new DateTime(2019, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Problem with the jacuzzi.",
-                            IsDeleted = false,
-                            LogBookId = 6,
-                            StatusId = 2
-                        },
-                        new
-                        {
-                            Id = 7,
-                            AuthorId = "45488c85-6e76-4280-9acb-d81be65aca3b",
-                            CategoryId = 1,
-                            CreatedOn = new DateTime(2019, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Problem with the door of room 302",
-                            IsDeleted = false,
-                            LogBookId = 7,
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            AuthorId = "45488c85-6e76-4280-9acb-d81be65aca3b",
-                            CategoryId = 2,
-                            CreatedOn = new DateTime(2019, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Broken chair in the fish part.",
-                            IsDeleted = false,
-                            LogBookId = 8,
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 9,
-                            AuthorId = "45488c85-6e76-4280-9acb-d81be65aca3b",
-                            CategoryId = 3,
-                            CreatedOn = new DateTime(2019, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Problem with the sauna.",
-                            IsDeleted = false,
-                            LogBookId = 9,
-                            StatusId = 2
-                        });
                 });
 
             modelBuilder.Entity("AlphaHotel.Models.LogBook", b =>
@@ -319,62 +147,6 @@ namespace AlphaHotel.Data.Migrations
                     b.HasIndex("BusinessId");
 
                     b.ToTable("LogBooks");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BusinessId = 1,
-                            Name = "Hotel Part"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BusinessId = 1,
-                            Name = "Restaurant"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BusinessId = 1,
-                            Name = "Spa"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BusinessId = 2,
-                            Name = "Hotel Part"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BusinessId = 2,
-                            Name = "Restaurant"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BusinessId = 2,
-                            Name = "Spa"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BusinessId = 3,
-                            Name = "Hotel Part"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            BusinessId = 3,
-                            Name = "Restaurant"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            BusinessId = 3,
-                            Name = "Spa"
-                        });
                 });
 
             modelBuilder.Entity("AlphaHotel.Models.Status", b =>
@@ -390,23 +162,6 @@ namespace AlphaHotel.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Statuses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Type = "Pending"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Type = "In Progress"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Type = "Done"
-                        });
                 });
 
             modelBuilder.Entity("AlphaHotel.Models.User", b =>

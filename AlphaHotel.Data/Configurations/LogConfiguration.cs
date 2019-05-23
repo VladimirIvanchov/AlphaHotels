@@ -14,6 +14,12 @@ namespace AlphaHotel.Data.Configurations
 
             builder.Property(a => a.AuthorId)
                .IsRequired();
+
+            builder.Property(a => a.StatusId)
+               .HasDefaultValue(1);
+
+            builder.Property(a => a.CategoryId)
+               .HasDefaultValue(1);
         }
     }
 }

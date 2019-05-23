@@ -11,6 +11,12 @@ namespace AlphaHotel.Data.Configurations
             builder.Property(a => a.Name)
                 .HasMaxLength(15)
                 .IsRequired();
+
+            builder.Property(a => a.BusinessId)
+               .IsRequired();
+
+            builder.Property(a => a.BusinessId)
+              .IsRequired();
         }
     }
 }

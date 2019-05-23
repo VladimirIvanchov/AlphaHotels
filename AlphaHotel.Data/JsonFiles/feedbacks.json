@@ -1,0 +1,28 @@
+[
+  {
+    "Id": 1,
+    "Text": "One of the best hotels ever!!!",
+    "Rate": 5,
+    "BusinessId": 1,
+    "Author": "Ivan",
+    "CreatedOn": "2019/05/23T17:40:44",
+    "IsDeleted": false
+  },
+  {
+    "Id": 2,
+    "Text": "Perfect disco",
+    "Rate": 4,
+    "BusinessId": 2,
+    "CreatedOn": "2019/05/22T13:51:34",
+    "IsDeleted": false
+  },
+  {
+    "Id": 3,
+    "Text": "Good breakfast",
+    "Rate": 4,
+    "BusinessId": 3,
+    "Author": "Petar",
+    "CreatedOn": "2019/05/21T20:39:44",
+    "IsDeleted": false
+  }
+]
