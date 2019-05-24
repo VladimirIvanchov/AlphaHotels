@@ -25,7 +25,6 @@
     <Folder Include="Areas\Admin\Views\" />
     <Folder Include="Areas\Manager\" />
     <Folder Include="Areas\Moderator\" />
-    <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>

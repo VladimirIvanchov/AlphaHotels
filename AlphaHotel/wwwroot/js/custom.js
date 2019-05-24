@@ -63,7 +63,50 @@
     $('#datetimepicker11,#datetimepicker1').datetimepicker({
         daysOfWeekDisabled: [0, 6]
     });
-    
+
+    // Init for popup-with-zoom-anim class
+    $('body').magnificPopup({
+        type: 'image',
+        delegate: 'a.mfp-gallery',
+
+        fixedContentPos: true,
+        fixedBgPos: true,
+
+        overflowY: 'auto',
+
+        closeBtnInside: true,
+        preloader: true,
+
+        removalDelay: 0,
+        mainClass: 'mfp-fade',
+
+        gallery: {
+            enabled: true
+        },
+
+        callbacks: {
+            buildControls: function () {
+                this.contentContainer.append(this.arrowLeft.add(this.arrowRight));
+            }
+        }
+    });
+
+    $('.popup-with-zoom-anim').magnificPopup({
+        type: 'inline',
+
+        fixedContentPos: false,
+        fixedBgPos: true,
+
+        overflowY: 'auto',
+
+        closeBtnInside: true,
+        preloader: false,
+
+        midClick: true,
+        removalDelay: 300,
+        mainClass: 'my-mfp-zoom-in'
+    });
+
      /*---------gallery isotope js-----------*/
     function galleryMasonry(){
         if ( $('#gallery').length ){

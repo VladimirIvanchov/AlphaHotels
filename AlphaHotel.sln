@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaHotel", "AlphaHotel\AlphaHotel.csproj", "{4E158223-2611-4D40-86F1-5C763C4701B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaHotel", "AlphaHotel\AlphaHotel.csproj", "{4E158223-2611-4D40-86F1-5C763C4701B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaHotel.Data", "AlphaHotel.Data\AlphaHotel.Data.csproj", "{3AC7F2F8-9CEA-4DE5-AFF5-4235C97F3FD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaHotel.Data", "AlphaHotel.Data\AlphaHotel.Data.csproj", "{3AC7F2F8-9CEA-4DE5-AFF5-4235C97F3FD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaHotel.Models", "AlphaHotel.Models\AlphaHotel.Models.csproj", "{AC7AABFA-2717-48FF-9D5B-C0E2CD6AEFE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaHotel.Models", "AlphaHotel.Models\AlphaHotel.Models.csproj", "{AC7AABFA-2717-48FF-9D5B-C0E2CD6AEFE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaHotel.Services", "AlphaHotel.Services\AlphaHotel.Services.csproj", "{416088D3-F2EB-4B76-8BC7-D690D78FF83F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaHotel.Services", "AlphaHotel.Services\AlphaHotel.Services.csproj", "{416088D3-F2EB-4B76-8BC7-D690D78FF83F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaHotel.Infrastructure", "AlphaHotel.Infrastructure\AlphaHotel.Infrastructure.csproj", "{AAD5686B-15E3-4F81-92FC-7CEA2927FCEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{416088D3-F2EB-4B76-8BC7-D690D78FF83F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{416088D3-F2EB-4B76-8BC7-D690D78FF83F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{416088D3-F2EB-4B76-8BC7-D690D78FF83F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAD5686B-15E3-4F81-92FC-7CEA2927FCEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAD5686B-15E3-4F81-92FC-7CEA2927FCEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAD5686B-15E3-4F81-92FC-7CEA2927FCEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAD5686B-15E3-4F81-92FC-7CEA2927FCEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,48 @@
+﻿@model LoginViewModel
+
+<div id="login-register-popup" class="small-dialog zoom-anim-dialog mfp-hide">
+
+    <div class="signin-wrapper">
+        <div class="small-dialog-headline">
+            <h4 class="text-center">Sign in</h4>
+        </div>
+        <div class="small-dialog-content">
+            <form asp-area="Identity" asp-controller="Account" asp-action="Login" id="cariera_login" method="post">
+                <p class="status"></p>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="UserName"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox pad-bottom-10">
+                        <label asp-for="RememberMe">
+                            <input asp-for="RememberMe" />
+                            @Html.DisplayNameFor(m => m.RememberMe)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Sign in" class="btn btn-main btn-effect nomargin" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+        crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.2/jquery.validate.unobtrusive.js"></script>
