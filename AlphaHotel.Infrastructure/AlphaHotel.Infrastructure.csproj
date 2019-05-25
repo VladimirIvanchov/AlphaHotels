@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AlphaHotel.Models\AlphaHotel.Models.csproj" />
+    <ProjectReference Include="..\AlphaHotel.ViewModels\AlphaHotel.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

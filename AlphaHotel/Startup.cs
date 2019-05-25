@@ -14,6 +14,8 @@ using AlphaHotel.Data;
 using AlphaHotel.Services.Contracts;
 using AlphaHotel.Services;
 using AlphaHotel.Services.Utilities;
+using AlphaHotel.Infrastructure.MappingProviders;
+using AutoMapper;
 
 namespace AlphaHotel
 {
@@ -33,12 +35,17 @@ namespace AlphaHotel
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IBusinessService, BusinessService>();
             services.AddScoped<IDateTimeWrapper, DateTimeWrapper>();
+            services.AddScoped<IMappingProvider, MappingProvider>();
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<AlphaHotelDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAutoMapper();
+
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2); ;
         }
 

@@ -37,14 +37,14 @@ namespace AlphaHotel.Areas.Identity.Controllers
         [TempData]
         public string ErrorMessage { get; set; }
 
-        public async Task<IActionResult> Login(string returnUrl = null)
-        {
-            // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+        //public async Task<IActionResult> Login(string returnUrl = null)
+        //{
+        //    // Clear the existing external cookie to ensure a clean login process
+        //    await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
-        }
+        //    ViewData["ReturnUrl"] = returnUrl;
+        //    return View();
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -104,11 +104,14 @@ namespace AlphaHotel.Areas.Identity.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.UserName, Email = model.Email, CreatedOn = DateTime.Now };
+                var user = new User { UserName = model.UserName, Email = model.Email, CreatedOn = DateTime.Now, BusinessId = model.BusinessId };
+                user.UsersLogbooks = model.LogBookIds
+                    .Select(l => new UsersLogbooks() { LogBookId = l })
+                    .ToList();
+
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
                     await _userManager.AddToRoleAsync(user, model.Role);
                     _logger.LogInformation("User created a new account with password.");
                     return RedirectToLocal(returnUrl);

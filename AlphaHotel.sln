@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaHotel.Models", "AlphaH
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaHotel.Services", "AlphaHotel.Services\AlphaHotel.Services.csproj", "{416088D3-F2EB-4B76-8BC7-D690D78FF83F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaHotel.Infrastructure", "AlphaHotel.Infrastructure\AlphaHotel.Infrastructure.csproj", "{AAD5686B-15E3-4F81-92FC-7CEA2927FCEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaHotel.Infrastructure", "AlphaHotel.Infrastructure\AlphaHotel.Infrastructure.csproj", "{AAD5686B-15E3-4F81-92FC-7CEA2927FCEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaHotel.ViewModels", "AlphaHotel.ViewModels\AlphaHotel.ViewModels.csproj", "{43D7193E-B5F9-4311-8678-888B730F60D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{AAD5686B-15E3-4F81-92FC-7CEA2927FCEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAD5686B-15E3-4F81-92FC-7CEA2927FCEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAD5686B-15E3-4F81-92FC-7CEA2927FCEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43D7193E-B5F9-4311-8678-888B730F60D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43D7193E-B5F9-4311-8678-888B730F60D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43D7193E-B5F9-4311-8678-888B730F60D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43D7193E-B5F9-4311-8678-888B730F60D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

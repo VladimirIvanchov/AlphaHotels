@@ -1,0 +1,18 @@
+﻿@model ICollection<LogBookViewModel>
+
+<div class="row" id="logbook-area">
+    <hr />
+    <h2>Choose logbook!</h2>
+    <div class="col-sm-10">
+        @foreach (var logBook in @Model)
+        {
+            <div class="form-check">
+                <input name="LogBookIds" class="form-check-input" type="checkbox" value=@logBook.Id>
+                <label class="form-check-label">
+                    @logBook.Name
+                </label>
+            </div>
+        }
+    </div>
+    @*<span asp-validation-for="@Model.Genres" class="text-danger"></span>*@
+</div>

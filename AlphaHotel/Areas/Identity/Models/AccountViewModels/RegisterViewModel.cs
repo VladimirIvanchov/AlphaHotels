@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AlphaHotel.Areas.Identity.Models.AccountViewModels
 {
@@ -27,5 +28,9 @@ namespace AlphaHotel.Areas.Identity.Models.AccountViewModels
         [Required(ErrorMessage = "Role is required!")]
         [Display(Name = "Role")]
         public string Role { get; set; }
+
+        public int BusinessId { get; set; }
+
+        public ICollection<int> LogBookIds { get; set; }
     }
 }
