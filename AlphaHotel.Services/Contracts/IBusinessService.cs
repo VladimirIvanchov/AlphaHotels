@@ -8,7 +8,7 @@ namespace AlphaHotel.Services.Contracts
 {
     public interface IBusinessService
     {
-        Task<ICollection<BusinessViewModel>> ListAllBusinesses();
-        Task<ICollection<LogBookViewModel>> ListBusinessLogbooks(int id);
+        Task<ICollection<BusinessViewModel>> ListAllBusinessesAsync();
+        Task<ICollection<LogBookViewModel>> ListBusinessLogbooksAsync(int id);
     }
 }

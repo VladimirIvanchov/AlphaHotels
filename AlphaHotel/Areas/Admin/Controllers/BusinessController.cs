@@ -22,7 +22,7 @@ namespace AlphaHotel.Areas.Admin.Controllers
 
         public async Task<IActionResult> AllBusiness()
         {
-            var businesses = await this.businessService.ListAllBusinesses();
+            var businesses = await this.businessService.ListAllBusinessesAsync();
 
             return PartialView("_AllBusinessPartial", businesses);
         }
@@ -30,7 +30,7 @@ namespace AlphaHotel.Areas.Admin.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> BusinessLogbooks(int id)
         {
-            var logBooks = await this.businessService.ListBusinessLogbooks(id);
+            var logBooks = await this.businessService.ListBusinessLogbooksAsync(id);
 
             return PartialView("_BusinessLogBooksPartial", logBooks);
         }

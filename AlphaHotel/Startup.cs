@@ -16,6 +16,7 @@ using AlphaHotel.Services;
 using AlphaHotel.Services.Utilities;
 using AlphaHotel.Infrastructure.MappingProviders;
 using AutoMapper;
+using AlphaHotel.Infrastructure.MappingProviders.Mappings;
 
 namespace AlphaHotel
 {
@@ -44,6 +45,7 @@ namespace AlphaHotel
                 .AddDefaultTokenProviders();
 
             services.AddAutoMapper();
+            Mapper.Initialize(cfg => cfg.AddProfile<MappingProfiles>());
 
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2); ;

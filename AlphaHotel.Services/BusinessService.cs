@@ -23,15 +23,15 @@ namespace AlphaHotel.Services
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<ICollection<BusinessViewModel>> ListAllBusinesses()
+        public async Task<ICollection<BusinessViewModel>> ListAllBusinessesAsync()
         {
-            var businesses = await this.context.Businesses
-                .Select(b => new BusinessViewModel
-                {
-                    BusinessId = b.Id,
-                    Name = b.Name
-                })
-                .ToListAsync();
+            //var businesses = await this.context.Businesses
+            //    .Select(b => new BusinessViewModel
+            //    {
+            //        BusinessId = b.Id,
+            //        Name = b.Name
+            //    })
+            //    .ToListAsync();
 
             //var businesses = await this.context.Businesses
             //   .Select(b => new { b.Name, b.Id })
@@ -39,22 +39,18 @@ namespace AlphaHotel.Services
 
             //var mapped = this.mapper.MapTo<ICollection<BusinessViewModel>>(businesses);
 
-            //var result = await this.context.Businesses
-            //    .ProjectTo<BusinessViewModel>()
-            //    .ToListAsync();
+            var businesses = await this.context.Businesses
+                .ProjectTo<BusinessViewModel>()
+                .ToListAsync();
 
             return businesses;
         }
 
-        public async Task<ICollection<LogBookViewModel>> ListBusinessLogbooks(int id)
+        public async Task<ICollection<LogBookViewModel>> ListBusinessLogbooksAsync(int id)
         {
             var businesses = await this.context.LogBooks
-                .Where(l=>l.BusinessId == id)
-                .Select(b => new LogBookViewModel
-                {
-                    Id = b.Id,
-                    Name = b.Name
-                })
+                .Where(l => l.BusinessId == id)
+                .ProjectTo<LogBookViewModel>()
                 .ToListAsync();
 
             return businesses;

@@ -29,8 +29,10 @@ namespace AlphaHotel.Areas.Identity.Models.AccountViewModels
         [Display(Name = "Role")]
         public string Role { get; set; }
 
+        [Required(ErrorMessage = "Location is required!")]
         public int BusinessId { get; set; }
 
+        //[Required(ErrorMessage = "Logbook is required!")]
         public ICollection<int> LogBookIds { get; set; }
     }
 }
