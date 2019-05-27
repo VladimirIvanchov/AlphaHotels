@@ -38,6 +38,7 @@ namespace AlphaHotel
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IBusinessService, BusinessService>();
+            services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IDateTimeWrapper, DateTimeWrapper>();
             services.AddScoped<IMappingProvider, MappingProvider>();
 

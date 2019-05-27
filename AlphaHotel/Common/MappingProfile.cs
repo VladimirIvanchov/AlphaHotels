@@ -17,6 +17,11 @@ namespace AlphaHotel.Common
                           src => src.MapFrom(s => s))
                .ForMember(d => d.BusinessId, src => src.Ignore())
                .ForMember(d => d.LogBookName, src => src.Ignore());
+
+            CreateMap<ICollection<CategoryDTO>, CreateCategoryViewModel>()
+               .ForMember(d => d.Categories,
+                          src => src.MapFrom(s => s))
+               .ForMember(d => d.CategoryName, src => src.Ignore());
         }
     }
 }
