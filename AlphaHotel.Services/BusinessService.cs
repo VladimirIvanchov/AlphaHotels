@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
-using AlphaHotel.ViewModels;
+using AlphaHotel.DTOs;
 using AlphaHotel.Infrastructure.MappingProviders;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +23,7 @@ namespace AlphaHotel.Services
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<ICollection<BusinessViewModel>> ListAllBusinessesAsync()
+        public async Task<ICollection<BusinessDTO>> ListAllBusinessesAsync()
         {
             //var businesses = await this.context.Businesses
             //    .Select(b => new BusinessViewModel
@@ -40,17 +40,17 @@ namespace AlphaHotel.Services
             //var mapped = this.mapper.MapTo<ICollection<BusinessViewModel>>(businesses);
 
             var businesses = await this.context.Businesses
-                .ProjectTo<BusinessViewModel>()
+                .ProjectTo<BusinessDTO>()
                 .ToListAsync();
 
             return businesses;
         }
 
-        public async Task<ICollection<LogBookViewModel>> ListBusinessLogbooksAsync(int id)
+        public async Task<ICollection<LogBookDTO>> ListBusinessLogbooksAsync(int id)
         {
             var businesses = await this.context.LogBooks
                 .Where(l => l.BusinessId == id)
-                .ProjectTo<LogBookViewModel>()
+                .ProjectTo<LogBookDTO>()
                 .ToListAsync();
 
             return businesses;

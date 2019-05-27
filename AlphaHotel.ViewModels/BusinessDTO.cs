@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AlphaHotel.ViewModels
+namespace AlphaHotel.DTOs
 {
-    public class BusinessViewModel
+    public class BusinessDTO
     {
         public int BusinessId { get; set; }
 

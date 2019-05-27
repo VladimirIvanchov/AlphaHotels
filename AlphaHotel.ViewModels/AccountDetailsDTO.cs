@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace AlphaHotel.ViewModels
+namespace AlphaHotel.DTOs
 {
-    public class AccountViewModel
+    public class AccountDetailsDTO
     {
         [Required]
         public string Id { get; set; }
 
         [Required]
+        [MinLength(5)]
         public string UserName { get; set; }
 
         public int? BusinessId { get; set; }
@@ -21,14 +22,14 @@ namespace AlphaHotel.ViewModels
 
         public ICollection<int> LogBookId { get; set; }
 
-        [Required]
-        [MaxLength(15)]
-        public ICollection<string> LogBookName { get; set; }
-
-        [Required]
-        [MaxLength(25)]
         public string BusinessName { get; set; }
 
+        [Required]
         public bool IsDeleted { get; set; }
+
+        [Required]
+        public string Role { get; set; }
+
+        public DateTime ModifiedOn { get; set; }
     }
 }

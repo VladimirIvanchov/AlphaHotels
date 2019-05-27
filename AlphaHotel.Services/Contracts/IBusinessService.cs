@@ -1,4 +1,4 @@
-﻿using AlphaHotel.ViewModels;
+﻿using AlphaHotel.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +8,7 @@ namespace AlphaHotel.Services.Contracts
 {
     public interface IBusinessService
     {
-        Task<ICollection<BusinessViewModel>> ListAllBusinessesAsync();
-        Task<ICollection<LogBookViewModel>> ListBusinessLogbooksAsync(int id);
+        Task<ICollection<BusinessDTO>> ListAllBusinessesAsync();
+        Task<ICollection<LogBookDTO>> ListBusinessLogbooksAsync(int id);
     }
 }

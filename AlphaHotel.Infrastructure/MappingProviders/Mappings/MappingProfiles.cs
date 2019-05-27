@@ -1,5 +1,5 @@
 ﻿using AlphaHotel.Models;
-using AlphaHotel.ViewModels;
+using AlphaHotel.DTOs;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -12,20 +12,21 @@ namespace AlphaHotel.Infrastructure.MappingProviders.Mappings
     {
         public MappingProfiles()
         {
-            CreateMap<Business, BusinessViewModel>()
+            CreateMap<Business, BusinessDTO>()
                 .ForMember(d => d.BusinessId, src => src.MapFrom(s => s.Id))
                 .ForMember(d => d.Name, src => src.MapFrom(s => s.Name));
 
-            CreateMap<User, AccountViewModel>()
-                //.ForMember(d => d.Id, src => src.MapFrom(s => s.Id))
-                //.ForMember(d => d.UserName, src => src.MapFrom(s => s.UserName))
-                //.ForMember(d => d.BusinessId, src => src.MapFrom(s => s.BusinessId))
-                //.ForMember(d => d.Email, src => src.MapFrom(s => s.Email))
+            CreateMap<User, AccountDTO>()
                 .ForMember(d => d.LogBookId, src => src.MapFrom(s => s.UsersLogbooks
                                                             .Select(ul => ul.LogBookId)))
                 .ForMember(d => d.LogBookName, src => src.MapFrom(s => s.UsersLogbooks
                                                             .Select(ul => ul.LogBook.Name)))
                 .ForMember(d => d.BusinessName, src => src.MapFrom(s => s.Business.Name));
+
+            CreateMap<User, AccountDetailsDTO>()
+               .ForMember(d => d.LogBookId, src => src.MapFrom(s => s.UsersLogbooks
+                                                           .Select(ul => ul.LogBookId)))
+               .ForMember(d => d.BusinessName, src => src.MapFrom(s => s.Business.Name));
         }
     }
 }

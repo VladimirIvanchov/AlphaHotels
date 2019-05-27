@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper.QueryableExtensions;
-using AlphaHotel.ViewModels;
+using AlphaHotel.DTOs;
 using AlphaHotel.Infrastructure.MappingProviders;
 using AlphaHotel.Infrastructure.MappingProviders.Mappings;
+using AlphaHotel.Services.Utilities;
 
 namespace AlphaHotel.Services
 {
@@ -20,21 +21,23 @@ namespace AlphaHotel.Services
         private readonly AlphaHotelDbContext context;
         private readonly UserManager<User> userManager;
         private readonly IMappingProvider mapper;
+        private readonly IDateTimeWrapper dateTime;
 
-        public AccountService(AlphaHotelDbContext context, UserManager<User> userManager, IMappingProvider mapper)
+        public AccountService(AlphaHotelDbContext context, UserManager<User> userManager, IMappingProvider mapper, IDateTimeWrapper dateTime)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
             this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            this.dateTime = dateTime ?? throw new ArgumentNullException(nameof(dateTime));
         }
 
-        public async Task<IReadOnlyCollection<AccountViewModel>> ListAllUsersAsync()
+        public async Task<IReadOnlyCollection<AccountDTO>> ListAllUsersAsync()
         {
             return await userManager.Users
                   .Include(u => u.UsersLogbooks)
                       .ThenInclude(ul => ul.LogBook)
                   .Include(u => u.Business)
-                  .ProjectTo<AccountViewModel>()
+                  .ProjectTo<AccountDTO>()
                   .ToListAsync();
 
 
@@ -46,18 +49,56 @@ namespace AlphaHotel.Services
             //    .ToListAsync();
         }
 
-        //public async Task<User> FindUserAsync(string username)
-        //{
-        //    var user = await this.userManager
-        //        .FindByNameAsync(username);
+        public async Task<AccountDetailsDTO> FindAccountAsync(string accountId)
+        {
+            var user = await this.userManager.Users
+                  .Include(u => u.UsersLogbooks)
+                        .ThenInclude(ul => ul.LogBook)
+                  .Include(u => u.Business)
+                  .Where(u => u.Id == accountId)
+                  .FirstOrDefaultAsync();
 
-        //    await this.userManager.GetRolesAsync(user);
+            if (user == null)
+            {
+                throw new ArgumentException("Account do not exist!");
+            }
 
-        //    if (user == null)
-        //    {
+            var role = await this.userManager.GetRolesAsync(user);
 
-        //    }
+            var account = this.mapper.MapTo<AccountDetailsDTO>(user);
+            account.Role = role.FirstOrDefault();
 
-        //}
+            return account;
+        }
+
+        public async Task<int> EditAccountAsync(string id, string username, string email, bool isDeleted, ICollection<int> logBooks)
+        {
+            var user = await this.userManager.Users
+                  .Include(u => u.UsersLogbooks)
+                        .ThenInclude(ul => ul.LogBook)
+                  .Where(u => u.Id == id)
+                  .FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+                throw new ArgumentException($"Account {username} do not exist!");
+            }
+
+            user.UserName = username;
+            user.Email = email;
+            if (!user.IsDeleted && isDeleted)
+            {
+                user.DeletedOn = this.dateTime.Now();
+            }
+
+            user.IsDeleted = isDeleted;
+            user.ModifiedOn = this.dateTime.Now();
+            user.UsersLogbooks.Clear();
+            user.UsersLogbooks = logBooks?
+                .Select(l => new UsersLogbooks() { LogBookId = l })
+                .ToList();
+
+            return await this.context.SaveChangesAsync();
+        }
     }
 }

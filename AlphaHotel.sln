@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaHotel.Services", "Alph
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaHotel.Infrastructure", "AlphaHotel.Infrastructure\AlphaHotel.Infrastructure.csproj", "{AAD5686B-15E3-4F81-92FC-7CEA2927FCEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaHotel.ViewModels", "AlphaHotel.ViewModels\AlphaHotel.ViewModels.csproj", "{43D7193E-B5F9-4311-8678-888B730F60D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaHotel.DTOs", "AlphaHotel.ViewModels\AlphaHotel.DTOs.csproj", "{43D7193E-B5F9-4311-8678-888B730F60D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

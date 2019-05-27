@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace AlphaHotel.ViewModels
+namespace AlphaHotel.DTOs
 {
-    public class LogBookViewModel
+    public class LogBookDTO
     {
         [Required]
         public int Id { get; set; }

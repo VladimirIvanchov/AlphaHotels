@@ -7,7 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AlphaHotel.Data\AlphaHotel.Data.csproj" />
     <ProjectReference Include="..\AlphaHotel.Infrastructure\AlphaHotel.Infrastructure.csproj" />
-    <ProjectReference Include="..\AlphaHotel.ViewModels\AlphaHotel.ViewModels.csproj" />
+    <ProjectReference Include="..\AlphaHotel.ViewModels\AlphaHotel.DTOs.csproj" />
   </ItemGroup>
 
 </Project>
