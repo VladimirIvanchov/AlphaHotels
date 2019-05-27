@@ -1,6 +1,7 @@
 ﻿$('#moderator , #manager').on('click', function (ev) {
     var $currentLink = $(ev.target);
     var url = $currentLink.data('url');
+
     $('#logbook-area').remove();
 
     if (!$('#admin-dynamic').length) {

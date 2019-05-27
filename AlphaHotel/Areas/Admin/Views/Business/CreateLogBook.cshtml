@@ -1,0 +1,37 @@
+﻿@model CreateLogBookViewModel
+
+@{
+    ViewData["Title"] = "CreateLogBook";
+}
+
+<section class="contact_area section_gap">
+    <div class="container">
+        <form asp-area="Admin" asp-controller="Business" asp-action="CreateLogBook" id="create-logbook-form" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <h2>Create LogBook</h2>
+            <div class="col-sm-10" id="choose-location-for-logbook">
+                @if (Model.Businesses != null)
+                {
+                    @foreach (var business in Model.Businesses)
+                    {
+                        <div class="form-check">
+                            <input name="BusinessId" type="radio" class="form-check-input business-for-logbook" data-url="/admin/business/businessLogbooksCreate/@business.BusinessId" value="@business.BusinessId">
+                            <label for="BusinessId" class="form-check-label">@business.Name</label>
+                            <span asp-validation-for="@business.BusinessId" class="text-danger"></span>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/create-logbook.js"></script>>
+}

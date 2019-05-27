@@ -10,5 +10,6 @@ namespace AlphaHotel.Services.Contracts
     {
         Task<ICollection<BusinessDTO>> ListAllBusinessesAsync();
         Task<ICollection<LogBookDTO>> ListBusinessLogbooksAsync(int id);
+        Task<int> AddLogBookToBusinessAsync(string logBookName, int businessId);
     }
 }

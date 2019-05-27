@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="~/vendors/linericon/style.css">
     <link rel="stylesheet" href="~/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+          asp-fallback-href="~/css/toastr.css">
     <link rel="stylesheet" href="~/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="~/vendors/nice-select/css/nice-select.css">
     <link rel="stylesheet" href="~/css/magnific-popup.css">
@@ -60,7 +62,7 @@
                                 <ul class="dropdown-menu">
                                     <li class="nav-item"><a asp-area="Identity" asp-controller="Account" asp-action="Register" class="nav-link">Create Account</a></li>
                                     <li class="nav-item"><a asp-area="Admin" asp-controller="Account" asp-action="AllAcounts" class="nav-link">All Accounts</a></li>
-                                    <li class="nav-item"><a asp-area="Admin" asp-controller="" class="nav-link">Create LogBook</a></li>
+                                    <li class="nav-item"><a asp-area="Admin" asp-controller="Business" asp-action="CreateLogBook" class="nav-link">Create LogBook</a></li>
                                     <li class="nav-item"><a asp-area="Admin" asp-controller="" class="nav-link">Create Category</a></li>
                                 </ul>
                             </li>
@@ -123,6 +125,8 @@
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/vendors/owl-carousel/owl.carousel.min.js"></script>
     <script src="~/js/jquery.ajaxchimp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+            asp-fallback-src="~/js/toastr.js"></script>
     <script src="~/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
     <script src="~/vendors/nice-select/js/jquery.nice-select.js"></script>
     <script src="~/js/stellar.js"></script>

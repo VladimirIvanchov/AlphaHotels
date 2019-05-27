@@ -1,0 +1,22 @@
+﻿using AlphaHotel.Areas.Admin.Models;
+using AlphaHotel.DTOs;
+using AutoMapper;
+using System.Collections.Generic;
+
+namespace AlphaHotel.Common
+{
+    public class MappingProfile : Profile
+    {
+        public MappingProfile()
+        {
+            CreateMap<AccountDetailsDTO, AccountViewModel>()
+                .ForMember(d => d.LogBooks, src => src.Ignore());
+
+            CreateMap<ICollection<BusinessDTO>, CreateLogBookViewModel>()
+               .ForMember(d => d.Businesses,
+                          src => src.MapFrom(s => s))
+               .ForMember(d => d.BusinessId, src => src.Ignore())
+               .ForMember(d => d.LogBookName, src => src.Ignore());
+        }
+    }
+}

@@ -1,0 +1,19 @@
+﻿@model ICollection<LogBookDTO>
+
+<div id="create-logbook-area">
+    <hr />
+    <h2>Current logbooks</h2>
+    <div class="col-md-4">
+        <ul class="list-group" id="logBooks-list">
+            @foreach (var logBook in @Model)
+            {
+                <li class="list-group-item list-group-item-dark">@logBook.Name</li>
+            }
+        </ul>
+        <hr />
+        <div class="form-group">
+            <label for="LogBookName">New LogBook:</label>
+            <input name="LogBookName" class="form-control">
+        </div>
+    </div>
+</div>

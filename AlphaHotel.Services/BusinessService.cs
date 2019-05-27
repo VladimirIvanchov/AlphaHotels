@@ -9,6 +9,7 @@ using AlphaHotel.DTOs;
 using AlphaHotel.Infrastructure.MappingProviders;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using AlphaHotel.Models;
 
 namespace AlphaHotel.Services
 {
@@ -25,20 +26,6 @@ namespace AlphaHotel.Services
 
         public async Task<ICollection<BusinessDTO>> ListAllBusinessesAsync()
         {
-            //var businesses = await this.context.Businesses
-            //    .Select(b => new BusinessViewModel
-            //    {
-            //        BusinessId = b.Id,
-            //        Name = b.Name
-            //    })
-            //    .ToListAsync();
-
-            //var businesses = await this.context.Businesses
-            //   .Select(b => new { b.Name, b.Id })
-            //   .ToListAsync();
-
-            //var mapped = this.mapper.MapTo<ICollection<BusinessViewModel>>(businesses);
-
             var businesses = await this.context.Businesses
                 .ProjectTo<BusinessDTO>()
                 .ToListAsync();
@@ -54,6 +41,25 @@ namespace AlphaHotel.Services
                 .ToListAsync();
 
             return businesses;
+        }
+
+        public async Task<int> AddLogBookToBusinessAsync(string logBookName, int businessId)
+        {
+            var logbook = await this.context.LogBooks.FirstOrDefaultAsync(l => l.Name == logBookName && l.BusinessId == businessId);
+
+            if (logbook != null)
+            {
+                throw new ArgumentException($"Logbook {logBookName} already exist!");
+            }
+
+            var newLogbook = new LogBook
+            {
+                Name = logBookName,
+                BusinessId = businessId
+            };
+
+            this.context.LogBooks.Add(newLogbook);
+            return await this.context.SaveChangesAsync();
         }
     }
 }
