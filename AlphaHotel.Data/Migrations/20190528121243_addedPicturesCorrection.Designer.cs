@@ -4,14 +4,16 @@ using AlphaHotel.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AlphaHotel.Data.Migrations
 {
     [DbContext(typeof(AlphaHotelDbContext))]
-    partial class AlphaHotelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190528121243_addedPicturesCorrection")]
+    partial class addedPicturesCorrection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -401,101 +403,13 @@ namespace AlphaHotel.Data.Migrations
 
                     b.Property<bool>("IsDeleted");
 
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasMaxLength(80);
+                    b.Property<string>("Location");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BusinessId");
 
                     b.ToTable("Pictures");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BusinessId = 1,
-                            IsDeleted = false,
-                            Location = "~/images/hotelPresentation/hilton1.jpg"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BusinessId = 1,
-                            IsDeleted = false,
-                            Location = "~/images/hotelPresentation/hilton2.jpg"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BusinessId = 1,
-                            IsDeleted = false,
-                            Location = "~/images/hotelPresentation/hilton3.jpg"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BusinessId = 1,
-                            IsDeleted = false,
-                            Location = "~/images/hotelPresentation/hilton4.jpg"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BusinessId = 2,
-                            IsDeleted = false,
-                            Location = "~/images/hotelPresentation/marinela1.jpg"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BusinessId = 2,
-                            IsDeleted = false,
-                            Location = "~/images/hotelPresentation/marinela2.jpg"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BusinessId = 2,
-                            IsDeleted = false,
-                            Location = "~/images/hotelPresentation/marinela3.jpg"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            BusinessId = 2,
-                            IsDeleted = false,
-                            Location = "~/images/hotelPresentation/marinela4.jpg"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            BusinessId = 3,
-                            IsDeleted = false,
-                            Location = "~/images/hotelPresentation/metropolitan1.jpg"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            BusinessId = 3,
-                            IsDeleted = false,
-                            Location = "~/images/hotelPresentation/metropolitan2.jpg"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            BusinessId = 3,
-                            IsDeleted = false,
-                            Location = "~/images/hotelPresentation/metropolitan3.jpg"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            BusinessId = 3,
-                            IsDeleted = false,
-                            Location = "~/images/hotelPresentation/metropolitan4.jpg"
-                        });
                 });
 
             modelBuilder.Entity("AlphaHotel.Models.Status", b =>

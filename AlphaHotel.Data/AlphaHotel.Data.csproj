@@ -39,6 +39,8 @@
     <Compile Remove="Migrations\20190523180906_databaseSeeding.Designer.cs" />
     <Compile Remove="Migrations\20190523182117_databaseSeeding.cs" />
     <Compile Remove="Migrations\20190523182117_databaseSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20190528120834_addedPictures.cs" />
+    <Compile Remove="Migrations\20190528120834_addedPictures.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
