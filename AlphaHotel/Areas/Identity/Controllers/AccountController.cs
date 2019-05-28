@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using AlphaHotel.Models;
 using AlphaHotel.Controllers;
 using AlphaHotel.Areas.Identity.Models.AccountViewModels;
+using AlphaHotel.Models.Common;
 
 namespace AlphaHotel.Areas.Identity.Controllers
 {
@@ -104,10 +105,19 @@ namespace AlphaHotel.Areas.Identity.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.UserName, Email = model.Email, CreatedOn = DateTime.Now, BusinessId = model.BusinessId };
-                user.UsersLogbooks = model.LogBookIds
-                    .Select(l => new UsersLogbooks() { LogBookId = l })
-                    .ToList();
+                var user = new User { UserName = model.UserName, Email = model.Email, CreatedOn = DateTime.Now };
+
+                if (model.Role != UserRoleTypes.Administrator.ToString())
+                {
+                    user.BusinessId = model.BusinessId;
+                }
+
+                if (model.Role == UserRoleTypes.Manager.ToString())
+                {
+                    user.UsersLogbooks = model.LogBookIds
+                        .Select(l => new UsersLogbooks() { LogBookId = l })
+                        .ToList();
+                }
 
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

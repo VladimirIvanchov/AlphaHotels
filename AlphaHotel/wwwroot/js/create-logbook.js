@@ -2,9 +2,8 @@
     var $currentLink = $(ev.target);
     var url = $currentLink.data('url');
 
-    $('#create-logbook-area').remove();
-
     $.get(url, function (data) {
+        $('#create-logbook-area').remove();
         $(data).insertAfter('#choose-location-for-logbook');
     });
 });
