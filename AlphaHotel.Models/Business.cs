@@ -8,6 +8,7 @@ namespace AlphaHotel.Models
         public string Name { get; set; }
         public string Location { get; set; }
         public string About { get; set; }
+        public string ShortDescription { get; set; }
         public string CoverPicture { get; set; }
         public ICollection<Picture> Pictures { get; set; }
         public ICollection<LogBook> LogBooks { get; set; }

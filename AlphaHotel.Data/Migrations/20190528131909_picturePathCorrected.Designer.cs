@@ -4,14 +4,16 @@ using AlphaHotel.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AlphaHotel.Data.Migrations
 {
     [DbContext(typeof(AlphaHotelDbContext))]
-    partial class AlphaHotelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190528131909_picturePathCorrected")]
+    partial class picturePathCorrected
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,10 +41,6 @@ namespace AlphaHotel.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(25);
 
-                    b.Property<string>("ShortDescription")
-                        .IsRequired()
-                        .HasMaxLength(130);
-
                     b.HasKey("Id");
 
                     b.ToTable("Businesses");
@@ -54,8 +52,7 @@ namespace AlphaHotel.Data.Migrations
                             About = "Welcome to the Hilton Sofia in the heart of the Bulgarian capital. You’ll appreciate the stunning backdrop of the Vitosha Mountain and our central location opposite Sofia Congress Center. Whether you’re here on business or leisure, you’ll find all the first-class amenities you need for a successful stay. Get to work in our meeting rooms or business center or escape it all with a trip to our spa.",
                             CoverPicture = "/images/hotelPresentation/hilton-sofia.jpg",
                             Location = "1, Bulgaria Blvd., Sofia 1421, Bulgaria",
-                            Name = "Hilton Sofia",
-                            ShortDescription = "In the heart of Sofia next to South Park shopping & National Palace of Culture (venue for Bulgarian EU Presidency 2018)"
+                            Name = "Hilton Sofia"
                         },
                         new
                         {
@@ -63,8 +60,7 @@ namespace AlphaHotel.Data.Migrations
                             About = "Five Star Marinela Hotel Sofia has been designed by the renowned Japanese architect Kisho Kurokawa, the author of a number of world landmarks. The hotel is located on an area of ​​30,000 square meters, there are 442 rooms and suites, including the largest Presidential Suite in Bulgaria. The Hotel Marinela can satisfy the most discerning tastes and needs.",
                             CoverPicture = "/images/hotelPresentation/marinela-sofia.jpg",
                             Location = "100, James Bourchier Blvd., Sofia 1407, Bulgaria",
-                            Name = "Marinela Sofia",
-                            ShortDescription = "The hotel has the largest ballroom and conference hall and a remarkable room on the top floor, with a unique view of Sofia."
+                            Name = "Marinela Sofia"
                         },
                         new
                         {
@@ -72,8 +68,7 @@ namespace AlphaHotel.Data.Migrations
                             About = "A stylish urban hotel with unconventional design welcomes you at the eastern gate of the capital city of Bulgaria, Sofia. Metropolitan Hotel Sofia is strategically located close to Sofia Airport, Business Park Sofia, Megapark, European Trade Center, Capital Fort,  Shopping center “The Mall” and International Expo Center.",
                             CoverPicture = "/images/hotelPresentation/metropolitan-hotel-sofia.jpg",
                             Location = "64, Tsarigradsko shosse Blvd., Sofia 1784, Bulgaria",
-                            Name = "Metropolitan Hotel",
-                            ShortDescription = "Metropolitan Hotel Sofia is the right spot to inspire your business day – 10 fully equipped meeting rooms will host your event."
+                            Name = "Metropolitan Hotel"
                         });
                 });
 
@@ -158,36 +153,6 @@ namespace AlphaHotel.Data.Migrations
                         new
                         {
                             Id = 2,
-                            Author = "Peter",
-                            BusinessId = 1,
-                            CreatedOn = new DateTime(2019, 5, 28, 12, 13, 56, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Rate = 5,
-                            Text = "I like this hotel!"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Author = "John Wick",
-                            BusinessId = 1,
-                            CreatedOn = new DateTime(2019, 5, 15, 8, 15, 54, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Rate = 5,
-                            Text = "My first choice in Bulgaria."
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Author = "Ronald",
-                            BusinessId = 1,
-                            CreatedOn = new DateTime(2019, 5, 27, 12, 20, 42, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Rate = 4,
-                            Text = "I will be back!"
-                        },
-                        new
-                        {
-                            Id = 5,
                             BusinessId = 2,
                             CreatedOn = new DateTime(2019, 5, 22, 13, 51, 34, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
@@ -196,72 +161,13 @@ namespace AlphaHotel.Data.Migrations
                         },
                         new
                         {
-                            Id = 6,
-                            Author = "Ivan",
-                            BusinessId = 2,
-                            CreatedOn = new DateTime(2019, 5, 24, 12, 31, 35, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Rate = 4,
-                            Text = "Nice Hotel. Good service!"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BusinessId = 2,
-                            CreatedOn = new DateTime(2019, 5, 27, 17, 53, 39, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Rate = 5,
-                            Text = "Nice garden."
-                        },
-                        new
-                        {
-                            Id = 8,
+                            Id = 3,
                             Author = "Petar",
-                            BusinessId = 2,
-                            CreatedOn = new DateTime(2019, 5, 28, 17, 2, 17, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Rate = 5,
-                            Text = "I like it. One of the best in Bulgaria!"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Author = "Ivan",
                             BusinessId = 3,
                             CreatedOn = new DateTime(2019, 5, 21, 20, 39, 44, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Rate = 4,
                             Text = "Good breakfast"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Author = "Petar",
-                            BusinessId = 3,
-                            CreatedOn = new DateTime(2019, 5, 14, 22, 51, 54, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Rate = 5,
-                            Text = "One of the best hotel in Bulgaria!"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Author = "John",
-                            BusinessId = 3,
-                            CreatedOn = new DateTime(2019, 5, 27, 17, 53, 39, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Rate = 4,
-                            Text = "Nice service. I like the breakfast!"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Author = "Vasil",
-                            BusinessId = 3,
-                            CreatedOn = new DateTime(2019, 5, 12, 11, 16, 21, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Rate = 4,
-                            Text = "Nice and cosy!"
                         });
                 });
 

@@ -2,15 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AlphaHotel.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaHotel.Controllers
 {
     public class BusinessController : Controller
     {
-        public IActionResult Details()
+        private readonly IBusinessService businessService;
+
+        public BusinessController(IBusinessService businessService)
         {
-            return View();
+            this.businessService = businessService ?? throw new ArgumentNullException(nameof(businessService));
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var vm = await this.businessService.FindDetaliedBusinessAsync(id);
+
+            return View(vm);
         }
     }
 }

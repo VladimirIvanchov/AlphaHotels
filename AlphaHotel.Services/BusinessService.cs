@@ -24,10 +24,10 @@ namespace AlphaHotel.Services
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<ICollection<BusinessDTO>> ListAllBusinessesAsync()
+        public async Task<ICollection<T>> ListAllBusinessesAsync<T>()
         {
             var businesses = await this.context.Businesses
-                .ProjectTo<BusinessDTO>()
+                .ProjectTo<T>()
                 .ToListAsync();
 
             return businesses;
@@ -60,6 +60,33 @@ namespace AlphaHotel.Services
 
             this.context.LogBooks.Add(newLogbook);
             return await this.context.SaveChangesAsync();
+        }
+
+        public async Task<BusinessDetailsDTO> FindDetaliedBusinessAsync(int businessId)
+        {
+            var business = await this.context.Businesses
+                .Include(b => b.Pictures)
+                .Include(b => b.Feedbacks)
+                .ProjectTo<BusinessDetailsDTO>()
+                .FirstOrDefaultAsync(b => b.Id == businessId);
+
+            if (business == null)
+            {
+                throw new ArgumentException($"Business {business} do not already exist!");
+            }
+
+            return business;
+        }
+
+        public async Task<ICollection<BusinessShortInfoDTO>> ListTopNBusinessesAsync(int counts)
+        {
+            var businesses = await this.context.Businesses
+                .OrderByDescending(b => b.Feedbacks.Average(f => f.Rate))
+                .Take(counts)
+                .ProjectTo<BusinessShortInfoDTO>()
+                .ToListAsync();
+
+            return businesses;
         }
     }
 }

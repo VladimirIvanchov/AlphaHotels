@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ICollection<BusinessShortInfoDTO>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -43,50 +45,23 @@
             <h2 class="title_color">Our Suggestions</h2>
         </div>
         <div class="row mb_30">
-            <div class="col-lg-4 col-md-6">
-                <div class="single-recent-blog-post">
-                    <div class="thumb">
-                        <img class="img-fluid" src="~/images/hotelPresentation/hilton-sofia.jpg" alt="post">
-                    </div>
-                    <div class="details">
-                        <div class="tags">
-                            <a asp-controller="Business" asp-action="Details" asp-route-id="1" class="button_hover tag_btn">Details</a>
+            @foreach (var business in @Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-recent-blog-post">
+                        <div class="thumb">
+                            <img class="img-fluid" src="@business.CoverPicture" alt="post">
                         </div>
-                        <a href="#"><h4 class="sec_h4">Hilton Sofia</h4></a>
-                        <p>n the heart of Sofia next to South Park shopping & National Palace of Culture (venue for Bulgarian EU Presidency 2018)</p>
+                        <div class="details">
+                            <div class="tags">
+                                <a asp-controller="Business" asp-action="Details" asp-route-id=@business.Id class="button_hover tag_btn">Details</a>
+                            </div>
+                            <a asp-controller="Business" asp-action="Details" asp-route-id=@business.Id><h4 class="sec_h4">@business.Name</h4></a>
+                            <p>@business.ShortDescription</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-recent-blog-post">
-                    <div class="thumb">
-                        <img class="img-fluid" src="~/images/hotelPresentation/marinela-sofia.jpg" alt="post">
-                    </div>
-                    <div class="details">
-                        <div class="tags">
-                            <a href="#" class="button_hover tag_btn">Travel</a>
-                            <a href="#" class="button_hover tag_btn">Life Style</a>
-                        </div>
-                        <a href="#"><h4 class="sec_h4">Marinela Sofia</h4></a>
-                        <p>Five Star Marinela Hotel Sofia has been designed by the renowned Japanese architect Kisho Kurokawa, the author of a number of world landmarks.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-recent-blog-post">
-                    <div class="thumb">
-                        <img class="img-fluid" src="~/images/hotelPresentation/metropolitan-hotel-sofia.jpg" alt="post">
-                    </div>
-                    <div class="details">
-                        <div class="tags">
-                            <a href="#" class="button_hover tag_btn">Travel</a>
-                            <a href="#" class="button_hover tag_btn">Life Style</a>
-                        </div>
-                        <a href="#"><h4 class="sec_h4">Metropolitan Sofia</h4></a>
-                        <p>A stylish urban hotel with unconventional design welcomes you at the eastern gate of the capital city of Bulgaria, Sofia.</p>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>

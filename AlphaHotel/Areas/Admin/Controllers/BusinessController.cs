@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AlphaHotel.Areas.Admin.Models;
+using AlphaHotel.DTOs;
 using AlphaHotel.Infrastructure.MappingProviders;
 using AlphaHotel.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
@@ -26,7 +27,7 @@ namespace AlphaHotel.Areas.Admin.Controllers
 
         public async Task<IActionResult> AllBusiness()
         {
-            var businesses = await this.businessService.ListAllBusinessesAsync();
+            var businesses = await this.businessService.ListAllBusinessesAsync<BusinessDTO>();
 
             return PartialView("_AllBusinessPartial", businesses);
         }
@@ -50,7 +51,7 @@ namespace AlphaHotel.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateLogBook()
         {
-            var businesses = await this.businessService.ListAllBusinessesAsync();
+            var businesses = await this.businessService.ListAllBusinessesAsync<BusinessDTO>();
             var vm = this.mapper.MapTo<CreateLogBookViewModel>(businesses);
 
             return View(vm);

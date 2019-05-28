@@ -10,6 +10,33 @@
   },
   {
     "Id": 2,
+    "Text": "I like this hotel!",
+    "Rate": 5,
+    "BusinessId": 1,
+    "Author": "Peter",
+    "CreatedOn": "2019/05/28T12:13:56",
+    "IsDeleted": false
+  },
+  {
+    "Id": 3,
+    "Text": "My first choice in Bulgaria.",
+    "Rate": 5,
+    "BusinessId": 1,
+    "Author": "John Wick",
+    "CreatedOn": "2019/05/15T08:15:54",
+    "IsDeleted": false
+  },
+  {
+    "Id": 4,
+    "Text": "I will be back!",
+    "Rate": 4,
+    "BusinessId": 1,
+    "Author": "Ronald",
+    "CreatedOn": "2019/05/27T12:20:42",
+    "IsDeleted": false
+  },
+  {
+    "Id": 5,
     "Text": "Perfect disco",
     "Rate": 4,
     "BusinessId": 2,
@@ -17,12 +44,65 @@
     "IsDeleted": false
   },
   {
-    "Id": 3,
+    "Id": 6,
+    "Text": "Nice Hotel. Good service!",
+    "Rate": 4,
+    "BusinessId": 2,
+    "Author": "Ivan",
+    "CreatedOn": "2019/05/24T12:31:35",
+    "IsDeleted": false
+  },
+  {
+    "Id": 7,
+    "Text": "Nice garden.",
+    "Rate": 5,
+    "BusinessId": 2,
+    "CreatedOn": "2019/05/27T17:53:39",
+    "IsDeleted": false
+  },
+  {
+    "Id": 8,
+    "Text": "I like it. One of the best in Bulgaria!",
+    "Rate": 5,
+    "BusinessId": 2,
+    "Author": "Petar",
+    "CreatedOn": "2019/05/28T17:02:17",
+    "IsDeleted": false
+  },
+  {
+    "Id": 9,
     "Text": "Good breakfast",
     "Rate": 4,
     "BusinessId": 3,
-    "Author": "Petar",
+    "Author": "Ivan",
     "CreatedOn": "2019/05/21T20:39:44",
+    "IsDeleted": false
+  },
+  {
+    "Id": 10,
+    "Text": "One of the best hotel in Bulgaria!",
+    "Rate": 5,
+    "BusinessId": 3,
+    "Author": "Petar",
+    "CreatedOn": "2019/05/14T22:51:54",
+    "IsDeleted": false
+  },
+  {
+    "Id": 11,
+    "Text": "Nice service. I like the breakfast!",
+    "Rate": 4,
+    "BusinessId": 3,
+    "Author": "John",
+    "CreatedOn": "2019/05/27T17:53:39",
+    "IsDeleted": false
+  },
+  {
+    "Id": 12,
+    "Text": "Nice and cosy!",
+    "Rate": 4,
+    "BusinessId": 3,
+    "Author": "Vasil",
+    "CreatedOn": "2019/05/12T11:16:21",
     "IsDeleted": false
   }
 ]

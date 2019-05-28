@@ -27,6 +27,11 @@ namespace AlphaHotel.Infrastructure.MappingProviders.Mappings
                .ForMember(d => d.LogBookId, src => src.MapFrom(s => s.UsersLogbooks
                                                            .Select(ul => ul.LogBookId)))
                .ForMember(d => d.BusinessName, src => src.MapFrom(s => s.Business.Name));
+
+            CreateMap<Business, BusinessDetailsDTO>()
+               .ForMember(d => d.Pictures, src => src.MapFrom(s => s.Pictures
+                                                           .Select(p => p.Location)))
+               .ForMember(d => d.Feedbacks, src => src.MapFrom(s => s.Feedbacks));
         }
     }
 }
