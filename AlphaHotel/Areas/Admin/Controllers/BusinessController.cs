@@ -64,7 +64,6 @@ namespace AlphaHotel.Areas.Admin.Controllers
             if (!this.ModelState.IsValid)
             {
                 return BadRequest("Invalid parameters!");
-                //return View(model);
             }
 
             try
@@ -72,12 +71,11 @@ namespace AlphaHotel.Areas.Admin.Controllers
                 await this.businessService.AddLogBookToBusinessAsync(model.LogBookName, model.BusinessId);
 
                 return Json(model);
-                //return RedirectToAction(nameof(CreateLogBook));
             }
             catch (ArgumentException ex)
             {
                 this.ModelState.AddModelError("Error", ex.Message);
-                return View(model);
+                return BadRequest(ex.Message);
             }
         }
     }

@@ -39,14 +39,6 @@ namespace AlphaHotel.Services
                   .Include(u => u.Business)
                   .ProjectTo<AccountDTO>()
                   .ToListAsync();
-
-
-            //userManager.GetRolesAsync()
-
-            //return await this.context.Users
-            //    .Include(u => u.UsersLogbooks)
-            //        .ThenInclude(ur => ur.LogBook)
-            //    .ToListAsync();
         }
 
         public async Task<AccountDetailsDTO> FindAccountAsync(string accountId)
@@ -82,6 +74,15 @@ namespace AlphaHotel.Services
             if (user == null)
             {
                 throw new ArgumentException($"Account {username} do not exist!");
+            }
+
+            if (user.UserName != username)
+            {
+                var newUserNameIsInUse = await this.context.Users.FirstOrDefaultAsync(u => u.UserName == username);
+                if (newUserNameIsInUse != null)
+                {
+                    throw new ArgumentException($"Username {username} is in use!");
+                }
             }
 
             user.UserName = username;

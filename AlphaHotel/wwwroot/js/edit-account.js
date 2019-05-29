@@ -1,4 +1,4 @@
-﻿$('#create-category-form').submit(function (ev) {
+﻿$('#edit-account').submit(function (ev) {
     ev.preventDefault();
 
     var $this = $(this);
@@ -7,23 +7,25 @@
     var dataToSend = $this.serialize();
 
     var isValid = $this.valid();
+    debugger;
     if (isValid) {
         $.post(url, dataToSend, function (response) {
+            debugger;
             Swal.fire({
                 position: 'top-end',
                 type: 'success',
-                title: 'Successful created category: ' + response.categoryName,
+                title: 'Successful edited account: ' + response.userName,
                 showConfirmButton: false,
                 timer: 1500
             })
-            $('#logBooks-list').append('<li class="list-group-item list-group-item-dark">' + response.categoryName + '</li>');
         }).fail(function (error) {
+            debugger;
             Swal.fire({
                 type: 'error',
                 title: 'Oops...',
                 text: error.responseText
             })
-        })
+        });
     }
     else {
         Swal.fire({
@@ -31,5 +33,5 @@
             title: 'Oops...',
             text: 'Invalid parameters!'
         })
-    };
+    }
 });

@@ -14,6 +14,11 @@
         <div class="form-group">
             <label for="LogBookName">New LogBook:</label>
             <input name="LogBookName" class="form-control">
+            <span validation-for="LogBookName" name="LogBookName" class="text-danger"></span>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

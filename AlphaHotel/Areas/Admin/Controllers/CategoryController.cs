@@ -53,7 +53,7 @@ namespace AlphaHotel.Areas.Admin.Controllers
             catch (ArgumentException ex)
             {
                 this.ModelState.AddModelError("Error", ex.Message);
-                return View(model);
+                return BadRequest(ex.Message);
             }
         }
     }

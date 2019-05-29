@@ -124,10 +124,11 @@ namespace AlphaHotel.Areas.Identity.Controllers
                 {
                     await _userManager.AddToRoleAsync(user, model.Role);
                     _logger.LogInformation("User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    return Json(model);
                 }
 
                 AddErrors(result);
+                return BadRequest(Json(new { success = false, issue = model, errors = ModelState.Values.Where(i => i.Errors.Count > 0) }));
             }
 
             return View(model);

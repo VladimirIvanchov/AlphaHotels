@@ -15,9 +15,9 @@
                     @foreach (var business in Model.Businesses)
                     {
                         <div class="form-check">
-                            <input name="BusinessId" type="radio" class="form-check-input business-for-logbook" data-url="/admin/business/businessLogbooksCreate/@business.BusinessId" value="@business.BusinessId">
-                            <label for="BusinessId" class="form-check-label">@business.Name</label>
-                            <span asp-validation-for="@business.BusinessId" class="text-danger"></span>
+                            <input asp-for="BusinessId" type="radio" class="form-check-input business-for-logbook" data-url="/admin/business/businessLogbooksCreate/@business.BusinessId" value="@business.BusinessId">
+                            <label asp-for="BusinessId" class="form-check-label">@business.Name</label>
+                            <span asp-validation-for="BusinessId" class="text-danger"></span>
                         </div>
                     }
                 }

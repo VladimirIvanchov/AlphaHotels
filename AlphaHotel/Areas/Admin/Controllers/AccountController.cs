@@ -58,25 +58,19 @@ namespace AlphaHotel.Areas.Admin.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return View(model);
+                return BadRequest("Invalid parameters!");
             }
 
             try
             {
                 await this.accountService.EditAccountAsync(model.Id, model.UserName, model.Email, model.IsDeleted, model.LogBookId);
 
-                return RedirectToRoute(
-                    new
-                    {
-                        area = "Admin",
-                        controller = "Account",
-                        action = "AllAcounts"
-                    });
+                return Json(model);
             }
             catch (ArgumentException ex)
             {
                 this.ModelState.AddModelError("Error", ex.Message);
-                return View(model);
+                return BadRequest(ex.Message);
             }
         }
     }
