@@ -3543,7 +3543,7 @@ form#search-form-1 input {
 /*============== footer-area css ===============*/
 .footer-area {
     background: #04091e;
-    padding: 142px 0px;
+    padding-bottom : 30px;
 }
 
 .single-footer-widget ul li a {

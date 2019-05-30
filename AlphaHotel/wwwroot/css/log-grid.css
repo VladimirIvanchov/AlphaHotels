@@ -1,0 +1,6 @@
+﻿.container-logs {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 50px 50px;
+    font-size: 16px;
+}

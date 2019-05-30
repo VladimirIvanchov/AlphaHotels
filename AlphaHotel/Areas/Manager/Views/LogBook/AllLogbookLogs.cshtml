@@ -4,5 +4,40 @@
     ViewData["Title"] = "AllLogbookLogs";
 }
 
-<h2>AllLogbookLogs</h2>
+<link href="~/css/log-grid.css" rel="stylesheet" />
+<section class="section_gap">
+    <div class="container">
+        <h2>Logs</h2>
+        <div class="search-form-wrapper search-form-rev">
+            <div class="container">
+                <!-- ===== START OF SEARCH FORM ===== -->
+                <form id="search-form-1">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 col-sm-10 col-12">
+                            <div class="form-group">
+                                <input name="name" type="text" id="search-keyword" value="" class="form-control" placeholder="Find Your Hotel">
+                                <button asp-controller="" asp-action="" type="submit" class="btn btn-main btn-effect"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- ===== END OF SEARCH FORM ===== -->
+            </div>
+        </div>
+        <div>
+            @foreach (var log in Model)
+            {
+            <div class="container-logs">
+                <div class="">@log.AuthorUsername</div>
+                <div class=""><em>@log.Description</em></div>
+                <div class="">@log.CreatedOn.ToString("dd MMM yyyy, HH:mm")</div>
+                <div class="">@log.Category</div>
+                <div></div>
+                <div class="">@log.Status</div>
 
+            </div>
+            <hr />
+            }
+        </div>
+    </div>
+</section>
