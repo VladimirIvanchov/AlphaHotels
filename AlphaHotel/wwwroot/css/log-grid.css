@@ -1,6 +1,23 @@
-﻿.container-logs {
+﻿@media only screen and (min-width:480px) {
+    .container-logs {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (min-width:720px) {
+    .container-logs {
+        font-size: 16px;
+    }
+}
+
+/*@media only screen and (min-width:1200px) {
+    .container-logs {
+        font-size: 18px;
+    }
+}*/
+
+.container-logs {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 50px 50px;
-    font-size: 16px;
 }
