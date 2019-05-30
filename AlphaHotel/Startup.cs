@@ -39,8 +39,10 @@ namespace AlphaHotel
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IBusinessService, BusinessService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ILogBookService, LogBookService>();
             services.AddScoped<IDateTimeWrapper, DateTimeWrapper>();
             services.AddScoped<IMappingProvider, MappingProvider>();
+            services.AddScoped<IUserHelper, UserHelper>();
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<AlphaHotelDbContext>()

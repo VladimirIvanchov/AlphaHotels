@@ -7,7 +7,7 @@
 <section class="contact_area section_gap">
     <div class="container">
         <form asp-area="Admin" asp-controller="Business" asp-action="CreateLogBook" id="create-logbook-form" enctype="multipart/form-data">
-            <div asp-validation-summary="All" class="text-danger"></div>
+            @*<div asp-validation-summary="All" class="text-danger"></div>*@
             <h2>Create LogBook</h2>
             <div class="col-sm-10" id="choose-location-for-logbook">
                 @if (Model.Businesses != null)

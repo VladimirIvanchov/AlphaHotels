@@ -7,7 +7,7 @@
 <section class="contact_area section_gap">
     <div class="container">
         <form asp-area="Admin" asp-controller="Business" asp-action="CreateCategory" id="create-category-form">
-            <div asp-validation-summary="All" class="text-danger"></div>
+            @*<div asp-validation-summary="All" class="text-danger"></div>*@
             <h2>Current Categories</h2>
             <div class="col-md-4">
                 <ul class="list-group" id="logBooks-list">
@@ -21,8 +21,9 @@
                 </ul>
                 <hr />
                 <div class="form-group">
-                    <label for="CategoryName">New Category:</label>
-                    <input name="CategoryName" class="form-control">
+                    <label asp-for="@Model.CategoryName">New Category:</label>
+                    <input asp-for="@Model.CategoryName" class="form-control">
+                    <span asp-validation-for="@Model.CategoryName" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">

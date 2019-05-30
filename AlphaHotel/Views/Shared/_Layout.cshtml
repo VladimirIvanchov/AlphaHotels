@@ -47,13 +47,6 @@
                         <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
                         <li class="nav-item"><a class="nav-link" href="accomodation.html">Accomodation</a></li>
                         <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                        <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                <li class="nav-item"><a class="nav-link" href="blog-single.html">Blog Details</a></li>
-                            </ul>
-                        </li>
                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                         @if (User.IsInRole("Administrator"))
                         {
@@ -66,6 +59,10 @@
                                     <li class="nav-item"><a asp-area="Admin" asp-controller="Category" asp-action="CreateCategory" class="nav-link">Create Category</a></li>
                                 </ul>
                             </li>
+                        }
+                        @if (User.IsInRole("Manager"))
+                        {
+                            <li class="nav-item"><a asp-area="Manager" asp-controller="LogBook" asp-action="AllLogbookLogs" a class="nav-link">My LogBooks</a></li>
                         }
                         <li class="nav-item">
                             <partial name="_LoginPartial" />
@@ -94,10 +91,7 @@
         </div>
     </footer>
 
-    @if (!User.Identity.IsAuthenticated)
-    {
-        @await Html.PartialAsync("_LoginAndRegisterPopup")
-    }
+    <partial name="_LoginAndRegisterPopup" model="new LoginViewModel()" />
 
     @*<environment include="Development">
             <script src="~/lib/jquery/dist/jquery.js"></script>
