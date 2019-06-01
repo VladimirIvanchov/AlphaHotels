@@ -1,5 +1,4 @@
 ﻿using AlphaHotel.DTOs;
-using AlphaHotel.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,5 +7,7 @@ namespace AlphaHotel.Services.Contracts
     public interface ILogBookService
     {
         Task<ICollection<LogDTO>> ListAllLogsForManagerAsync(string id);
+        Task<ICollection<StatusDTO>> ListAllStatusesAsync();
+        Task<int> ChangeStatusOfLogAsync(int statusId, int logId);
     }
 }

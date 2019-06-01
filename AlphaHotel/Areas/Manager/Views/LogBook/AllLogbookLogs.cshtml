@@ -26,17 +26,28 @@
         <div>
             @foreach (var log in Model)
             {
-            <div class="container-logs">
-                <div class="">@log.AuthorUsername</div>
-                <div class=""><em>@log.Description</em></div>
-                <div class="">@log.CreatedOn.ToString("dd MMM yyyy, HH:mm")</div>
-                <div class="">@log.Category</div>
-                <div></div>
-                <div class="">@log.Status</div>
-
-            </div>
-            <hr />
+                <div class="container-logs">
+                    <div class="">@log.AuthorUsername</div>
+                    <div class=""><em>@log.Description</em></div>
+                    <div class="">@log.CreatedOn.ToString("dd MMM yyyy, HH:mm")</div>
+                    <div class="">@log.Category</div>
+                    <div></div>
+                    <div class="status-div" data-url="/manager/logbook/ShowStatusesOtherThanLogs/@log.Id">
+                        @*<a href="" id="status-dropdown" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-url="/manager/logbook/ShowStatusesOtherThanLogs/">@log.Status</a>*@
+                        @*<button type="button" class="btn btn-primary status-dropdown" data-url="/manager/logbook/ShowStatusesOtherThanLogs/">
+                            @log.Status
+                        </button>*@
+                        <select class="status-dropdown" data-url="/manager/logbook/ShowStatusesOtherThanLogs/@log.Id">
+                            <option value=@log.Status>@log.Status</option>
+                        </select>
+                    </div>
+                </div>
+                <hr />
             }
         </div>
     </div>
 </section>
+
+@section Scripts {
+    <script src="~/js/log.js"></script>
+}

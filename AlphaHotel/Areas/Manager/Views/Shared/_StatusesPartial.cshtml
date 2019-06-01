@@ -1,0 +1,13 @@
+﻿@model StatusForLogViewModel
+@*<ul class="dropdown-menu">
+        @foreach (var status in Model)
+        {
+            <li class="nav-item possible-status"><a asp-area="Manager" asp-controller="LogBook" asp-action="" class="nav-link">@status.Type</a></li>
+        }
+    </ul>*@
+
+@foreach (var status in Model.Statuses)
+{
+    @*<a class="" href="#">@status.Type</a>*@
+    <li value="@status.Type" class="option"><a asp-area="Manager" asp-controller="LogBook" asp-action="ChangeStatus" asp-route-statusId="@status.Id" asp-route-logId="@Model.LogId" class="change-log-status">@status.Type</a></li>
+}

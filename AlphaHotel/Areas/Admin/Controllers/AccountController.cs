@@ -54,6 +54,7 @@ namespace AlphaHotel.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditAccount(AccountViewModel model)
         {
             if (!this.ModelState.IsValid)
