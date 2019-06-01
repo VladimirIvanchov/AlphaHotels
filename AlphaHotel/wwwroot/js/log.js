@@ -1,7 +1,15 @@
-﻿$('.status-dropdown').on('click', function (ev) {
+﻿$('.status-dropdown span').on('click', function (ev) {
+    ev.stopPropagation();
+
+    $(this).parent().click();
+});
+
+$('.status-dropdown').on('click', function (ev) {
     ev.preventDefault();
+
     var $currentLink = $(ev.target);
-    var url = $currentLink.parent().parent().data('url');
+
+    var url = $currentLink.parent().data('url');
     var $this = $(this);
 
     if ($this.children().last().children().length < 2) {
