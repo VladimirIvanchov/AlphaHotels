@@ -1,12 +1,12 @@
 ﻿@media only screen and (min-width:480px) {
     .container-logs {
-        font-size: 14px;
+        font-size: 14px
     }
 }
 
 @media only screen and (min-width:720px) {
     .container-logs {
-        font-size: 16px;
+        font-size: 16px
     }
 }
 
@@ -20,4 +20,22 @@
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 50px 50px;
+    color: white
 }
+
+#log-grid {
+    background: url('../images/background-logs.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+}
+
+.nice-select {
+    background-color: #2b2b2d;
+    color: white
+}
+
+    .nice-select ul li {
+        background-color: #2b2b2d;
+        color: white
+    }

@@ -32,7 +32,7 @@ $('#logs-container').on('click', '.change-log-status', function (ev) {
             Swal.fire({
                 position: 'top-end',
                 type: 'success',
-                title: 'Successful change status!',
+                title: 'Successfully changed status!',
                 showConfirmButton: false,
                 timer: 1500
             })
