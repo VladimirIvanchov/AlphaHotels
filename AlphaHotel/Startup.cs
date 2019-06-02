@@ -18,6 +18,7 @@ using AlphaHotel.Infrastructure.MappingProviders;
 using AutoMapper;
 using AlphaHotel.Infrastructure.MappingProviders.Mappings;
 using AlphaHotel.Common;
+using AlphaHotel.Infrastructure.PagingProvider;
 
 namespace AlphaHotel
 {
@@ -43,6 +44,7 @@ namespace AlphaHotel
             services.AddScoped<IDateTimeWrapper, DateTimeWrapper>();
             services.AddScoped<IMappingProvider, MappingProvider>();
             services.AddScoped<IUserHelper, UserHelper>();
+            services.AddScoped(typeof(IPaginatedList<>), typeof(PaginatedList<>));
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<AlphaHotelDbContext>()

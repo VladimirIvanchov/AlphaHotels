@@ -14,6 +14,7 @@ namespace AlphaHotel.Areas.Manager.Controllers
     [Route("[area]/[controller]/[action]")]
     public class LogBookController : Controller
     {
+        private const int pageSize = 2;
         private readonly ILogBookService logBookService;
         private readonly IUserHelper userHelper;
         private readonly IMappingProvider mapper;
@@ -24,12 +25,20 @@ namespace AlphaHotel.Areas.Manager.Controllers
             this.userHelper = userHelper ?? throw new ArgumentNullException(nameof(userHelper));
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
-        public async Task<IActionResult> AllLogbookLogs()
+        public async Task<IActionResult> AllLogbookLogs([FromQuery(Name = "keyword")] string keyword, int? pageNumber)
         {
-            var userId = this.userHelper.GetId(this.User);
-            var logs = await this.logBookService.ListAllLogsForManagerAsync(userId);
+            var managerId = this.userHelper.GetId(this.User);
+            var logs = await this.logBookService.ListAllLogsForManagerAsync(managerId, pageNumber, pageSize, keyword ?? "".ToLower());
 
             return View(logs);
+        }
+
+        public async Task<IActionResult> FindLog([FromQuery(Name = "keyword")] string keyword, int? pageNumber)
+        {
+            var managerId = this.userHelper.GetId(this.User);
+            var logs = await this.logBookService.ListAllLogsForManagerAsync(managerId, pageNumber, pageSize, keyword ?? "".ToLower());
+
+            return PartialView("_LogsPartial", logs);
         }
 
         [HttpGet("{logId}")]
@@ -50,18 +59,10 @@ namespace AlphaHotel.Areas.Manager.Controllers
             return Json(status);
         }
 
-        public async Task<IActionResult> FindLog([FromQuery(Name = "keyword")] string keyword)
+        public async Task<IActionResult> FindLogAjax([FromQuery(Name = "keyword")] string keyword, int? pageNumber)
         {
             var managerId = this.userHelper.GetId(this.User);
-            var logs = await this.logBookService.FindLogAsync(keyword ?? "".ToLower(), managerId);
-
-            return PartialView("_LogsPartial", logs);
-        }
-
-        public async Task<IActionResult> FindLogAjax([FromQuery(Name = "keyword")] string keyword)
-        {
-            var managerId = this.userHelper.GetId(this.User);
-            var logs = await this.logBookService.FindLogAsync(keyword ?? "".ToLower(), managerId);
+            var logs = await this.logBookService.ListAllLogsForManagerAsync(managerId, pageNumber, pageSize, keyword ?? "".ToLower());
 
             return View("AllLogbookLogs", logs);
         }

@@ -1,6 +1,7 @@
 ﻿using AlphaHotel.Data;
 using AlphaHotel.DTOs;
 using AlphaHotel.Infrastructure.MappingProviders;
+using AlphaHotel.Infrastructure.PagingProvider;
 using AlphaHotel.Models;
 using AlphaHotel.Services.Contracts;
 using AutoMapper.QueryableExtensions;
@@ -20,14 +21,16 @@ namespace AlphaHotel.Services
     {
         private readonly AlphaHotelDbContext context;
         private readonly IMappingProvider mapper;
+        private readonly IPaginatedList<LogDTO> paginatedList;
 
-        public LogBookService(AlphaHotelDbContext context, IMappingProvider mapper)
+        public LogBookService(AlphaHotelDbContext context, IMappingProvider mapper, IPaginatedList<LogDTO> paginatedList)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            this.paginatedList = paginatedList ?? throw new ArgumentNullException(nameof(paginatedList));
         }
 
-        public async Task<ICollection<LogDTO>> ListAllLogsForManagerAsync(string id)
+        public async Task<IPaginatedList<LogDTO>> ListAllLogsForManagerAsync(string id, int? pageNumber, int pageSize, string keyword)
         {
             //return await this.context.UsersLogbooks
             //    .Include(ul => ul.LogBook)
@@ -47,21 +50,52 @@ namespace AlphaHotel.Services
             //var logs = this.context.LogBooks
             //    //.Include(l => l.LogBook.ManagersLogbooks)
             //.Where(l => l.ManagersLogbooks.)
-
+            //keyword = keyword ?? "";
             var logbooksIds = await this.context.UsersLogbooks
                 .Where(ul => ul.UserId == id)
                 .Select(ul => ul.LogBook.Id)
                 .ToListAsync();
 
-            return await this.context.Logs
+            var logsQuery = this.context.Logs
                 .Include(l => l.Status)
                 .Include(l => l.Category)
                 .Include(l => l.Status)
                 .Where(l => logbooksIds.Contains(l.LogBookId))
+                .Where(l => l.Description.ToLower().Contains(keyword) || l.Category.Name.ToLower().Contains(keyword) || l.CreatedOn.Date.ToString("dd MMM yyyy").ToLower().Contains(keyword))
                 .OrderByDescending(l => l.CreatedOn)
-                .ProjectTo<LogDTO>()
-                .ToListAsync();
+                .ProjectTo<LogDTO>();
+
+            return await this.paginatedList.CreateAsync(logsQuery, pageNumber ?? 1, pageSize, keyword);
         }
+
+        //public async Task<ICollection<LogDTO>> FindLogAsync(string keyword, string managerId, int? pageNumber, int pageSize)
+        //{
+        //    if (keyword != null)
+        //    {
+        //        pageNumber = 1;
+        //    }
+        //    else
+        //    {
+        //        keyword = this.paginatedList.CurrentFilter;
+        //    }
+
+        //    var logbooksIds = await this.context.UsersLogbooks
+        //        .Where(ul => ul.UserId == managerId)
+        //        .Select(ul => ul.LogBook.Id)
+        //        .ToListAsync();
+
+        //    var logsQuery = this.context.Logs
+        //       .Include(l => l.Status)
+        //       .Include(l => l.Category)
+        //       .Include(l => l.Status)
+        //       .Where(l => logbooksIds.Contains(l.LogBookId))
+        //       .Where(l => l.Description.ToLower().Contains(keyword) || l.Category.Name.ToLower().Contains(keyword) || l.CreatedOn.Date.ToString("dd MMM yyyy").ToLower().Contains(keyword))
+        //       .OrderByDescending(l => l.CreatedOn)
+        //       .ProjectTo<LogDTO>();
+
+
+        //    return await this.paginatedList.CreateAsync(logsQuery, pageNumber ?? 1, pageSize, keyword);
+        //}
 
         public async Task<ICollection<StatusDTO>> ListAllStatusesAsync()
         {
@@ -93,24 +127,6 @@ namespace AlphaHotel.Services
             return await this.context.SaveChangesAsync();
         }
 
-        public async Task<ICollection<LogDTO>> FindLogAsync(string keyword, string managerId)
-        {
-            var logbooksIds = await this.context.UsersLogbooks
-                .Where(ul => ul.UserId == managerId)
-                .Select(ul => ul.LogBook.Id)
-                .ToListAsync();
 
-            var result = await this.context.Logs
-               .Include(l => l.Status)
-               .Include(l => l.Category)
-               .Include(l => l.Status)
-               .Where(l => logbooksIds.Contains(l.LogBookId))
-               .Where(l => l.Description.ToLower().Contains(keyword) || l.Category.Name.ToLower().Contains(keyword) || l.CreatedOn.Date.ToString("dd MMM yyyy").ToLower().Contains(keyword))
-               .OrderByDescending(l => l.CreatedOn)
-               .ProjectTo<LogDTO>()
-               .ToListAsync();
-
-            return result;
-        }
     }
 }

@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AlphaHotel.Infrastructure.PagingProvider
 {
-    public interface IPaginatedList
+    public interface IPaginatedList<T>
     {
-        //Task<PaginatedList<T>> CreateAsync(IQueryable<T> source, int pageIndex, int pageSize);
+        bool HasPreviousPage { get; }
+        bool HasNextPage { get; }
+        int PageIndex { get; }
+        int TotalPages { get; }
+        List<T> Items { get; }
+        string CurrentFilter { get; set; }
+        Task<PaginatedList<T>> CreateAsync(IQueryable<T> source, int pageIndex, int pageSize, string keyword);
     }
 }

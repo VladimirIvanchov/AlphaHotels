@@ -1,4 +1,4 @@
-﻿@model ICollection<LogDTO>
+﻿@model IPaginatedList<LogDTO>
 
 @{
     ViewData["Title"] = "AllLogbookLogs";
@@ -14,7 +14,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-8 col-sm-10 col-12">
                             <div class="form-group">
-                                <input name="keyword" type="text" id="search-keyword-log" value="" class="form-control" placeholder="Find Log">
+                                <input name="keyword" type="text" id="search-keyword-log" value="@Model.CurrentFilter" class="form-control" placeholder="Find Log">
                                 <button asp-area="Manager" asp-controller="LogBook" asp-action="FindLogAjax" type="submit" class="btn btn-main btn-effect"><i class="fa fa-search"></i></button>
                             </div>
                         </div>

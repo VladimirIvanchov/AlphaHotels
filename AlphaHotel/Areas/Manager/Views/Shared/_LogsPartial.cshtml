@@ -1,6 +1,6 @@
-﻿@model ICollection<LogDTO>
+﻿@model IPaginatedList<LogDTO>
 
-@foreach (var log in Model)
+@foreach (var log in Model.Items)
 {
     <div class="container-logs">
         <div class="">@log.AuthorUsername</div>
@@ -16,3 +16,19 @@
     </div>
     <hr />
 }
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-area="Manager" asp-controller="LogBook" asp-action="AllLogbookLogs" asp-route-keyword="@Model.CurrentFilter"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-area="Manager" asp-controller="LogBook" asp-action="AllLogbookLogs" asp-route-keyword="@Model.CurrentFilter"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
