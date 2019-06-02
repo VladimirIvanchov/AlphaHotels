@@ -1,10 +1,10 @@
-﻿$('.status-dropdown span').on('click', function (ev) {
+﻿$('#logs-container').on('click', '.status-dropdown span', function (ev) {
     ev.stopPropagation();
 
     $(this).parent().click();
 });
 
-$('.status-dropdown').on('click', function (ev) {
+$('#logs-container').on('click', '.status-dropdown', function (ev) {
     ev.preventDefault();
 
     var $currentLink = $(ev.target);
@@ -21,7 +21,7 @@ $('.status-dropdown').on('click', function (ev) {
     }
 });
 
-$('.status-dropdown').on('click', '.change-log-status', function (ev) {
+$('#logs-container').on('click', '.change-log-status', function (ev) {
     ev.preventDefault();
 
     var $currentLink = $(ev.target);

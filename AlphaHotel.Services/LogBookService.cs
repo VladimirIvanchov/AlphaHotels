@@ -58,6 +58,7 @@ namespace AlphaHotel.Services
                 .Include(l => l.Category)
                 .Include(l => l.Status)
                 .Where(l => logbooksIds.Contains(l.LogBookId))
+                .OrderByDescending(l => l.CreatedOn)
                 .ProjectTo<LogDTO>()
                 .ToListAsync();
         }
@@ -90,6 +91,26 @@ namespace AlphaHotel.Services
 
             log.StatusId = statusId;
             return await this.context.SaveChangesAsync();
+        }
+
+        public async Task<ICollection<LogDTO>> FindLogAsync(string keyword, string managerId)
+        {
+            var logbooksIds = await this.context.UsersLogbooks
+                .Where(ul => ul.UserId == managerId)
+                .Select(ul => ul.LogBook.Id)
+                .ToListAsync();
+
+            var result = await this.context.Logs
+               .Include(l => l.Status)
+               .Include(l => l.Category)
+               .Include(l => l.Status)
+               .Where(l => logbooksIds.Contains(l.LogBookId))
+               .Where(l => l.Description.ToLower().Contains(keyword) || l.Category.Name.ToLower().Contains(keyword) || l.CreatedOn.Date.ToString("dd MMM yyyy").ToLower().Contains(keyword))
+               .OrderByDescending(l => l.CreatedOn)
+               .ProjectTo<LogDTO>()
+               .ToListAsync();
+
+            return result;
         }
     }
 }

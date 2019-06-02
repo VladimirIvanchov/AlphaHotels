@@ -1,0 +1,18 @@
+﻿@model ICollection<LogDTO>
+
+@foreach (var log in Model)
+{
+    <div class="container-logs">
+        <div class="">@log.AuthorUsername</div>
+        <div class=""><em>@log.Description</em></div>
+        <div class="">@log.CreatedOn.ToString("dd MMM yyyy, HH:mm")</div>
+        <div class="">@log.Category</div>
+        <div></div>
+        <div class="status-div" data-url="/manager/logbook/ShowStatusesOtherThanLogs/@log.Id">
+            <select class="status-dropdown" data-url="/manager/logbook/ShowStatusesOtherThanLogs/@log.Id">
+                <option value=@log.Status>@log.Status</option>
+            </select>
+        </div>
+    </div>
+    <hr />
+}

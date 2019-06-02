@@ -6,7 +6,7 @@
 
 <link href="~/css/log-grid.css" rel="stylesheet" />
 <section class="section_gap">
-    <div class="container">
+    <div class="container" id="logs-container">
         <div class="search-form-wrapper search-form-rev">
             <div class="container">
                 <!-- ===== START OF SEARCH FORM ===== -->
@@ -14,8 +14,8 @@
                     <div class="row justify-content-center">
                         <div class="col-md-8 col-sm-10 col-12">
                             <div class="form-group">
-                                <input name="name" type="text" id="search-keyword" value="" class="form-control" placeholder="Find Log">
-                                <button asp-controller="" asp-action="" type="submit" class="btn btn-main btn-effect"><i class="fa fa-search"></i></button>
+                                <input name="keyword" type="text" id="search-keyword-log" value="" class="form-control" placeholder="Find Log">
+                                <button asp-area="Manager" asp-controller="LogBook" asp-action="FindLogAjax" type="submit" class="btn btn-main btn-effect"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
                     </div>
@@ -23,31 +23,13 @@
                 <!-- ===== END OF SEARCH FORM ===== -->
             </div>
         </div>
-        <div>
-            @foreach (var log in Model)
-            {
-                <div class="container-logs">
-                    <div class="">@log.AuthorUsername</div>
-                    <div class=""><em>@log.Description</em></div>
-                    <div class="">@log.CreatedOn.ToString("dd MMM yyyy, HH:mm")</div>
-                    <div class="">@log.Category</div>
-                    <div></div>
-                    <div class="status-div" data-url="/manager/logbook/ShowStatusesOtherThanLogs/@log.Id">
-                        @*<a href="" id="status-dropdown" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-url="/manager/logbook/ShowStatusesOtherThanLogs/">@log.Status</a>*@
-                        @*<button type="button" class="btn btn-primary status-dropdown" data-url="/manager/logbook/ShowStatusesOtherThanLogs/">
-                            @log.Status
-                        </button>*@
-                        <select class="status-dropdown" data-url="/manager/logbook/ShowStatusesOtherThanLogs/@log.Id">
-                            <option value=@log.Status>@log.Status</option>
-                        </select>
-                    </div>
-                </div>
-                <hr />
-            }
+        <div id="all-logs">
+            <partial name="_LogsPartial" model="Model" />
         </div>
     </div>
 </section>
 
 @section Scripts {
     <script src="~/js/log.js"></script>
+    <script src="~/js/search.js"></script>
 }

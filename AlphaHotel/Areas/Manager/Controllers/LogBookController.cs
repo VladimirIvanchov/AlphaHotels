@@ -49,5 +49,21 @@ namespace AlphaHotel.Areas.Manager.Controllers
 
             return Json(status);
         }
+
+        public async Task<IActionResult> FindLog([FromQuery(Name = "keyword")] string keyword)
+        {
+            var managerId = this.userHelper.GetId(this.User);
+            var logs = await this.logBookService.FindLogAsync(keyword ?? "".ToLower(), managerId);
+
+            return PartialView("_LogsPartial", logs);
+        }
+
+        public async Task<IActionResult> FindLogAjax([FromQuery(Name = "keyword")] string keyword)
+        {
+            var managerId = this.userHelper.GetId(this.User);
+            var logs = await this.logBookService.FindLogAsync(keyword ?? "".ToLower(), managerId);
+
+            return View("AllLogbookLogs", logs);
+        }
     }
 }

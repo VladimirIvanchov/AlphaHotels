@@ -9,5 +9,6 @@ namespace AlphaHotel.Services.Contracts
         Task<ICollection<LogDTO>> ListAllLogsForManagerAsync(string id);
         Task<ICollection<StatusDTO>> ListAllStatusesAsync();
         Task<int> ChangeStatusOfLogAsync(int statusId, int logId);
+        Task<ICollection<LogDTO>> FindLogAsync(string keyword, string managerId);
     }
 }
