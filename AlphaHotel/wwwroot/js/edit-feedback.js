@@ -1,4 +1,4 @@
-﻿$('#edit-account').submit(function (ev) {
+﻿$('#edit-feedback').submit(function (ev) {
     ev.preventDefault();
 
     var $this = $(this);
@@ -7,13 +7,14 @@
     var dataToSend = $this.serialize();
 
     var isValid = $this.valid();
-
+    debugger;
     if (isValid) {
+        debugger;
         $.post(url, dataToSend, function (response) {
             Swal.fire({
                 position: 'top-end',
                 type: 'success',
-                title: 'Successfully edited account: ' + response.userName,
+                title: 'Successfully edited feedback',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -26,6 +27,7 @@
         });
     }
     else {
+        debugger;
         Swal.fire({
             type: 'error',
             title: 'Oops...',

@@ -25,6 +25,7 @@ namespace AlphaHotel.Areas.Manager.Controllers
             this.userHelper = userHelper ?? throw new ArgumentNullException(nameof(userHelper));
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
+
         public async Task<IActionResult> AllLogbookLogs([FromQuery(Name = "keyword")] string keyword, int? pageNumber)
         {
             var managerId = this.userHelper.GetId(this.User);

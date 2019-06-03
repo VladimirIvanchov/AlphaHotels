@@ -10,6 +10,8 @@ namespace AlphaHotel.DTOs
         [Required]
         [MaxLength(150)]
         public string Text { get; set; }
+
+        [Range(1, 5)]
         public int Rate { get; set; }
         public int BusinessId { get; set; }
         public string Author { get; set; }

@@ -12,7 +12,7 @@
             Swal.fire({
                 position: 'top-end',
                 type: 'success',
-                title: 'Successful created category: ' + response.categoryName,
+                title: 'Successfully created category: ' + response.categoryName,
                 showConfirmButton: false,
                 timer: 1500
             })

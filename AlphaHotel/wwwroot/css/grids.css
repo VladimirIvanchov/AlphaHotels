@@ -1,11 +1,11 @@
 ﻿@media only screen and (min-width:480px) {
-    .container-logs, .container-feedback {
+    .container-logs, .container-feedback, .container-edit-feedback {
         font-size: 14px
     }
 }
 
 @media only screen and (min-width:720px) {
-    .container-logs, .container-feedback {
+    .container-logs, .container-feedback, .container-edit-feedback {
         font-size: 16px
     }
 }
@@ -17,9 +17,29 @@
     color: white
 }
 
-#log-grid, #feedback-grid {
+#log-grid, #feedback-grid, #edit-feedback-grid {
     background: url('../images/background-logs.jpg') no-repeat center center fixed;
     background-size: cover;
     height: 100%;
     overflow: hidden;
 }
+
+.container-logs, .container-feedback {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 50px 50px;
+    color: white
+}
+
+.container-edit-feedback {
+    color: white;
+}
+
+    .container-edit-feedback input {
+        background-color: #2b2b2d;
+        color: white;
+    }
+
+        .container-edit-feedback input:read-only {
+            background-color: black;
+        }

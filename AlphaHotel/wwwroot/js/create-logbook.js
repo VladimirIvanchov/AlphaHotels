@@ -23,7 +23,7 @@ $('#create-logbook-form').submit(function (ev) {
             Swal.fire({
                 position: 'top-end',
                 type: 'success',
-                title: 'Successful created logbook: ' + response.logBookName,
+                title: 'Successfully created logbook: ' + response.logBookName,
                 showConfirmButton: false,
                 timer: 1500
             })

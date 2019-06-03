@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AlphaHotel.Common;
+using AlphaHotel.DTOs;
 using AlphaHotel.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,35 @@ namespace AlphaHotel.Areas.Moderator.Controllers
             var feedbacks = await this.feedbackService.ListAllFeedbacksAsync(moderatorId, pageNumber, pageSize);
 
             return View(feedbacks);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditFeedback(int feedbackId)
+        {
+            var feedback = await this.feedbackService.FindFeedback(feedbackId);
+            return View(feedback);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditFeedback(FeedbackDTO model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return BadRequest("Invalid parameters!");
+            }
+
+            try
+            {
+                await this.feedbackService.EditFeedback(model.Id, model.Author, model.Text, model.Rate, model.IsDeleted);
+
+                return Json(model);
+            }
+            catch (ArgumentException ex)
+            {
+                this.ModelState.AddModelError("Error", ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

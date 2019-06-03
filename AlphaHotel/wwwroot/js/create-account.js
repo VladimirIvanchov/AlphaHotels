@@ -43,7 +43,7 @@ $('#registerForm').submit(function (ev) {
             Swal.fire({
                 position: 'top-end',
                 type: 'success',
-                title: 'Successful created account: ' + response.userName,
+                title: 'Successfully created account: ' + response.userName,
                 showConfirmButton: false,
                 timer: 1500
             })
