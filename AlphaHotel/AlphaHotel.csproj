@@ -23,7 +23,8 @@
 
 
   <ItemGroup>
-    <Folder Include="Areas\Moderator\" />
+    <Folder Include="Areas\Moderator\Models\" />
+    <Folder Include="Areas\Moderator\Views\Shared\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

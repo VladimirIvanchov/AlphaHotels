@@ -1,0 +1,45 @@
+﻿@model IPaginatedList<FeedbackDTO>
+
+@{
+    ViewData["Title"] = "AllLogbookLogs";
+}
+
+<link href="~/css/grids.css" rel="stylesheet" />
+<section class="section_gap" id="feedback-grid">
+    <div class="container" id="feedback-container">
+        <div id="all-feedback">
+            @foreach (var feedback in Model.Items)
+            {
+            <div class="container-feedback">
+                <div>@feedback.Author</div>
+                <div>@feedback.Text</div>
+                <div>@feedback.CreatedOn.ToString("dd MMM yyyy, HH:mm")</div>
+                <div>Rating: @feedback.Rate</div>
+                <div>Is deleted: @feedback.IsDeleted</div>
+                <div>
+                    <a asp-area="Moderator" asp-controller="Feedback" asp-action="EditFeedback" asp-route-feedbackId="@feedback.Id" class="btn">
+                        <span class="fa fa-edit"></span>
+                    </a>
+                </div>
+            </div>
+                <hr />
+            }
+
+            @{
+                var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+            }
+
+            <a asp-area="Moderator" asp-controller="Feedback" asp-action="ListAllFeedbacks" asp-route-keyword="@Model.CurrentFilter"
+               asp-route-pageNumber="@(Model.PageIndex - 1)"
+               class="btn btn-default @prevDisabled">
+                Previous
+            </a>
+            <a asp-area="Moderator" asp-controller="Feedback" asp-action="ListAllFeedbacks" asp-route-keyword="@Model.CurrentFilter"
+               asp-route-pageNumber="@(Model.PageIndex + 1)"
+               class="btn btn-default @nextDisabled">
+                Next
+            </a>
+        </div>
+    </div>
+</section>
