@@ -67,6 +67,8 @@ namespace AlphaHotel.Services
             var business = await this.context.Businesses
                 .Include(b => b.Pictures)
                 .Include(b => b.Feedbacks)
+                .Include(b=>b.BusinessesFacilities)
+                    .ThenInclude(bf=>bf.Facility)
                 .ProjectTo<BusinessDetailsDTO>()
                 .FirstOrDefaultAsync(b => b.Id == businessId);
 

@@ -11,5 +11,6 @@ namespace AlphaHotel.DTOs
         public string CoverPicture { get; set; }
         public ICollection<string> Pictures { get; set; }
         public ICollection<FeedbackForBusinessDTO> Feedbacks { get; set; }
+        public ICollection<FacilityDTO> Facilities { get; set; }
     }
 }

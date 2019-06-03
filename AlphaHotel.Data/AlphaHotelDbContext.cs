@@ -26,6 +26,8 @@ namespace AlphaHotel.Data
         public DbSet<UsersLogbooks> UsersLogbooks { get; set; }
         public DbSet<Business> Businesses { get; set; }
         public DbSet<Picture> Pictures { get; set; }
+        public DbSet<BusinessesFacilities> BusinessesFacilities { get; set; }
+        public DbSet<Facility> Facilities { get; set; }
 
         private void LoadJson(ModelBuilder modelBuilder)
         {
@@ -37,6 +39,8 @@ namespace AlphaHotel.Data
             var logsPath = @"..\AlphaHotel.Data\JsonFiles\logs.json";
             var statusPath = @"..\AlphaHotel.Data\JsonFiles\status.json";
             var picturesPath = @"..\AlphaHotel.Data\JsonFiles\pictures.json";
+            var facilitiesPath = @"..\AlphaHotel.Data\JsonFiles\facilities.json";
+            var businessesfacilitiesPath = @"..\AlphaHotel.Data\JsonFiles\businessesfacilities.json";
 
             //var isPathFound = File.Exists(businessesPath) && File.Exists(categoriesPath) &&
             //File.Exists(feedbacksPath) && File.Exists(logBooksPath) && File.Exists(logsPath) &&
@@ -52,6 +56,8 @@ namespace AlphaHotel.Data
                 var logsJson = File.ReadAllText(logsPath);
                 var statusJson = File.ReadAllText(statusPath);
                 var pictureJson = File.ReadAllText(picturesPath);
+                var facilityJson = File.ReadAllText(facilitiesPath);
+                var businessesfacilitiesJson = File.ReadAllText(businessesfacilitiesPath);
 
                 var businesses = JsonConvert.DeserializeObject<Business[]>(businessesJson);
                 var categories = JsonConvert.DeserializeObject<Category[]>(categoriesJson);
@@ -60,6 +66,8 @@ namespace AlphaHotel.Data
                 var logs = JsonConvert.DeserializeObject<Log[]>(logsJson);
                 var status = JsonConvert.DeserializeObject<Status[]>(statusJson);
                 var pictures = JsonConvert.DeserializeObject<Picture[]>(pictureJson);
+                var facilities = JsonConvert.DeserializeObject<Facility[]>(facilityJson);
+                var businessesfacilities = JsonConvert.DeserializeObject<BusinessesFacilities[]>(businessesfacilitiesJson);
 
                 modelBuilder.Entity<Business>().HasData(businesses);
                 modelBuilder.Entity<Category>().HasData(categories);
@@ -68,6 +76,8 @@ namespace AlphaHotel.Data
                 modelBuilder.Entity<Log>().HasData(logs);
                 modelBuilder.Entity<Status>().HasData(status);
                 modelBuilder.Entity<Picture>().HasData(pictures);
+                modelBuilder.Entity<Facility>().HasData(facilities);
+                modelBuilder.Entity<BusinessesFacilities>().HasData(businessesfacilities);
             }
             catch (Exception)
             {
@@ -87,6 +97,8 @@ namespace AlphaHotel.Data
             builder.ApplyConfiguration(new UsersLogbooksConfiguration());
             builder.ApplyConfiguration(new BusinessConfiguration());
             builder.ApplyConfiguration(new PictureConfiguration());
+            builder.ApplyConfiguration(new FacilityConfiguration());
+            builder.ApplyConfiguration(new BusinessesFacilitiesConfiguration());
 
             base.OnModelCreating(builder);
         }

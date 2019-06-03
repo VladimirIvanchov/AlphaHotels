@@ -14,5 +14,6 @@ namespace AlphaHotel.Models
         public ICollection<LogBook> LogBooks { get; set; }
         public ICollection<Feedback> Feedbacks { get; set; }
         public ICollection<User> Accounts { get; set; }
+        public ICollection<BusinessesFacilities> BusinessesFacilities { get; set; }
     }
 }

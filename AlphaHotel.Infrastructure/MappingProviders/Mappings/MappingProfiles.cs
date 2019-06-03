@@ -31,27 +31,9 @@ namespace AlphaHotel.Infrastructure.MappingProviders.Mappings
             CreateMap<Business, BusinessDetailsDTO>()
                .ForMember(d => d.Pictures, src => src.MapFrom(s => s.Pictures
                                                            .Select(p => p.Location)))
-               .ForMember(d => d.Feedbacks, src => src.MapFrom(s => s.Feedbacks));
-
-            //CreateMap<UsersLogbooks, LogDTO>()
-            //   .ForMember(d => d.Id, src => src.MapFrom(s => s.LogBook.Logs
-            //                                               .FirstOrDefault().Id));
-            //.ForMember(d => d.Description, src => src.MapFrom(s => s.LogBook.Logs
-            //                                            .Select(l => l.Description)))
-            //.ForMember(d => d.AuthorUsername, src => src.MapFrom(s => s.LogBook.Logs
-            //                                            .Select(l => l.Author.UserName)));
-            //.ForMember(d => d.Status, src => src.MapFrom(s => s.LogBook.Logs
-            //                                            .Select(l => l.Status.Type)))
-            //.ForMember(d => d.LogBookId, src => src.MapFrom(s => s.LogBook.Logs
-            //                                            .Select(l => l.LogBookId)))
-            //.ForMember(d => d.LogBook, src => src.MapFrom(s => s.LogBook.Name))
-            //.ForMember(d => d.Category, src => src.MapFrom(s => s.LogBook.Logs
-            //                                            .Select(l => l.Category.Name)))
-            //.ForMember(d => d.CreatedOn, src => src.MapFrom(s => s.LogBook.Logs
-            //                                            .Select(l => l.CreatedOn)))
-            //.ForMember(d => d.IsDeleted, src => src.MapFrom(s => s.LogBook.Logs
-            //                                            .Select(l => l.IsDeleted)));
-
+               .ForMember(d => d.Feedbacks, src => src.MapFrom(s => s.Feedbacks))
+               .ForMember(d => d.Facilities, src => src.MapFrom(s => s.BusinessesFacilities
+                                                           .Select(p => p.Facility)));    
             CreateMap<Log, LogDTO>()
               .ForMember(d => d.AuthorUsername, src => src.MapFrom(s => s.Author.UserName))
               .ForMember(d => d.Status, src => src.MapFrom(s => s.Status.Type))

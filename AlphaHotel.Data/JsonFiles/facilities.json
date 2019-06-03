@@ -1,0 +1,32 @@
+[
+  {
+    "Id": 1,
+    "Name": "Restaurant",
+    "Icon": "lnr lnr-dinner"
+  },
+  {
+    "Id": 2,
+    "Name": "Sports Club",
+    "Icon": "lnr lnr-bicycle"
+  },
+  {
+    "Id": 3,
+    "Name": "Swimming Pool",
+    "Icon": "lnr lnr-shirt"
+  },
+  {
+    "Id": 4,
+    "Name": "Rent a Car",
+    "Icon": "lnr lnr-car"
+  },
+  {
+    "Id": 5,
+    "Name": "Gymnesium",
+    "Icon": "lnr lnr-construction"
+  },
+  {
+    "Id": 6,
+    "Name": "Bar",
+    "Icon": "lnr lnr-coffee-cup"
+  }
+]

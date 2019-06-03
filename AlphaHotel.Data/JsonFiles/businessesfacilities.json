@@ -1,0 +1,64 @@
+[
+  {
+    "BusinessId": 1,
+    "FacilityId": 1
+  },
+  {
+    "BusinessId": 1,
+    "FacilityId": 2
+  },
+  {
+    "BusinessId": 1,
+    "FacilityId": 3
+  },
+  {
+    "BusinessId": 1,
+    "FacilityId": 4
+  },
+  {
+    "BusinessId": 1,
+    "FacilityId": 5
+  },
+  {
+    "BusinessId": 1,
+    "FacilityId": 6
+  },
+  {
+    "BusinessId": 2,
+    "FacilityId": 1
+  },
+  {
+    "BusinessId": 2,
+    "FacilityId": 2
+  },
+  {
+    "BusinessId": 2,
+    "FacilityId": 3
+  },
+  {
+    "BusinessId": 2,
+    "FacilityId": 4
+  },
+  {
+    "BusinessId": 2,
+    "FacilityId": 6
+  },
+  {
+    "BusinessId": 3,
+    "FacilityId": 1
+  },
+  {
+    "BusinessId": 3,
+    "FacilityId": 3
+  },
+  {
+    "BusinessId": 3,
+    "FacilityId": 5
+
+  },
+  {
+    "BusinessId": 3,
+    "FacilityId": 6
+
+  }
+]
