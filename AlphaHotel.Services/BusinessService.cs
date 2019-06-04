@@ -10,6 +10,7 @@ using AlphaHotel.Infrastructure.MappingProviders;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using AlphaHotel.Models;
+using AlphaHotel.Services.Utilities;
 
 namespace AlphaHotel.Services
 {
@@ -17,11 +18,13 @@ namespace AlphaHotel.Services
     {
         private readonly AlphaHotelDbContext context;
         private readonly IMappingProvider mapper;
+        private readonly IDateTimeWrapper dateTime;
 
-        public BusinessService(AlphaHotelDbContext context, IMappingProvider mapper)
+        public BusinessService(AlphaHotelDbContext context, IMappingProvider mapper, IDateTimeWrapper dateTime)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            this.dateTime = dateTime ?? throw new ArgumentNullException(nameof(dateTime));
         }
 
         public async Task<ICollection<T>> ListAllBusinessesAsync<T>()
@@ -41,6 +44,41 @@ namespace AlphaHotel.Services
                 .ToListAsync();
 
             return businesses;
+        }
+
+        public async Task<BusinessDTO> CreateBusiness(string name, string location, string about, string shortDescription, string coverPicture, ICollection<string> pictures, ICollection<int> businessFacilities)
+        {
+            var business = await this.context.Businesses
+                .Where(b => b.Name == name)
+                .FirstOrDefaultAsync();
+
+            if (business != null)
+            {
+                throw new ArgumentException($"Business {name} already exist!");
+            }
+
+            var newBusiness = new Business()
+            {
+                Name = name,
+                Location = location,
+                About = about,
+                ShortDescription = shortDescription,
+                CoverPicture = coverPicture,
+                CreatedOn = this.dateTime.Now()
+            };
+
+            newBusiness.Pictures = pictures
+                .Select(p => new Picture() { Location = p })
+                .ToList();
+
+            newBusiness.BusinessesFacilities = businessFacilities
+                .Select(bf => new BusinessesFacilities() { FacilityId = bf })
+                .ToList();
+
+            this.context.Add(newBusiness);
+            await this.context.SaveChangesAsync();
+
+            return this.mapper.MapTo<BusinessDTO>(newBusiness);
         }
 
         public async Task<int> AddLogBookToBusinessAsync(string logBookName, int businessId)
@@ -67,8 +105,8 @@ namespace AlphaHotel.Services
             var business = await this.context.Businesses
                 .Include(b => b.Pictures)
                 .Include(b => b.Feedbacks)
-                .Include(b=>b.BusinessesFacilities)
-                    .ThenInclude(bf=>bf.Facility)
+                .Include(b => b.BusinessesFacilities)
+                    .ThenInclude(bf => bf.Facility)
                 .ProjectTo<BusinessDetailsDTO>()
                 .FirstOrDefaultAsync(b => b.Id == businessId);
 
@@ -83,6 +121,8 @@ namespace AlphaHotel.Services
         public async Task<ICollection<BusinessShortInfoDTO>> ListTopNBusinessesAsync(int counts)
         {
             var businesses = await this.context.Businesses
+                .Include(b => b.Feedbacks)
+                .Where(b => b.Feedbacks.Count != 0)
                 .OrderByDescending(b => b.Feedbacks.Average(f => f.Rate))
                 .Take(counts)
                 .ProjectTo<BusinessShortInfoDTO>()

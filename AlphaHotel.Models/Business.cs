@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using AlphaHotel.Models.Contracts;
+using System;
+using System.Collections.Generic;
 
 namespace AlphaHotel.Models
-{
-    public class Business
+{   
+    public class Business : IAuditable
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -15,5 +17,7 @@ namespace AlphaHotel.Models
         public ICollection<Feedback> Feedbacks { get; set; }
         public ICollection<User> Accounts { get; set; }
         public ICollection<BusinessesFacilities> BusinessesFacilities { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime? ModifiedOn { get; set; }
     }
 }

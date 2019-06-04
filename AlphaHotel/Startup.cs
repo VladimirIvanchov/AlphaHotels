@@ -42,9 +42,11 @@ namespace AlphaHotel
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ILogBookService, LogBookService>();
             services.AddScoped<IFeedbackService, FeedbackService>();
+            services.AddScoped<IFacilityService, FacilityService>();
             services.AddScoped<IDateTimeWrapper, DateTimeWrapper>();
             services.AddScoped<IMappingProvider, MappingProvider>();
             services.AddScoped<IUserHelper, UserHelper>();
+            services.AddScoped<IPictureHelper, PictureHelper>();
             services.AddScoped(typeof(IPaginatedList<>), typeof(PaginatedList<>));
 
             services.AddIdentity<User, IdentityRole>()

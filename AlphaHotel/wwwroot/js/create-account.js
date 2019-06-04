@@ -1,6 +1,6 @@
 ﻿$('#moderator , #manager').on('click', function (ev) {
     var $currentLink = $(ev.target);
-    var url =   
+    var url = $currentLink.data('url'); 
 
     $('#logbook-area').remove();
 

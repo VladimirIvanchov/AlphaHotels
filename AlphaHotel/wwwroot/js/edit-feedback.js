@@ -7,9 +7,8 @@
     var dataToSend = $this.serialize();
 
     var isValid = $this.valid();
-    debugger;
+
     if (isValid) {
-        debugger;
         $.post(url, dataToSend, function (response) {
             Swal.fire({
                 position: 'top-end',
@@ -27,7 +26,6 @@
         });
     }
     else {
-        debugger;
         Swal.fire({
             type: 'error',
             title: 'Oops...',

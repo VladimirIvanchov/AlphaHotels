@@ -1,73 +1,73 @@
 [
   {
     "Id": 1,
-    "Location": "/images/hotelPresentation/hilton1.jpg",
+    "Location": "hilton1.jpg",
     "BusinessId": 1,
     "IsDeleted": false
   },
   {
     "Id": 2,
-    "Location": "/images/hotelPresentation/hilton2.jpg",
+    "Location": "hilton2.jpg",
     "BusinessId": 1,
     "IsDeleted": false
   },
   {
     "Id": 3,
-    "Location": "/images/hotelPresentation/hilton3.jpg",
+    "Location": "hilton3.jpg",
     "BusinessId": 1,
     "IsDeleted": false
   },
   {
     "Id": 4,
-    "Location": "/images/hotelPresentation/hilton4.jpg",
+    "Location": "hilton4.jpg",
     "BusinessId": 1,
     "IsDeleted": false
   },
   {
     "Id": 5,
-    "Location": "/images/hotelPresentation/marinela1.jpg",
+    "Location": "marinela1.jpg",
     "BusinessId": 2,
     "IsDeleted": false
   },
   {
     "Id": 6,
-    "Location": "/images/hotelPresentation/marinela2.jpg",
+    "Location": "marinela2.jpg",
     "BusinessId": 2,
     "IsDeleted": false
   },
   {
     "Id": 7,
-    "Location": "/images/hotelPresentation/marinela3.jpg",
+    "Location": "marinela3.jpg",
     "BusinessId": 2,
     "IsDeleted": false
   },
   {
     "Id": 8,
-    "Location": "/images/hotelPresentation/marinela4.jpg",
+    "Location": "marinela4.jpg",
     "BusinessId": 2,
     "IsDeleted": false
   },
   {
     "Id": 9,
-    "Location": "/images/hotelPresentation/metropolitan1.jpg",
+    "Location": "metropolitan1.jpg",
     "BusinessId": 3,
     "IsDeleted": false
   },
   {
     "Id": 10,
-    "Location": "/images/hotelPresentation/metropolitan2.jpg",
+    "Location": "metropolitan2.jpg",
     "BusinessId": 3,
     "IsDeleted": false
   },
   {
     "Id": 11,
-    "Location": "/images/hotelPresentation/metropolitan3.jpg",
+    "Location": "metropolitan3.jpg",
     "BusinessId": 3,
     "IsDeleted": false
   },
   {
     "Id": 12,
-    "Location": "/images/hotelPresentation/metropolitan4.jpg",
+    "Location": "metropolitan4.jpg",
     "BusinessId": 3,
     "IsDeleted": false
   }

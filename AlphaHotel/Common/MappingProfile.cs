@@ -3,6 +3,7 @@ using AlphaHotel.Areas.Manager.Models;
 using AlphaHotel.DTOs;
 using AutoMapper;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AlphaHotel.Common
 {
@@ -25,6 +26,11 @@ namespace AlphaHotel.Common
             CreateMap<ICollection<StatusDTO>, StatusForLogViewModel>()
                .ForMember(d => d.Statuses, src => src.MapFrom(s => s))
                .ForMember(d => d.LogId, src => src.Ignore());
+
+            CreateMap<ICollection<FacilityDTO>, CreateBusinessViewModel>()
+               .ForMember(d => d.AllFacilities, src => src.MapFrom(s => s))
+               .ForAllOtherMembers(d => d.Ignore());
+
         }
     }
 }

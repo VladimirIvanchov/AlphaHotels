@@ -11,6 +11,7 @@ $("#search-keyword-log").keyup(function (ev) {
         $.get(url, function (data) {
             $("#all-logs").remove(".container-logs");
             $("#all-logs").html(data);
+            //$("#all-logs").append(data);
         });
     }
     //time = currTime;
