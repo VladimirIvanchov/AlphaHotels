@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AlphaHotel.Models;
 using AlphaHotel.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +12,12 @@ namespace AlphaHotel.Controllers
     {
         private const int pageSize = 9;
         private readonly IBusinessService businessService;
+        private readonly IFeedbackService feedbackService;
 
-        public BusinessController(IBusinessService businessService)
+        public BusinessController(IBusinessService businessService, IFeedbackService feedbackService)
         {
             this.businessService = businessService ?? throw new ArgumentNullException(nameof(businessService));
+            this.feedbackService = feedbackService ?? throw new ArgumentNullException(nameof(feedbackService));
         }
 
         public async Task<IActionResult> Details(int id)
@@ -43,6 +46,27 @@ namespace AlphaHotel.Controllers
             var businesses = await this.businessService.ListAllBusinessesContainsKeyWordAsync(keyword ?? "".ToLower());
 
             return Json(businesses);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendFeedback(SendFeedbackViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return BadRequest("Invalid parameters");
+            }
+
+            try
+            {
+                await this.feedbackService.AddFeedbackAsync(model.FeedbackText, model.Rating, model.Author, model.BusinessId);
+
+                return Json(model);
+            }
+            catch (ArgumentException ex)
+            {
+                this.ModelState.AddModelError("Error", ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

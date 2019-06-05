@@ -9,5 +9,6 @@ namespace AlphaHotel.Services.Contracts
         Task<IPaginatedList<FeedbackDTO>> ListAllFeedbacksAsync(string moderatorId, int? pageNumber, int pageSize);
         Task<FeedbackDTO> FindFeedback(int feedbackId);
         Task<int> EditFeedback(int feedbackId, string author, string text, int rate, bool isDeleted);
+        Task AddFeedbackAsync(string feedbackText, int rating, string author, int businessId);
     }
 }

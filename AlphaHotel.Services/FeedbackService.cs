@@ -1,6 +1,7 @@
 ﻿using AlphaHotel.Data;
 using AlphaHotel.DTOs;
 using AlphaHotel.Infrastructure.PagingProvider;
+using AlphaHotel.Models;
 using AlphaHotel.Services.Contracts;
 using AlphaHotel.Services.Utilities;
 using AutoMapper.QueryableExtensions;
@@ -70,6 +71,34 @@ namespace AlphaHotel.Services
             feedback.ModifiedOn = this.dateTime.Now();
 
             return await this.context.SaveChangesAsync();
+        }
+
+        public async Task AddFeedbackAsync(string feedbackText, int rating, string author, int businessId)
+        {
+            var business = await this.context.Businesses.FindAsync(businessId);
+
+            if (business == null)
+            {
+                throw new ArgumentException($"Hotel with id {businessId} doesn't exist!");
+            }
+
+            var feedback = new Feedback()
+            {
+                Rate = rating,
+                BusinessId = businessId,
+                CreatedOn = dateTime.Now(),
+                Text = feedbackText,
+                IsDeleted = false
+            };
+
+            if (!string.IsNullOrEmpty(author))
+            {
+                feedback.Author = author;
+            }
+
+
+            this.context.Feedbacks.Add(feedback);
+            await this.context.SaveChangesAsync();
         }
     }
 }
