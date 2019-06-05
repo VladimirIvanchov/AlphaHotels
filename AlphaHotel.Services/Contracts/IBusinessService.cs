@@ -15,5 +15,6 @@ namespace AlphaHotel.Services.Contracts
         Task<BusinessDetailsDTO> FindDetaliedBusinessAsync(int businessId);
         Task<ICollection<BusinessShortInfoDTO>> ListTopNBusinessesAsync(int counts);
         Task<BusinessDTO> CreateBusiness(string name, string location, string about, string shortDescription, string coverPicture, ICollection<string> pictures, ICollection<int> businessFacilities);
+        Task<BusinessDetailsDTO> FindDetaliedBusinessByNameAsync(string businessName);
     }
 }

@@ -122,7 +122,25 @@ namespace AlphaHotel.Services
 
             if (business == null)
             {
-                throw new ArgumentException($"Business {business} do not already exist!");
+                throw new ArgumentException($"Business {business} do not exist!");
+            }
+
+            return business;
+        }
+
+        public async Task<BusinessDetailsDTO> FindDetaliedBusinessByNameAsync(string businessName)
+        {
+            var business = await this.context.Businesses
+                .Include(b => b.Pictures)
+                .Include(b => b.Feedbacks)
+                .Include(b => b.BusinessesFacilities)
+                    .ThenInclude(bf => bf.Facility)
+                .ProjectTo<BusinessDetailsDTO>()
+                .FirstOrDefaultAsync(b => b.Name == businessName);
+
+            if (business == null)
+            {
+                throw new ArgumentException($"Business {business} do not exist!");
             }
 
             return business;
