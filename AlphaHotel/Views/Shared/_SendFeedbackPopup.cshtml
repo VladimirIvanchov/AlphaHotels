@@ -1,0 +1,60 @@
+﻿@model SendFeedbackViewModel
+
+<link rel="stylesheet" href="~/css/star-rating.css">
+<link rel="stylesheet" href="~/css/modal-button.css">
+
+<button type="button" class="btn btn-primary fab" data-toggle="modal" data-target="#exampleModal"> + </button>
+
+<div class="modal fade centered-modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New comment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form asp-controller="business" asp-action="sendfeedback" id="send-feedback-form">
+                    <div class="row">
+                        <div style="margin-bottom: -1px" class="col-sm-12 form-group">
+                            <label>How do you rate your overall experience?</label>
+                            <p>
+                                <fieldset style="margin-top: -11px" class="rating">
+                                    <input asp-for="@Model.Rating" type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Amazing - 5 stars"></label>
+                                    <input asp-for="@Model.Rating" type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                                    <input asp-for="@Model.Rating" type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Okay - 3 stars"></label>
+                                    <input asp-for="@Model.Rating" type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Bad - 2 stars"></label>
+                                    <input asp-for="@Model.Rating" type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Appaling - 1 star"></label>
+                                </fieldset>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Author" class="col-form-label">Guest's Name:</label>
+                        <input asp-for="@Model.Author" class="form-control" id="guest-name" placeholder="Name is optional" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name is optional'">
+                        <span asp-validation-for="@Model.Author" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.FeedbackText" class="col-form-label">Feedback:</label>
+                        <textarea asp-for="@Model.FeedbackText" rows="3" class="form-control" id="feedback-text"></textarea>
+                        <span asp-validation-for="@Model.FeedbackText" class="text-danger"></span>
+                    </div>
+                    <div class="modal-footer">
+                        @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>*@
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/send-feedback.js"></script>
+}
