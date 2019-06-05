@@ -4,6 +4,7 @@
     ViewData["Title"] = "Home Page";
 }
 
+<link href="~/css/search-hotels.css" rel="stylesheet" />
 <!--================Banner Area =================-->
 <section class="banner_area">
     <div class="booking_table d_flex align-items-center">
@@ -19,11 +20,11 @@
                 <div class="container">
 
                     <!-- ===== START OF SEARCH FORM ===== -->
-                    <form id="search-form-1">
+                    <form id="search-form-1" autocomplete="off">
                         <div class="row justify-content-center">
                             <div class="col-md-8 col-sm-10 col-12">
-                                <div class="form-group">
-                                    <input name="name" type="text" id="search-keyword" value="" class="form-control" placeholder="Find Your Hotel">
+                                <div class="form-group autocomplete">
+                                    <input name="myCountry" type="text" id="myInput" value="" class="form-control" placeholder="Find Your Hotel">
                                     <button asp-controller="" asp-action="" type="submit" class="btn btn-main btn-effect"><i class="fa fa-search"></i></button>
                                 </div>
                             </div>
@@ -66,3 +67,8 @@
     </div>
 </section>
 <!--================ Recent Area  =================-->
+
+<script src="~/js/search-hotels.js"></script>
+<script>
+    autocomplete(document.getElementById("myInput"));
+</script>

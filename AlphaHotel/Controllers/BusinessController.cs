@@ -22,5 +22,12 @@ namespace AlphaHotel.Controllers
 
             return View(vm);
         }
+
+        public async Task<IActionResult> FindBusiness([FromQuery(Name = "keyword")] string keyword)
+        {
+            var businesses = await this.businessService.ListAllBusinessesContainsKeyWordAsync(keyword ?? "".ToLower());
+
+            return Json(businesses);
+        }
     }
 }

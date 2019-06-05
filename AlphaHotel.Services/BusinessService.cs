@@ -36,6 +36,16 @@ namespace AlphaHotel.Services
             return businesses;
         }
 
+        public async Task<ICollection<BusinessDTO>> ListAllBusinessesContainsKeyWordAsync(string keyword)
+        {
+            var businesses = await this.context.Businesses
+                .Where(b=>b.Name.Contains(keyword))
+                .ProjectTo<BusinessDTO>()
+                .ToListAsync();
+
+            return businesses;
+        }
+
         public async Task<ICollection<LogBookDTO>> ListBusinessLogbooksAsync(int id)
         {
             var businesses = await this.context.LogBooks
