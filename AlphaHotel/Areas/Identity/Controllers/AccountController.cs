@@ -14,6 +14,7 @@ using AlphaHotel.Models;
 using AlphaHotel.Controllers;
 using AlphaHotel.Areas.Identity.Models.AccountViewModels;
 using AlphaHotel.Models.Common;
+using AlphaHotel.Infrastructure.Wrappers.Contracts;
 
 namespace AlphaHotel.Areas.Identity.Controllers
 {
@@ -21,17 +22,17 @@ namespace AlphaHotel.Areas.Identity.Controllers
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly IUserManagerWrapper<User> userManager;
+        private readonly ISingInManagerWrapper<User> signInManager;
         private readonly ILogger _logger;
 
         public AccountController(
-            UserManager<User> userManager,
-            SignInManager<User> signInManager,
+            IUserManagerWrapper<User> userManager,
+            ISingInManagerWrapper<User> signInManager,
             ILogger<AccountController> logger)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
             _logger = logger;
         }
 
@@ -54,7 +55,7 @@ namespace AlphaHotel.Areas.Identity.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByNameAsync(model.UserName);
+                var user = await this.userManager.FindByNameAsync(model.UserName);
 
                 if (user is null || (user != null && user.IsDeleted))
                 {
@@ -63,7 +64,7 @@ namespace AlphaHotel.Areas.Identity.Controllers
                     return View(model);
                 }
 
-                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var result = await this.signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
@@ -119,10 +120,10 @@ namespace AlphaHotel.Areas.Identity.Controllers
                         .ToList();
                 }
 
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var result = await this.userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, model.Role);
+                    await this.userManager.AddToRoleAsync(user, model.Role);
                     _logger.LogInformation("User created a new account with password.");
                     return Json(model);
                 }
@@ -138,7 +139,7 @@ namespace AlphaHotel.Areas.Identity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
+            await this.signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }

@@ -13,17 +13,19 @@ using AlphaHotel.DTOs;
 using AlphaHotel.Infrastructure.MappingProviders;
 using AlphaHotel.Infrastructure.MappingProviders.Mappings;
 using AlphaHotel.Services.Utilities;
+using AlphaHotel.Infrastructure.Wrappers;
+using AlphaHotel.Infrastructure.Wrappers.Contracts;
 
 namespace AlphaHotel.Services
 {
     public class AccountService : IAccountService
     {
         private readonly AlphaHotelDbContext context;
-        private readonly UserManager<User> userManager;
+        private readonly IUserManagerWrapper<User> userManager;
         private readonly IMappingProvider mapper;
         private readonly IDateTimeWrapper dateTime;
 
-        public AccountService(AlphaHotelDbContext context, UserManager<User> userManager, IMappingProvider mapper, IDateTimeWrapper dateTime)
+        public AccountService(AlphaHotelDbContext context, IUserManagerWrapper<User> userManager, IMappingProvider mapper, IDateTimeWrapper dateTime)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
             this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));

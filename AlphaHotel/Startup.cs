@@ -19,6 +19,8 @@ using AutoMapper;
 using AlphaHotel.Infrastructure.MappingProviders.Mappings;
 using AlphaHotel.Common;
 using AlphaHotel.Infrastructure.PagingProvider;
+using AlphaHotel.Infrastructure.Wrappers.Contracts;
+using AlphaHotel.Infrastructure.Wrappers;
 
 namespace AlphaHotel
 {
@@ -48,7 +50,9 @@ namespace AlphaHotel
             services.AddScoped<IUserHelper, UserHelper>();
             services.AddScoped<IPictureHelper, PictureHelper>();
             services.AddScoped(typeof(IPaginatedList<>), typeof(PaginatedList<>));
-
+            services.AddScoped(typeof(IUserManagerWrapper<>), typeof(UserManagerWrapper<>));
+            services.AddScoped(typeof(ISingInManagerWrapper<>), typeof(SingInManagerWrapper<>));
+            
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<AlphaHotelDbContext>()
                 .AddDefaultTokenProviders();

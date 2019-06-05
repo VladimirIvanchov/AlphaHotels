@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using AlphaHotel.Models;
 using AlphaHotel.Areas.Identity.Models.ManageViewModels;
+using AlphaHotel.Infrastructure.Wrappers.Contracts;
 
 namespace AlphaHotel.Areas.Identity.Controllers
 {
@@ -19,17 +20,17 @@ namespace AlphaHotel.Areas.Identity.Controllers
     [Route("[controller]/[action]")]
     public class ManageController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly IUserManagerWrapper<User> userManager;
+        private readonly ISingInManagerWrapper<User> signInManager;
         private readonly ILogger _logger;
 
         public ManageController(
-          UserManager<User> userManager,
-          SignInManager<User> signInManager,
+          IUserManagerWrapper<User> userManager,
+          ISingInManagerWrapper<User> signInManager,
           ILogger<ManageController> logger)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
             _logger = logger;
         }
 
@@ -39,10 +40,10 @@ namespace AlphaHotel.Areas.Identity.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var user = await _userManager.GetUserAsync(User);
+            var user = await this.userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"Unable to load user with ID '{this.userManager.GetUserId(User)}'.");
             }
 
             var model = new IndexViewModel
@@ -67,16 +68,16 @@ namespace AlphaHotel.Areas.Identity.Controllers
                 return View(model);
             }
 
-            var user = await _userManager.GetUserAsync(User);
+            var user = await this.userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"Unable to load user with ID '{this.userManager.GetUserId(User)}'.");
             }
 
             var email = user.Email;
             if (model.Email != email)
             {
-                var setEmailResult = await _userManager.SetEmailAsync(user, model.Email);
+                var setEmailResult = await this.userManager.SetEmailAsync(user, model.Email);
                 if (!setEmailResult.Succeeded)
                 {
                     throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
@@ -84,14 +85,14 @@ namespace AlphaHotel.Areas.Identity.Controllers
             }
 
             var phoneNumber = user.PhoneNumber;
-            if (model.PhoneNumber != phoneNumber)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
-                {
-                    throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
-                }
-            }
+            //if (model.PhoneNumber != phoneNumber)
+            //{
+            //    var setPhoneResult = await this.userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
+            //    if (!setPhoneResult.Succeeded)
+            //    {
+            //        throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
+            //    }
+            //}
 
             StatusMessage = "Your profile has been updated";
             return RedirectToAction(nameof(Index));
@@ -102,10 +103,10 @@ namespace AlphaHotel.Areas.Identity.Controllers
         public async Task<IActionResult> ChangePassword()
         {
             //TODO: Authorized??
-            var user = await _userManager.GetUserAsync(User);
+            var user = await this.userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"Unable to load user with ID '{this.userManager.GetUserId(User)}'.");
             }
 
             var model = new ChangePasswordViewModel { StatusMessage = StatusMessage };
@@ -122,20 +123,20 @@ namespace AlphaHotel.Areas.Identity.Controllers
                 return View(model);
             }
 
-            var user = await _userManager.GetUserAsync(User);
+            var user = await this.userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"Unable to load user with ID '{this.userManager.GetUserId(User)}'.");
             }
 
-            var changePasswordResult = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+            var changePasswordResult = await this.userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
             if (!changePasswordResult.Succeeded)
             {
                 AddErrors(changePasswordResult);
                 return View(model);
             }
 
-            await _signInManager.SignInAsync(user, isPersistent: false);
+            await this.signInManager.SignInAsync(user, isPersistent: false);
             _logger.LogInformation("User changed their password successfully.");
             StatusMessage = "Your password has been changed.";
 
