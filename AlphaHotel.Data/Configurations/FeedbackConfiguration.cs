@@ -8,6 +8,9 @@ namespace AlphaHotel.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Feedback> builder)
         {
+            builder.Property(a => a.Author)
+                .HasMaxLength(20);
+
             builder.Property(a => a.Text)
                 .HasMaxLength(150)
                 .IsRequired();
