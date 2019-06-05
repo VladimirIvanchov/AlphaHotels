@@ -9,6 +9,7 @@ namespace AlphaHotel.Controllers
 {
     public class BusinessController : Controller
     {
+        private const int pageSize = 9;
         private readonly IBusinessService businessService;
 
         public BusinessController(IBusinessService businessService)
@@ -28,6 +29,13 @@ namespace AlphaHotel.Controllers
             var vm = await this.businessService.FindDetaliedBusinessByNameAsync(myHotel);
 
             return View("Details", vm);
+        }
+
+        public async Task<IActionResult> ShowAllBusinesses(int? pageNumber)
+        {
+            var vm = await this.businessService.ListAllBusinessesByPageAsync(pageNumber, pageSize);
+
+            return View(vm);
         }
 
         public async Task<IActionResult> FindBusiness([FromQuery(Name = "keyword")] string keyword)

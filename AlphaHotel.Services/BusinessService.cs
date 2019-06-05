@@ -11,6 +11,7 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using AlphaHotel.Models;
 using AlphaHotel.Services.Utilities;
+using AlphaHotel.Infrastructure.PagingProvider;
 
 namespace AlphaHotel.Services
 {
@@ -19,12 +20,14 @@ namespace AlphaHotel.Services
         private readonly AlphaHotelDbContext context;
         private readonly IMappingProvider mapper;
         private readonly IDateTimeWrapper dateTime;
+        private readonly IPaginatedList<BusinessShortInfoDTO> paginatedList;
 
-        public BusinessService(AlphaHotelDbContext context, IMappingProvider mapper, IDateTimeWrapper dateTime)
+        public BusinessService(AlphaHotelDbContext context, IMappingProvider mapper, IDateTimeWrapper dateTime, IPaginatedList<BusinessShortInfoDTO> paginatedList)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             this.dateTime = dateTime ?? throw new ArgumentNullException(nameof(dateTime));
+            this.paginatedList = paginatedList ?? throw new ArgumentNullException(nameof(paginatedList));
         }
 
         public async Task<ICollection<T>> ListAllBusinessesAsync<T>()
@@ -34,6 +37,14 @@ namespace AlphaHotel.Services
                 .ToListAsync();
 
             return businesses;
+        }
+
+        public async Task<IPaginatedList<BusinessShortInfoDTO>> ListAllBusinessesByPageAsync(int? pageNumber, int pageSize)
+        {
+            var businessesQuery = this.context.Businesses
+                .ProjectTo<BusinessShortInfoDTO>();
+
+            return await this.paginatedList.CreateAsync(businessesQuery, pageNumber ?? 1, pageSize, "");
         }
 
         public async Task<ICollection<BusinessDTO>> ListAllBusinessesContainsKeyWordAsync(string keyword)
