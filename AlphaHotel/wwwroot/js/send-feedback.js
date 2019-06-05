@@ -1,6 +1,6 @@
 ﻿$('#send-feedback-form').on('submit', function (ev) {
     ev.preventDefault();
-
+    debugger;
     var $this = $(this);
 
     var url = window.location.pathname;
@@ -9,23 +9,51 @@
 
     var dataToSend = $this.serialize();
     dataToSend = dataToSend + '&BusinessId=' + id;
-
+    debugger;
     var isValid = $this.valid();
 
     if (isValid) {
         $.post(attrUrl, dataToSend, function (response) {
+            debugger;
             $(function () {
                 $('#exampleModal').modal('toggle');
-
             });
 
+            if (response.author.length > 0) {
+                Swal.fire({
+                    position: 'top-end',
+                    type: 'success',
+                    title: response.author + ' ' + 'added a new comment!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+            else {
+                Swal.fire({
+                    position: 'top-end',
+                    type: 'success',
+                    title: 'A new comment was added!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+            debugger;
+           
         }).fail(function (error) {
-
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Something happened!'
+            })
         });
     }
-    //else {
-    //    toastr.fail(error);
-    //}
+    else {
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Something happened!'
+        })
+    }
 });
 
 $('#exampleModal').on('hidden.bs.modal', function (e) {
