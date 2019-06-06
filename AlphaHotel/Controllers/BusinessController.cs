@@ -11,6 +11,7 @@ namespace AlphaHotel.Controllers
     public class BusinessController : Controller
     {
         private const int pageSize = 9;
+        private const int feedbacksCount = 4;
         private readonly IBusinessService businessService;
         private readonly IFeedbackService feedbackService;
 
@@ -22,14 +23,14 @@ namespace AlphaHotel.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            var vm = await this.businessService.FindDetaliedBusinessAsync(id);
+            var vm = await this.businessService.FindDetaliedBusinessAsync(id, feedbacksCount);
 
             return View(vm);
         }
 
         public async Task<IActionResult> DetailsBusinessByName(string myHotel)
         {
-            var vm = await this.businessService.FindDetaliedBusinessByNameAsync(myHotel);
+            var vm = await this.businessService.FindDetaliedBusinessByNameAsync(myHotel, feedbacksCount);
 
             return View("Details", vm);
         }

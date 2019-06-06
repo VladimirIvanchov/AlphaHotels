@@ -121,11 +121,10 @@ namespace AlphaHotel.Services
             return await this.context.SaveChangesAsync();
         }
 
-        public async Task<BusinessDetailsDTO> FindDetaliedBusinessAsync(int businessId)
+        public async Task<BusinessDetailsDTO> FindDetaliedBusinessAsync(int businessId, int feedbacksCount)
         {
             var business = await this.context.Businesses
                 .Include(b => b.Pictures)
-                .Include(b => b.Feedbacks)
                 .Include(b => b.BusinessesFacilities)
                     .ThenInclude(bf => bf.Facility)
                 .ProjectTo<BusinessDetailsDTO>()
@@ -136,14 +135,21 @@ namespace AlphaHotel.Services
                 throw new ArgumentException($"Business whit id: {businessId} do not exist!");
             }
 
+            var feedbacks = await this.context.Feedbacks
+                .Where(f => f.BusinessId == businessId)
+                .OrderByDescending(f=>f.Rate)
+                .Take(feedbacksCount)
+                .ProjectTo<FeedbackForBusinessDTO>()
+                .ToListAsync();
+            business.Feedbacks = feedbacks;
+
             return business;
         }
 
-        public async Task<BusinessDetailsDTO> FindDetaliedBusinessByNameAsync(string businessName)
+        public async Task<BusinessDetailsDTO> FindDetaliedBusinessByNameAsync(string businessName, int feedbacksCount)
         {
             var business = await this.context.Businesses
                 .Include(b => b.Pictures)
-                .Include(b => b.Feedbacks)
                 .Include(b => b.BusinessesFacilities)
                     .ThenInclude(bf => bf.Facility)
                 .ProjectTo<BusinessDetailsDTO>()
@@ -153,6 +159,14 @@ namespace AlphaHotel.Services
             {
                 throw new ArgumentException($"Business {business} do not exist!");
             }
+
+            var feedbacks = await this.context.Feedbacks
+                .Where(f => f.Business.Name == businessName)
+                .OrderByDescending(f => f.Rate)
+                .Take(feedbacksCount)
+                .ProjectTo<FeedbackForBusinessDTO>()
+                .ToListAsync();
+            business.Feedbacks = feedbacks;
 
             return business;
         }

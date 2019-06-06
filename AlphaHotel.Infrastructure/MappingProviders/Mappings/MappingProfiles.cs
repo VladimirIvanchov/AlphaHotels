@@ -31,7 +31,7 @@ namespace AlphaHotel.Infrastructure.MappingProviders.Mappings
             CreateMap<Business, BusinessDetailsDTO>()
                .ForMember(d => d.Pictures, src => src.MapFrom(s => s.Pictures
                                                            .Select(p => p.Location)))
-               .ForMember(d => d.Feedbacks, src => src.MapFrom(s => s.Feedbacks))
+               .ForMember(d => d.Feedbacks, src => src.Ignore())
                .ForMember(d => d.Facilities, src => src.MapFrom(s => s.BusinessesFacilities
                                                            .Select(p => p.Facility)));    
             CreateMap<Log, LogDTO>()
