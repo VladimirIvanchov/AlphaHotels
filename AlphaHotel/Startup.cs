@@ -21,6 +21,7 @@ using AlphaHotel.Common;
 using AlphaHotel.Infrastructure.PagingProvider;
 using AlphaHotel.Infrastructure.Wrappers.Contracts;
 using AlphaHotel.Infrastructure.Wrappers;
+using AlphaHotel.Utilities.Extentions;
 
 namespace AlphaHotel
 {
@@ -73,8 +74,11 @@ namespace AlphaHotel
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/Error/Error");
             }
+
+            app.UseNotFoundExceptionHandler();
 
             app.UseStaticFiles();
 

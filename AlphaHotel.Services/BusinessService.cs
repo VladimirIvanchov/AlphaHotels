@@ -133,7 +133,7 @@ namespace AlphaHotel.Services
 
             if (business == null)
             {
-                throw new ArgumentException($"Business {business} do not exist!");
+                throw new ArgumentException($"Business whit id: {businessId} do not exist!");
             }
 
             return business;
