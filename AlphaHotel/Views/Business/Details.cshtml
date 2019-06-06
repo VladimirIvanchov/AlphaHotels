@@ -65,11 +65,15 @@
                         <p>@feedback.Text</p>
                         <h4 class="sec_h4">@feedback.Author</h4>
                         <div class="star">
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star-o"></i></a>
+                            @for (int i = 0; i < feedback.Rate; i++)
+                            {
+                                <a href="#"><i class="fa fa-star"></i></a>
+                            }
+
+                            @for (int i = feedback.Rate; i < 5; i++)
+                            {
+                                <a href="#"><i class="fa fa-star-o"></i></a>
+                            }
                         </div>
                     </div>
                 </div>
