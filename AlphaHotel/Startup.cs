@@ -22,6 +22,9 @@ using AlphaHotel.Infrastructure.PagingProvider;
 using AlphaHotel.Infrastructure.Wrappers.Contracts;
 using AlphaHotel.Infrastructure.Wrappers;
 using AlphaHotel.Utilities.Extentions;
+using Microsoft.Extensions.Logging;
+using AlphaHotel.Infrastructure.Censorship;
+using AlphaHotel.Infrastructure.ReaderProvider;
 
 namespace AlphaHotel
 {
@@ -53,7 +56,9 @@ namespace AlphaHotel
             services.AddScoped(typeof(IPaginatedList<>), typeof(PaginatedList<>));
             services.AddScoped(typeof(IUserManagerWrapper<>), typeof(UserManagerWrapper<>));
             services.AddScoped(typeof(ISingInManagerWrapper<>), typeof(SingInManagerWrapper<>));
-            
+            services.AddSingleton<ICensor, Censor>();
+            services.AddSingleton<IFileReader, FileReader>();
+
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<AlphaHotelDbContext>()
                 .AddDefaultTokenProviders();
@@ -66,7 +71,7 @@ namespace AlphaHotel
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -83,6 +88,7 @@ namespace AlphaHotel
             app.UseStaticFiles();
 
             app.UseAuthentication();
+            //loggerFactory.AddLog4Net();
 
             app.UseMvc(routes =>
             {
