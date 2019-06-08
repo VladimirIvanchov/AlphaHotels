@@ -29,4 +29,11 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Content Update="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

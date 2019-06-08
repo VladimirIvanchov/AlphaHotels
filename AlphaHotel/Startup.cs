@@ -66,6 +66,8 @@ namespace AlphaHotel
             services.AddAutoMapper();
             Mapper.Initialize(cfg => { cfg.AddProfile<MappingProfiles>(); cfg.AddProfile<MappingProfile>(); });
 
+            services.AddMemoryCache();
+
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2); ;
         }
@@ -88,7 +90,7 @@ namespace AlphaHotel
             app.UseStaticFiles();
 
             app.UseAuthentication();
-            //loggerFactory.AddLog4Net();
+            loggerFactory.AddLog4Net();
 
             app.UseMvc(routes =>
             {
