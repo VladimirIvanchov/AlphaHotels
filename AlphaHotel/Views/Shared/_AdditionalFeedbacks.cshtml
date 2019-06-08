@@ -1,0 +1,23 @@
+﻿@model IPaginatedList<FeedbackDTO>
+
+@foreach (var feedback in Model.Items)
+{
+    <div class="media testimonial_item">
+        <div class="media-body">
+            <h4>@feedback.Text</h4>
+            <p>@feedback.Author, Reviewed: @feedback.CreatedOn.ToString("dd MMM yyyy, HH:mm")</p>
+            <div class="star">
+                @for (int i = 0; i < feedback.Rate; i++)
+                {
+                    <a><i class="fa fa-star"></i></a>
+                }
+
+                @for (int i = feedback.Rate; i < 5; i++)
+                {
+                    <a><i class="fa fa-star-o"></i></a>
+                }
+            </div>
+        </div>
+    </div>
+    <hr />
+}

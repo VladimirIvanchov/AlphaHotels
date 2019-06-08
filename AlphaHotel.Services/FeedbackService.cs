@@ -30,7 +30,7 @@ namespace AlphaHotel.Services
             this.censor = censor ?? throw new ArgumentNullException(nameof(censor));
         }
 
-        public async Task<IPaginatedList<FeedbackDTO>> ListAllFeedbacksAsync(string moderatorId, int? pageNumber, int pageSize)
+        public async Task<IPaginatedList<FeedbackDTO>> ListAllFeedbacksForModeratorAsync(string moderatorId, int? pageNumber, int pageSize)
         {
             var businessId = await this.context.Users
                 .Where(u => u.Id == moderatorId)
@@ -39,6 +39,17 @@ namespace AlphaHotel.Services
 
             var feedbackQuery = this.context.Feedbacks
                 .Where(f => f.Business.Id == businessId)
+                .ProjectTo<FeedbackDTO>();
+
+            return await this.paginatedList.CreateAsync(feedbackQuery, pageNumber ?? 1, pageSize, "");
+        }
+
+        public async Task<IPaginatedList<FeedbackDTO>> ListAllFeedbacksForUserAsync(int businessId, int? pageNumber, int pageSize)
+        {
+            var feedbackQuery = this.context.Feedbacks
+                .Where(f => f.IsDeleted == false)
+                .Where(f => f.Business.Id == businessId)
+                .OrderByDescending(f => f.CreatedOn)
                 .ProjectTo<FeedbackDTO>();
 
             return await this.paginatedList.CreateAsync(feedbackQuery, pageNumber ?? 1, pageSize, "");
@@ -97,6 +108,10 @@ namespace AlphaHotel.Services
             if (!string.IsNullOrEmpty(author))
             {
                 feedback.Author = author;
+            }
+            else
+            {
+                feedback.Author = "Anonymous";
             }
 
             this.context.Feedbacks.Add(feedback);

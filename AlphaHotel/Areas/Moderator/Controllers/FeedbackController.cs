@@ -28,7 +28,7 @@ namespace AlphaHotel.Areas.Moderator.Controllers
         public async Task<IActionResult> ListAllFeedbacks(int? pageNumber)
         {
             var moderatorId = this.userHelper.GetId(this.User);
-            var feedbacks = await this.feedbackService.ListAllFeedbacksAsync(moderatorId, pageNumber, pageSize);
+            var feedbacks = await this.feedbackService.ListAllFeedbacksForModeratorAsync(moderatorId, pageNumber, pageSize);
 
             return View(feedbacks);
         }
