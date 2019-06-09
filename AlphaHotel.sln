@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.352
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaHotel", "AlphaHotel\AlphaHotel.csproj", "{4E158223-2611-4D40-86F1-5C763C4701B2}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaHotel.Infrastructure", "AlphaHotel.Infrastructure\AlphaHotel.Infrastructure.csproj", "{AAD5686B-15E3-4F81-92FC-7CEA2927FCEB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaHotel.DTOs", "AlphaHotel.ViewModels\AlphaHotel.DTOs.csproj", "{43D7193E-B5F9-4311-8678-888B730F60D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaHotel.Tests", "AlphaHotel.Tests\AlphaHotel.Tests.csproj", "{8ACE864D-210C-4FB6-8D62-44BCB705D7E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{43D7193E-B5F9-4311-8678-888B730F60D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43D7193E-B5F9-4311-8678-888B730F60D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43D7193E-B5F9-4311-8678-888B730F60D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ACE864D-210C-4FB6-8D62-44BCB705D7E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ACE864D-210C-4FB6-8D62-44BCB705D7E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ACE864D-210C-4FB6-8D62-44BCB705D7E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ACE864D-210C-4FB6-8D62-44BCB705D7E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
