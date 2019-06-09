@@ -1,0 +1,23 @@
+﻿#show-feedback-dialog {
+    overflow-y: initial !important
+}
+
+#show-feedback-body {
+    height: 400px;
+    overflow-y: auto;
+}
+
+.star {
+    color: #f8b100;
+}
+
+#feedback-title {
+    color: black;
+    display: inline-block;
+}
+
+#modal-header {
+    background-color: #f8b100;
+    text-align: center;
+    vertical-align: middle;
+}

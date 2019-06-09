@@ -9,9 +9,12 @@ $("#search-keyword-log").keyup(function (ev) {
         var url = "/manager/logbook/findlog?keyword=" + $keyword;
 
         $.get(url, function (data) {
-            $("#all-logs").remove(".container-logs");
-            $("#all-logs").html(data);
-            //$("#all-logs").append(data);
+            $("#all-logs").empty(".container-logs");
+            debugger;
+            //$("#all-logs").html(data);
+            $("#all-logs").append(data);
+
+            debugger;
         });
     }
     //time = currTime;

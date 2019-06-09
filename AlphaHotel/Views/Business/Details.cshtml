@@ -4,6 +4,8 @@
     ViewData["Title"] = "Details";
 }
 
+<link href="~/css/infinity-modal.css" rel="stylesheet" />
+
 <!--================ Accomodation Area  =================-->
 <section class="accomodation_area section_gap">
     <div class="container">
@@ -62,23 +64,27 @@
             {
                 <div class="media testimonial_item">
                     <div class="media-body">
-                        <p>@feedback.Text</p>
-                        <h4 class="sec_h4">@feedback.Author</h4>
+                        <h4>@feedback.Text</h4>
+                        <p class="sec_h4">@feedback.Author</p>
                         <div class="star">
                             @for (int i = 0; i < feedback.Rate; i++)
                             {
-                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a><i class="fa fa-star"></i></a>
                             }
 
                             @for (int i = feedback.Rate; i < 5; i++)
                             {
-                                <a href="#"><i class="fa fa-star-o"></i></a>
+                                <a><i class="fa fa-star-o"></i></a>
                             }
                         </div>
                     </div>
                 </div>
             }
         </div>
+        <button type="button" id="all-feedbacks-btn" class="btn btn-block btn-warning btn-lg" data-toggle="modal" data-url="/feedback/listallfeedbacksforscroll" data-target="#exampleModalLong">
+            See all feedbacks
+        </button>
+        <div id="all-feedback"></div>
     </div>
 </section>
 @if (!User.Identity.IsAuthenticated)
@@ -104,3 +110,7 @@
     </div>
 </section>
 <!--================ About History Area  =================-->
+
+@section Scripts  {
+    <script src="~/js/infinity-scroll.js"></script>
+}

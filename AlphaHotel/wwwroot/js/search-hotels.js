@@ -3,6 +3,7 @@
         var url = "/business/findbusiness?keyword=" + keyword;
 
         return $.get(url, function (data) {
+
         });
     }
 };

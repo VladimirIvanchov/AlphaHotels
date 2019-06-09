@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AlphaHotel.Models;
 using AlphaHotel.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace AlphaHotel.Controllers
 {
@@ -14,17 +15,20 @@ namespace AlphaHotel.Controllers
         private const int feedbacksCount = 4;
         private readonly IBusinessService businessService;
         private readonly IFeedbackService feedbackService;
+        private readonly ILoggerFactory logger;
 
-        public BusinessController(IBusinessService businessService, IFeedbackService feedbackService)
+        public BusinessController(IBusinessService businessService, IFeedbackService feedbackService, ILoggerFactory logger)
         {
             this.businessService = businessService ?? throw new ArgumentNullException(nameof(businessService));
             this.feedbackService = feedbackService ?? throw new ArgumentNullException(nameof(feedbackService));
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<IActionResult> Details(int id)
         {
             var vm = await this.businessService.FindDetaliedBusinessAsync(id, feedbacksCount);
-
+            //var log = this.logger.CreateLogger("BusinessController");
+            //log.LogInformation("Error", "Test");
             return View(vm);
         }
 
@@ -54,6 +58,8 @@ namespace AlphaHotel.Controllers
         {
             if (!this.ModelState.IsValid)
             {
+                //var log = this.logger.CreateLogger("BusinessController");
+                //log.LogInformation("Error", "Test");
                 return BadRequest("Invalid parameters");
             }
 

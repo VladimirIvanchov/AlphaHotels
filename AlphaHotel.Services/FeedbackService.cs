@@ -1,5 +1,6 @@
 ﻿using AlphaHotel.Data;
 using AlphaHotel.DTOs;
+using AlphaHotel.Infrastructure.Censorship;
 using AlphaHotel.Infrastructure.PagingProvider;
 using AlphaHotel.Models;
 using AlphaHotel.Services.Contracts;
@@ -19,15 +20,17 @@ namespace AlphaHotel.Services
         private readonly AlphaHotelDbContext context;
         private readonly IPaginatedList<FeedbackDTO> paginatedList;
         private readonly IDateTimeWrapper dateTime;
+        private readonly ICensor censor;
 
-        public FeedbackService(AlphaHotelDbContext context, IPaginatedList<FeedbackDTO> paginatedList, IDateTimeWrapper dateTime)
+        public FeedbackService(AlphaHotelDbContext context, IPaginatedList<FeedbackDTO> paginatedList, IDateTimeWrapper dateTime, ICensor censor)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
             this.paginatedList = paginatedList ?? throw new ArgumentNullException(nameof(paginatedList));
             this.dateTime = dateTime ?? throw new ArgumentNullException(nameof(dateTime));
+            this.censor = censor ?? throw new ArgumentNullException(nameof(censor));
         }
 
-        public async Task<IPaginatedList<FeedbackDTO>> ListAllFeedbacksAsync(string moderatorId, int? pageNumber, int pageSize)
+        public async Task<IPaginatedList<FeedbackDTO>> ListAllFeedbacksForModeratorAsync(string moderatorId, int? pageNumber, int pageSize)
         {
             var businessId = await this.context.Users
                 .Where(u => u.Id == moderatorId)
@@ -41,6 +44,17 @@ namespace AlphaHotel.Services
             return await this.paginatedList.CreateAsync(feedbackQuery, pageNumber ?? 1, pageSize, "");
         }
 
+        public async Task<IPaginatedList<FeedbackDTO>> ListAllFeedbacksForUserAsync(int businessId, int? pageNumber, int pageSize)
+        {
+            var feedbackQuery = this.context.Feedbacks
+                .Where(f => f.IsDeleted == false)
+                .Where(f => f.Business.Id == businessId)
+                .OrderByDescending(f => f.CreatedOn)
+                .ProjectTo<FeedbackDTO>();
+
+            return await this.paginatedList.CreateAsync(feedbackQuery, pageNumber ?? 1, pageSize, "");
+        }
+
         public async Task<FeedbackDTO> FindFeedback(int feedbackId)
         {
             return await this.context.Feedbacks
@@ -49,7 +63,7 @@ namespace AlphaHotel.Services
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<int> EditFeedback(int feedbackId, string author, string text, int rate, bool isDeleted )
+        public async Task<int> EditFeedback(int feedbackId, string author, string text, int rate, bool isDeleted)
         {
             var feedback = await this.context.Feedbacks
                .FindAsync(feedbackId);
@@ -87,7 +101,7 @@ namespace AlphaHotel.Services
                 Rate = rating,
                 BusinessId = businessId,
                 CreatedOn = dateTime.Now(),
-                Text = feedbackText,
+                Text = this.censor.CensorText(feedbackText),
                 IsDeleted = false
             };
 
@@ -95,7 +109,10 @@ namespace AlphaHotel.Services
             {
                 feedback.Author = author;
             }
-
+            else
+            {
+                feedback.Author = "Anonymous";
+            }
 
             this.context.Feedbacks.Add(feedback);
             await this.context.SaveChangesAsync();

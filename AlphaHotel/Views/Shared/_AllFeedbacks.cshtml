@@ -1,0 +1,37 @@
+﻿@model IPaginatedList<FeedbackDTO>
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" id="show-feedback-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="modal-header">
+                <h5 class="modal-title" id="feedback-title">Feedbacks</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="show-feedback-body">
+                @foreach (var feedback in Model.Items)
+                {
+                    <div class="media testimonial_item">
+                        <div class="media-body">
+                            <h4>@feedback.Text</h4>
+                            <p>@feedback.Author, Reviewed: @feedback.CreatedOn.ToString("dd MMM yyyy, HH:mm")</p>
+                            <div class="star">
+                                @for (int i = 0; i < feedback.Rate; i++)
+                                {
+                                    <a><i class="fa fa-star"></i></a>
+                                }
+
+                                @for (int i = feedback.Rate; i < 5; i++)
+                                {
+                                    <a><i class="fa fa-star-o"></i></a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                }
+            </div>
+        </div>
+    </div>
+</div>

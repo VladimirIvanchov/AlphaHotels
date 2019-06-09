@@ -174,7 +174,6 @@ namespace AlphaHotel.Services
         public async Task<ICollection<BusinessShortInfoDTO>> ListTopNBusinessesAsync(int counts)
         {
             var businesses = await this.context.Businesses
-                .Include(b => b.Feedbacks)
                 .Where(b => b.Feedbacks.Count != 0)
                 .OrderByDescending(b => b.Feedbacks.Average(f => f.Rate))
                 .Take(counts)

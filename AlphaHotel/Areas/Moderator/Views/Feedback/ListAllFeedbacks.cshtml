@@ -32,12 +32,12 @@
 
             <a asp-area="Moderator" asp-controller="Feedback" asp-action="ListAllFeedbacks" asp-route-keyword="@Model.CurrentFilter"
                asp-route-pageNumber="@(Model.PageIndex - 1)"
-               class="btn btn-default @prevDisabled">
+               class="btn btn-outline-warning btn-lg @prevDisabled">
                 Previous
             </a>
             <a asp-area="Moderator" asp-controller="Feedback" asp-action="ListAllFeedbacks" asp-route-keyword="@Model.CurrentFilter"
                asp-route-pageNumber="@(Model.PageIndex + 1)"
-               class="btn btn-default @nextDisabled">
+               class="btn btn-outline-warning btn-lg @nextDisabled">
                 Next
             </a>
         </div>

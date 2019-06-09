@@ -110,10 +110,15 @@ namespace AlphaHotel.Areas.Identity.Controllers
 
                 if (model.Role != UserRoleTypes.Administrator.ToString())
                 {
+                    if (model.BusinessId == 0)
+                    {
+                        return BadRequest("Hotel is required!");
+                    }
+
                     user.BusinessId = model.BusinessId;
                 }
 
-                if (model.Role == UserRoleTypes.Manager.ToString())
+                if (model.Role == UserRoleTypes.Manager.ToString() && model.LogBookIds != null)
                 {
                     user.UsersLogbooks = model.LogBookIds
                         .Select(l => new UsersLogbooks() { LogBookId = l })
@@ -129,7 +134,7 @@ namespace AlphaHotel.Areas.Identity.Controllers
                 }
 
                 AddErrors(result);
-                return BadRequest(Json(new { success = false, issue = model, errors = ModelState.Values.Where(i => i.Errors.Count > 0) }));
+                return BadRequest(result.Errors.FirstOrDefault().Description);
             }
 
             return View(model);
