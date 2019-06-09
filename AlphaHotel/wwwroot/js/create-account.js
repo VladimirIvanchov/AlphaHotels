@@ -30,7 +30,7 @@ $('#administrator').on('click', function (ev) {
 
 $('#registerForm').submit(function (ev) {
     ev.preventDefault();
-
+    debugger;
     var $this = $(this);
     var url = $this.attr('action');
 
@@ -48,23 +48,19 @@ $('#registerForm').submit(function (ev) {
                 timer: 1500
             })
         }).fail(function (error) {
+            debugger;
             Swal.fire({
                 type: 'error',
                 title: 'Oops...',
-                text: error.responseJSON.value.errors[0].errors[0].errorMessage
+                text: error.responseText /*error.responseJSON.value.errors[0].errors[0].errorMessage*/
             })
         });
     }
     else {
-        for (var i = 0; i < response.errors.length; i++) {
-            var error = ko.mapping.fromJS(response.errors[i]);
-            self.saveErrors.push(error);
-        }
-
         Swal.fire({
             type: 'error',
             title: 'Oops...',
-            text: error
+            text: 'Invalid parameters!'
         })
     }
 });
