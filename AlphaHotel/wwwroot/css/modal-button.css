@@ -28,3 +28,20 @@
 .centered-modal {
     padding-top: 80px;
 }
+
+#add-log-content {
+    color: black;
+}
+
+#add-log-header {
+    background-color: #f8b100;
+    text-align: center;
+}
+
+    #add-log-header h3 {
+        margin: auto;
+    }
+
+#close-add-log-btn {
+    margin-left: 0;
+}

@@ -2,22 +2,22 @@
 
 <link rel="stylesheet" href="~/css/modal-button.css">
 
-<button type="button" class="btn btn-primary fab" data-toggle="modal" data-target="#exampleModal" id="modal-btn"> + </button>
+<button type="button" class="btn btn-primary fab" data-toggle="modal" data-target="#exampleModal" id="add-log-btn"> + </button>
 @*asp-area="Manager" asp-controller="logbook" asp-action="GetLogBooksAndCategories"*@
 <div class="modal fade centered-modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" id="add-log-content">
 
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New Log</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal-header" id="add-log-header">
+                <h3 class="modal-title" id="exampleModalLabel">Add New Log</h3>
+                <button type="button" id="close-add-log-btn" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
             <div class="modal-body">
-                <form asp-area="Manager" asp-controller="LogBook" asp-action="AddLog" id="add-log-form">
-                    <div id="dropdown-partial">
+                <form asp-area="Manager" asp-controller="LogBook" asp-action="AddLog" id="add-log-form" enctype="multipart/form-data">
+                    <div id="dropdown-partial" class="form-group">
 
                     </div>
                     <div class="form-group">
@@ -26,7 +26,7 @@
                         <span asp-validation-for="@Model.Description" class="text-danger"></span>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-warning btn-lg">Submit</button>
                     </div>
                 </form>
             </div>

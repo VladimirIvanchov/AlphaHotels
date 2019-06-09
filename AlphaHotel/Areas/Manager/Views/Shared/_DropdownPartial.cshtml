@@ -1,22 +1,26 @@
 ﻿@model LogBooksCategoriesDTO
 
-@foreach (var logbook in Model.LogBooks)
-{
-    <div class="status-div">
-        <select class="status-dropdown nice-select">
+<div class="status-div row">
+    <h4>Logbook:&nbsp&nbsp&nbsp</h4>
+    <select name="LogBookId" class="status-dropdown nice-select">
+        <option></option>
+        @foreach (var logbook in Model.LogBooks)
+        {
             <option value=@logbook.Id>@logbook.Name</option>
-        </select>
-    </div>
-}
+        }
+    </select>
+</div>
 
-@foreach (var category in Model.Categories)
-{
-    <div class="status-div">
-        <select class="status-dropdown nice-select">    
-            <option value=@category.Name>@category.Name</option>
-        </select>
-    </div>
-}
+<div class="status-div row">
+    <h4>Category:&nbsp&nbsp&nbsp</h4>
+    <select name="CategoryId" class="status-dropdown nice-select">
+        <option value=0></option>
+        @foreach (var category in Model.Categories)
+        {
+            <option value=@category.Id>@category.Name</option>
+        }
+    </select>
+</div>
 
 @*<div class="dropdown nice-select">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

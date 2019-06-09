@@ -9,6 +9,6 @@ namespace AlphaHotel.DTOs
     {
         public ICollection<LogBookDTO> LogBooks { get; set; }
 
-        public ICollection<CategoryDTO> Categories { get; set; }
+        public ICollection<CategoryNameIdDTO> Categories { get; set; }
     }
 }

@@ -136,32 +136,27 @@ namespace AlphaHotel.Services
         public async Task AddLog(int logbookId, string userId, string description, int categoryId)
         {
             var logbook = await this.context.LogBooks.FindAsync(logbookId);
-            var author = await this.context.Users.FindAsync(userId);
-            var category = await this.context.Categories.FindAsync(categoryId);
-
             if (logbook == null)
+            {
                 throw new ArgumentException($"LogBook with id {logbookId} doesn't exist!");
+            }
 
-            if (author == null)
-                throw new ArgumentException($"User with id {userId} doesn't exist!");
-
+            var category = await this.context.Categories.FindAsync(categoryId);
             if (category == null)
-                throw new ArgumentException($"Category with id {categoryId} doesn't exist!");
+            {
+                categoryId = 0;
+            }
 
             var log = new Log()
             {
-                LogBookId = logbookId,
                 AuthorId = userId,
+                StatusId = 1,
+                LogBookId = logbookId,
                 CategoryId = categoryId,
                 IsDeleted = false,
                 CreatedOn = dateTime.Now(),
-                StatusId = 1
+                Description = description
             };
-
-            if (!string.IsNullOrEmpty(description))
-            {
-                log.Description = description;
-            }
 
             this.context.Logs.Add(log);
             await this.context.SaveChangesAsync();
@@ -189,7 +184,7 @@ namespace AlphaHotel.Services
                 .ToListAsync();
 
             var categories = await this.context.Categories
-               .ProjectTo<CategoryDTO>()
+               .ProjectTo<CategoryNameIdDTO>()
                .ToListAsync();
 
             var logbooksAndCategories = new LogBooksCategoriesDTO()

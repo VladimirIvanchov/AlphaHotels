@@ -94,7 +94,8 @@ namespace AlphaHotel.Areas.Manager.Controllers
 
             try
             {
-                await this.logBookService.AddLog(model.LogBookId, model.UserId, model.Description, model.CategoryId);
+                var userId = this.userHelper.GetId(User);
+                await this.logBookService.AddLog(model.LogBookId, userId, model.Description, model.CategoryId);
 
                 return Json(model);
             }

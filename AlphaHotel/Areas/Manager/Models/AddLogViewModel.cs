@@ -10,6 +10,7 @@ namespace AlphaHotel.Areas.Manager.Models
     {
         public string UserId { get; set; }
 
+        [Required]
         public int LogBookId { get; set; }
 
         public int CategoryId { get; set; }
