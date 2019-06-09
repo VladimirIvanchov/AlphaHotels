@@ -43,7 +43,7 @@
             Swal.fire({
                 type: 'error',
                 title: 'Oops...',
-                text: 'Something happened!'
+                text: error.responseText
             })
         });
     }
@@ -51,7 +51,7 @@
         Swal.fire({
             type: 'error',
             title: 'Oops...',
-            text: 'Something happened!'
+            text: 'Something went wrong!'
         })
     }
 });

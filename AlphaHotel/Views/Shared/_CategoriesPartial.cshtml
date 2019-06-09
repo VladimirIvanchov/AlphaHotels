@@ -1,0 +1,6 @@
+﻿@model LogBooksCategoriesDTO
+@foreach (var category in Model.Categories)
+{
+    @*<a class="" href="#">@status.Type</a>*@
+    <li value="@category.Name" class="option">@category.Name</li>
+}

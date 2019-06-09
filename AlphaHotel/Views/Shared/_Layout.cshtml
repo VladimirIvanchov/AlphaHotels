@@ -62,6 +62,7 @@
                         @if (User.IsInRole("Manager"))
                         {
                             <li class="nav-item"><a asp-area="Manager" asp-controller="LogBook" asp-action="AllLogbookLogs" class="nav-link">My LogBooks</a></li>
+
                         }
                         @if (User.IsInRole("Moderator"))
                         {
@@ -93,6 +94,10 @@
             </div>
         </div>
     </footer>
+    @if (User.IsInRole("Manager"))
+    {
+    <partial name="_AddLogPartial" model="new AddLogViewModel()" />
+    }
 
     <partial name="_LoginAndRegisterPopup" model="new LoginViewModel()" />
 
@@ -132,6 +137,7 @@
     <script src="~/vendors/lightbox/simpleLightbox.min.js"></script>
     <script src="~/js/custom.js"></script>
     <script src="~/js/send-feedback.js"></script>
+    <script src="~/js/add-log.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

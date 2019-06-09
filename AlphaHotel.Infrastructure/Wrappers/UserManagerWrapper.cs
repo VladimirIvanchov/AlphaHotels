@@ -43,6 +43,11 @@ namespace AlphaHotel.Infrastructure.Wrappers
             return await this.userManager.GetRolesAsync(user);
         }
 
+        public async Task<bool> IsInRoleAsync(T user, string role)
+        {
+            return await this.userManager.IsInRoleAsync(user, role);
+        }
+
         public async Task<T> FindByNameAsync(string userName)
         {
             return await this.userManager.FindByNameAsync(userName);

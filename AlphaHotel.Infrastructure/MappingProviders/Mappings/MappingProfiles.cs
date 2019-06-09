@@ -38,6 +38,10 @@ namespace AlphaHotel.Infrastructure.MappingProviders.Mappings
               .ForMember(d => d.AuthorUsername, src => src.MapFrom(s => s.Author.UserName))
               .ForMember(d => d.Status, src => src.MapFrom(s => s.Status.Type))
               .ForMember(d => d.Category, src => src.MapFrom(s => s.Category.Name));
+
+            CreateMap<LogBook, LogBookDTO>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
         }
     }
 }

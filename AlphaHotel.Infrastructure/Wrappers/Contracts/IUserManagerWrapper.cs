@@ -15,6 +15,7 @@ namespace AlphaHotel.Infrastructure.Wrappers.Contracts
         string GetUserId(ClaimsPrincipal principal);
         Task<IdentityResult> CreateAsync(T user, string password);
         Task<IList<string>> GetRolesAsync(T user);
+        Task<bool> IsInRoleAsync(T user, string role);
         Task<T> FindByNameAsync(string userName);
         Task<IdentityResult> SetEmailAsync(T user, string email);
         Task<IdentityResult> ChangePasswordAsync(T user, string currentPassword, string newPassword);

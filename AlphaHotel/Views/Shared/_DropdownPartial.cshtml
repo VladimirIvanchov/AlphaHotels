@@ -1,0 +1,52 @@
+﻿@model LogBooksCategoriesDTO
+
+@foreach (var logbook in Model.LogBooks)
+{
+    <div class="status-div">
+        <select class="status-dropdown nice-select">
+            <option value=@logbook.Id>@logbook.Name</option>
+        </select>
+    </div>
+}
+
+@foreach (var category in Model.Categories)
+{
+    <div class="status-div">
+        <select class="status-dropdown nice-select">    
+            <option value=@category.Name>@category.Name</option>
+        </select>
+    </div>
+}
+
+@*<div class="dropdown nice-select">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Choose LogBook
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            @foreach (var logbook in Model.LogBooks)
+            {
+                <a class="dropdown-item" href="#">@logbook.Name</a>
+            }
+        </div>
+    </div>
+    <div class="dropdown nice-select">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Choose Category
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            @foreach (var category in Model.Categories)
+            {
+                <a class="dropdown-item" href="#">@category.Name</a>
+            }
+        </div>
+    </div>*@
+
+
+
+@*<div class="col-lg-4 form-group">
+        <label class="text-black-50">Choose sensor type</label>
+        <select asp-for="@Model.MeasureTypeId" asp-items="Model.MeasureTypes" class="form-control text-warning text-monospace">
+            <option value="all" class="grey_color">-- All --</option>
+        </select>
+
+    </div>*@

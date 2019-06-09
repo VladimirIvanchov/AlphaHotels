@@ -81,7 +81,10 @@
         </div>
     </div>
 </section>
-<partial name="_SendFeedbackPopup" model="new SendFeedbackViewModel()" />
+@if (!User.Identity.IsAuthenticated)
+{
+    <partial name="_SendFeedbackPopup" model="new SendFeedbackViewModel()" />
+}
 <!--================ Feedback Area  =================-->
 <!--================ About History Area  =================-->
 <section class="about_history_area section_gap">

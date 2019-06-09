@@ -30,7 +30,6 @@ namespace AlphaHotel.Common
             CreateMap<ICollection<FacilityDTO>, CreateBusinessViewModel>()
                .ForMember(d => d.AllFacilities, src => src.MapFrom(s => s))
                .ForAllOtherMembers(d => d.Ignore());
-
         }
     }
 }
