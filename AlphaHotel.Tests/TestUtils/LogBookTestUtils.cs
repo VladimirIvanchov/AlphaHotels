@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using AlphaHotel.Data;
 using AlphaHotel.Models;
+using AutoMapper;
+using AlphaHotel.Infrastructure.MappingProviders.Mappings;
+using AlphaHotel.Common;
 
 namespace AlphaHotel.Tests.TestUtils
 {
@@ -14,6 +17,14 @@ namespace AlphaHotel.Tests.TestUtils
             return new DbContextOptionsBuilder()
                 .UseInMemoryDatabase(DbName)
                 .Options;
+        }
+
+        public static void InitializeAutoMapper()
+        {
+            Mapper.Initialize(cfg => {
+                cfg.AddProfile<MappingProfiles>();
+                cfg.AddProfile<MappingProfile>();
+            });
         }
     }
 }

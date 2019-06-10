@@ -19,13 +19,13 @@
     <Folder Include="Services\AccountServiceTests\" />
     <Folder Include="Services\CategoryServiceTests\" />
     <Folder Include="Services\FacilityServiceTests\" />
-    <Folder Include="Services\FeedbackServiceTests\" />
     <Folder Include="Services\LogBookServiceTests\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AlphaHotel.Data\AlphaHotel.Data.csproj" />
     <ProjectReference Include="..\AlphaHotel.Services\AlphaHotel.Services.csproj" />
+    <ProjectReference Include="..\AlphaHotel\AlphaHotel.csproj" />
   </ItemGroup>
 
 </Project>
