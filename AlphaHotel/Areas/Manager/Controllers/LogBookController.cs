@@ -1,4 +1,5 @@
-﻿using AlphaHotel.Areas.Manager.Models;
+﻿using AlphaHotel.Areas.Manager.Hubs;
+using AlphaHotel.Areas.Manager.Models;
 using AlphaHotel.Common;
 using AlphaHotel.DTOs;
 using AlphaHotel.Infrastructure.MappingProviders;
@@ -8,6 +9,7 @@ using AlphaHotel.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -24,13 +26,17 @@ namespace AlphaHotel.Areas.Manager.Controllers
         private readonly IUserHelper userHelper;
         private readonly IMappingProvider mapper;
         private readonly IUserManagerWrapper<User> userManagerWrapper;
+        private readonly IHubContext<LogHub> hubContext;
 
-        public LogBookController(ILogBookService logBookService, IUserHelper userHelper, IMappingProvider mapper, IUserManagerWrapper<User> userManagerWrapper)
+        public LogBookController(ILogBookService logBookService, IUserHelper userHelper, 
+            IMappingProvider mapper, IUserManagerWrapper<User> userManagerWrapper,
+            IHubContext<LogHub> hubContext)
         {
             this.logBookService = logBookService ?? throw new ArgumentNullException(nameof(logBookService));
             this.userHelper = userHelper ?? throw new ArgumentNullException(nameof(userHelper));
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             this.userManagerWrapper = userManagerWrapper ?? throw new ArgumentNullException(nameof(userManagerWrapper));
+            this.hubContext = hubContext ?? throw new ArgumentNullException(nameof(hubContext));
         }
 
         public async Task<IActionResult> AllLogbookLogs([FromQuery(Name = "keyword")] string keyword, int? pageNumber)
@@ -95,9 +101,11 @@ namespace AlphaHotel.Areas.Manager.Controllers
             try
             {
                 var userId = this.userHelper.GetId(User);
-                await this.logBookService.AddLog(model.LogBookId, userId, model.Description, model.CategoryId);
+                var log = await this.logBookService.AddLog(model.LogBookId, userId, model.Description, model.CategoryId);
 
-                return Json(model);
+                //await this.hubContext.Clients.All.SendAsync("NewLog", model);
+
+                return Json(log);
             }
             catch (ArgumentException ex)
             {
@@ -126,10 +134,13 @@ namespace AlphaHotel.Areas.Manager.Controllers
             return PartialView("_LogBookPartial", logbooks);
         }
 
-        //var model = new MySensorsViewModel
-        //{
-        //    MeasureTypes = new SelectList(ItemsInCollection, "dataValueField", "dataTextField"),
+        public async Task<IActionResult> ShowLogBookss()
+        {
+            var userId = this.userHelper.GetId(User);
+            var logbooks = await this.logBookService.GetLogBooksAndCategories(userId);
+            //var vm = this.mapper.MapTo<StatusForLogViewModel>(categories);
 
-        //};
+            return PartialView("_LogBookPartial", logbooks);
+        }
     }
 }

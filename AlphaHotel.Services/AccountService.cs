@@ -103,5 +103,14 @@ namespace AlphaHotel.Services
 
             return await this.context.SaveChangesAsync();
         }
+
+        public async Task<ICollection<string>> CheckIfUserIsAllowedToSeeLogAsync(IReadOnlyDictionary<string, string> userNames, int logbookId)
+        {
+            return await this.context.UsersLogbooks
+                .Where(ul => userNames.Keys.Contains(ul.User.UserName))
+                .Where(ul => ul.LogBook.Id == logbookId)
+                .Select(ul => ul.User.UserName)
+                .ToListAsync();
+        }
     }
 }

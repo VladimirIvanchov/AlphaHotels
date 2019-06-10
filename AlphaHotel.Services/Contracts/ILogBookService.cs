@@ -10,8 +10,8 @@ namespace AlphaHotel.Services.Contracts
         Task<IPaginatedList<LogDTO>> ListAllLogsForManagerAsync(string id, int? pageNumber, int pageSize, string keyword);
         Task<ICollection<StatusDTO>> ListAllStatusesAsync();
         Task<int> ChangeStatusOfLogAsync(int statusId, int logId);
-        Task AddLog(int logbookId, string authorId, string description, int categoryId);
+        Task<LogDTO> AddLog(int logbookId, string authorId, string description, int categoryId);
         Task<LogBooksCategoriesDTO> GetLogBooksAndCategories(string userId);
-        //Task<ICollection<LogDTO>> FindLogAsync(string keyword, string managerId, int? pageNumber, int pageSize);
+        Task<LogDTO> FindLog(int logId);
     }
 }

@@ -9,5 +9,6 @@ namespace AlphaHotel.Services.Contracts
         Task<IReadOnlyCollection<AccountDTO>> ListAllUsersAsync();
         Task<AccountDetailsDTO> FindAccountAsync(string accountId);
         Task<int> EditAccountAsync(string id, string username, string email, bool isDeleted, ICollection<int> logBooks);
+        Task<ICollection<string>> CheckIfUserIsAllowedToSeeLogAsync(IReadOnlyDictionary<string, string> userNames, int logbookId);
     }
 }

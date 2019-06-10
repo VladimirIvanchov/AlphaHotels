@@ -25,8 +25,10 @@ $('#add-log-form').on('submit', function (ev) {
                 title: 'Successfully added log!',
                 showConfirmButton: false,
                 timer: 1500
-            })
+            });
 
+            debugger;
+            sendToAllManagers(response);
         }).fail(function (error) {
             Swal.fire({
                 type: 'error',

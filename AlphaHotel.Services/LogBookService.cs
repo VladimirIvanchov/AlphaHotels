@@ -65,7 +65,6 @@ namespace AlphaHotel.Services
             var logsQuery = this.context.Logs
                 .Include(l => l.Status)
                 .Include(l => l.Category)
-                .Include(l => l.Status)
                 .Where(l => logbooksIds.Contains(l.LogBookId))
                 .Where(l => l.Description.ToLower().Contains(keyword) || l.Category.Name.ToLower().Contains(keyword) || l.CreatedOn.Date.ToString("dd MMM yyyy").ToLower().Contains(keyword))
                 .OrderByDescending(l => l.CreatedOn)
@@ -133,7 +132,7 @@ namespace AlphaHotel.Services
             return await this.context.SaveChangesAsync();
         }
 
-        public async Task AddLog(int logbookId, string userId, string description, int categoryId)
+        public async Task<LogDTO> AddLog(int logbookId, string userId, string description, int categoryId)
         {
             var logbook = await this.context.LogBooks.FindAsync(logbookId);
             if (logbook == null)
@@ -160,6 +159,8 @@ namespace AlphaHotel.Services
 
             this.context.Logs.Add(log);
             await this.context.SaveChangesAsync();
+
+            return this.mapper.MapTo<LogDTO>(log);
         }
 
         public async Task<LogBooksCategoriesDTO> GetLogBooksAndCategories(string userId)
@@ -194,6 +195,22 @@ namespace AlphaHotel.Services
             };
 
             return logbooksAndCategories;
+        }
+
+        public async Task<LogDTO> FindLog(int logId)
+        {
+            var log = await this.context.Logs
+                .Include(l => l.Author)
+                .Include(l => l.Status)
+                .Include(l => l.Category)
+                .FirstOrDefaultAsync(l => l.Id == logId);
+
+            if (log == null)
+            {
+                throw new ArgumentException($"Log with id {logId} doesn't exist!");
+            }
+
+            return this.mapper.MapTo<LogDTO>(log);
         }
     }
 }

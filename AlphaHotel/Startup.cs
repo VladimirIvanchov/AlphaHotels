@@ -25,6 +25,7 @@ using AlphaHotel.Utilities.Extentions;
 using Microsoft.Extensions.Logging;
 using AlphaHotel.Infrastructure.Censorship;
 using AlphaHotel.Infrastructure.ReaderProvider;
+using AlphaHotel.Areas.Manager.Hubs;
 
 namespace AlphaHotel
 {
@@ -69,7 +70,8 @@ namespace AlphaHotel
             services.AddMemoryCache();
 
             services.AddRouting(options => options.LowercaseUrls = true);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2); ;
+            services.AddSignalR();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,6 +93,11 @@ namespace AlphaHotel
 
             app.UseAuthentication();
             loggerFactory.AddLog4Net();
+            app.UseSignalR(
+                routes =>
+                {
+                    routes.MapHub<LogHub>("/alllogbooklogs");
+                });
 
             app.UseMvc(routes =>
             {
