@@ -27,10 +27,9 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
             var paginatedListMocked = new Mock<IPaginatedList<FeedbackDTO>>();
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var censorMocked = new Mock<ICensor>();
-            var mapperMocked = new Mock<IConfigurationProvider>();
 
-            FeedbackTestUtils.InitializeAutoMapper();
-            FeedbackTestUtils.GetContextWithFeedback(nameof(FindFeedback_WhenFeedbackIsFound), id);
+            //FeedbackTestUtils.InitializeAutoMapper();
+            FeedbackTestUtils.GetContextWithFeedbackId(nameof(FindFeedback_WhenFeedbackIsFound), id);
 
             using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(FindFeedback_WhenFeedbackIsFound))))
             {
@@ -52,7 +51,7 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
             var censorMocked = new Mock<ICensor>();
 
             FeedbackTestUtils.InitializeAutoMapper();
-            FeedbackTestUtils.GetContextWithFeedback(nameof(FindFeedback_WhenFeedbackIsNotFound), id);
+            FeedbackTestUtils.GetContextWithFeedbackId(nameof(FindFeedback_WhenFeedbackIsNotFound), id);
 
             using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(FindFeedback_WhenFeedbackIsNotFound))))
             {
