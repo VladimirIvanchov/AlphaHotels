@@ -52,7 +52,7 @@ namespace AlphaHotel.Areas.Manager.Controllers
             var managerId = this.userHelper.GetId(this.User);
             var logs = await this.logBookService.ListAllLogsForManagerAsync(managerId, pageNumber, pageSize, keyword ?? "".ToLower());
 
-            return PartialView("_LogsPartial", logs);
+            return PartialView("_LogsPartialDynamic", logs);
         }
 
         [HttpGet("{logId}")]
