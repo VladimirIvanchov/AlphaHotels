@@ -22,6 +22,17 @@ connection.on("NewLog", function (log) {
     $('#all-logs').prepend(newLog);
 });
 
+connection.on("SendNotification", function () {
+    Swal.fire({
+        title: 'New log added!',
+        type: 'info',
+        animation: false,
+        customClass: {
+            popup: 'animated tada'
+        }
+    })
+});
+
 function sendToAllManagers(log) {
     connection.invoke("Send", log);
 };

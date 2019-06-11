@@ -33,6 +33,7 @@ namespace AlphaHotel.Areas.Manager.Hubs
                 if (userNames.Contains(connectionId.Key))
                 {
                     await this.Clients.Client(connectionId.Value).SendAsync("NewLog", log);
+                    await this.Clients.Client(connectionId.Value).SendAsync("SendNotification");
                 }
             }
         }

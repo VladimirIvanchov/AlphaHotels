@@ -19,15 +19,6 @@ $('#add-log-form').on('submit', function (ev) {
 
     if (isValid) {
         $.post(url, dataToSend, function (response) {
-            Swal.fire({
-                position: 'top-end',
-                type: 'success',
-                title: 'Successfully added log!',
-                showConfirmButton: false,
-                timer: 1500
-            });
-
-            debugger;
             sendToAllManagers(response);
         }).fail(function (error) {
             Swal.fire({
