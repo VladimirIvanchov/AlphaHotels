@@ -1,9 +1,14 @@
-﻿.nice-select {
+﻿#dropdown-logbook-status {
     background-color: #2b2b2d;
     color: white
 }
 
-    .nice-select ul li {
+    #dropdown-logbook-status + div {
+        background-color: #2b2b2d;
+        color: white
+    }
+
+    #dropdown-logbook-status ul li {
         background-color: #2b2b2d;
         color: white
     }

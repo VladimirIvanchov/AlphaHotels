@@ -1,5 +1,6 @@
 ﻿using AlphaHotel.Areas.Manager.Models;
 using AlphaHotel.Areas.Manager.Utilities;
+using AlphaHotel.DTOs;
 using AlphaHotel.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
@@ -23,7 +24,7 @@ namespace AlphaHotel.Areas.Manager.Hubs
             this.accountService = accountService ?? throw new ArgumentNullException(nameof(accountService));
         }
 
-        public async Task Send(LogViewModel model)
+        public async Task Send(LogDTO model)
         {
             var log = await this.logBookService.FindLog(model.Id);
             var userNames = await this.accountService.CheckIfUserIsAllowedToSeeLogAsync(connections.GetConnections(), model.LogBookId);
@@ -36,13 +37,6 @@ namespace AlphaHotel.Areas.Manager.Hubs
                     await this.Clients.Client(connectionId.Value).SendAsync("SendNotification");
                 }
             }
-        }
-
-        public async Task AddToGroup(string groupName)
-        {
-            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
-
-            await Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId} has joined the group {groupName}.");
         }
 
         public override Task OnConnectedAsync()
