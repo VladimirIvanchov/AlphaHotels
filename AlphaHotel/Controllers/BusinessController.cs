@@ -32,12 +32,12 @@ namespace AlphaHotel.Controllers
             return View(vm);
         }
 
-        public async Task<IActionResult> DetailsBusinessByName(string myHotel)
-        {
-            var vm = await this.businessService.FindDetaliedBusinessByNameAsync(myHotel, feedbacksCount);
+        //public async Task<IActionResult> DetailsBusinessByName(string myHotel)
+        //{
+        //    var vm = await this.businessService.FindDetaliedBusinessByNameAsync(myHotel, feedbacksCount);
 
-            return View("Details", vm);
-        }
+        //    return View("Details", vm);
+        //}
 
         public async Task<IActionResult> ShowAllBusinesses(int? pageNumber)
         {

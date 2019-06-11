@@ -33,9 +33,7 @@ function autocomplete(inp) {
                     b.innerHTML += "<input type='hidden' value='" + businesses[i].name + "'id='" + businesses[i].businessId + "'>";
                     b.addEventListener("click", function (e) {
                         inp.value = this.getElementsByTagName("input")[0].value;
-                        //debugger;
-                        //var businessId = this.getElementsByTagName("input")[0].id;
-                        //document.getElementsByTagName("button")[0].setAttribute("asp-route-id=", businessId);
+                        inp.data = this.getElementsByTagName("input")[0].id;
                         closeAllLists();
                     });
                     a.appendChild(b);

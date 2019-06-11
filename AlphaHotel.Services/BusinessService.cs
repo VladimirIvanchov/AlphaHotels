@@ -146,31 +146,6 @@ namespace AlphaHotel.Services
             return business;
         }
 
-        public async Task<BusinessDetailsDTO> FindDetaliedBusinessByNameAsync(string businessName, int feedbacksCount)
-        {
-            var business = await this.context.Businesses
-                .Include(b => b.Pictures)
-                .Include(b => b.BusinessesFacilities)
-                    .ThenInclude(bf => bf.Facility)
-                .ProjectTo<BusinessDetailsDTO>()
-                .FirstOrDefaultAsync(b => b.Name == businessName);
-
-            if (business == null)
-            {
-                throw new ArgumentException($"Business {business} do not exist!");
-            }
-
-            var feedbacks = await this.context.Feedbacks
-                .Where(f => f.Business.Name == businessName)
-                .OrderByDescending(f => f.Rate)
-                .Take(feedbacksCount)
-                .ProjectTo<FeedbackForBusinessDTO>()
-                .ToListAsync();
-            business.Feedbacks = feedbacks;
-
-            return business;
-        }
-
         public async Task<ICollection<BusinessShortInfoDTO>> ListTopNBusinessesAsync(int counts)
         {
             var businesses = await this.context.Businesses
