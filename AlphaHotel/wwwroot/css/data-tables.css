@@ -1,0 +1,8 @@
+﻿.container {
+    color: white;
+}
+
+.custom-select, .form-control-sm {
+    background-color: #2b2b2d;
+    color: white;
+}

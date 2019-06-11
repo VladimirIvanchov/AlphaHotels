@@ -13,10 +13,18 @@ connection.on("NewLog", function (log) {
         <div class="">${log.category}</div>
         <div></div>
         <div class="status-div" data-url="/manager/logbook/ShowStatusesOtherThanLogs/${log.id}">
-            <select class="status-dropdown nice-select" data-url="/manager/logbook/ShowStatusesOtherThanLogs/${log.id}">
+            <select class="status-dropdown nice-select" id="dropdown-logbook-status" data-url="/manager/logbook/ShowStatusesOtherThanLogs/${log.id}" style="display: none;">
                 <option value=${log.status}>${log.status}</option>
             </select>
-    </div>
+            <div class="nice-select status-dropdown" tabindex="0">
+                <span class="current">${log.status}</span>
+                <ul class="list">
+                    <li data-value="${log.status}" class="option selected">
+                        ${log.status}
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div >
         <hr />`
     $('#all-logs').prepend(newLog);

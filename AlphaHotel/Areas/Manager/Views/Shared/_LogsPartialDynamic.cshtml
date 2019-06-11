@@ -1,0 +1,43 @@
+﻿@model IPaginatedList<LogDTO>
+
+
+@foreach (var log in Model.Items)
+{
+    <div class="container-logs">
+        <div class="">@log.AuthorUsername</div>
+        <div class=""><em>@log.Description</em></div>
+        <div class="">@log.CreatedOn.ToString("dd MMM yyyy, HH:mm")</div>
+        <div class="">@log.Category</div>
+        <div></div>
+        <div class="status-div" data-url="/manager/logbook/ShowStatusesOtherThanLogs/@log.Id">
+            <select class="status-dropdown nice-select" id="dropdown-logbook-status" data-url="/manager/logbook/ShowStatusesOtherThanLogs/@log.Id" style="display: none;">
+                <option value=@log.Status>@log.Status</option>
+            </select>
+            <div class="nice-select status-dropdown" tabindex="0">
+                <span class="current">@log.Status</span>
+                <ul class="list">
+                    <li data-value="@log.Status" class="option selected">
+                        @log.Status
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr />
+}
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-area="Manager" asp-controller="LogBook" asp-action="AllLogbookLogs" asp-route-keyword="@Model.CurrentFilter"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-outline-warning btn-lg @prevDisabled">
+    Previous
+</a>
+<a asp-area="Manager" asp-controller="LogBook" asp-action="AllLogbookLogs" asp-route-keyword="@Model.CurrentFilter"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-outline-warning btn-lg @nextDisabled">
+    Next
+</a>
