@@ -12,9 +12,9 @@ namespace AlphaHotel.Tests.TestUtils
 {
     public class LogBookTestUtils
     {
-        public static DbContextOptions GetOptions(string DbName)
+        public static DbContextOptions<AlphaHotelDbContext> GetOptions(string DbName)
         {
-            return new DbContextOptionsBuilder()
+            return new DbContextOptionsBuilder<AlphaHotelDbContext>()
                 .UseInMemoryDatabase(DbName)
                 .Options;
         }

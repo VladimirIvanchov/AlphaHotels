@@ -42,7 +42,7 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
         }
 
         [TestMethod]
-        public async Task FindFeedback_WhenFeedbackIsNotFound()
+        public async Task FindFeedback_ReturnNull_WhenFeedbackIsNotFound()
         {
             var id = 1;
             var wrongId = 2;
@@ -50,10 +50,10 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var censorMocked = new Mock<ICensor>();
 
-            FeedbackTestUtils.InitializeAutoMapper();
-            FeedbackTestUtils.GetContextWithFeedbackId(nameof(FindFeedback_WhenFeedbackIsNotFound), id);
+            //FeedbackTestUtils.InitializeAutoMapper();
+            FeedbackTestUtils.GetContextWithFeedbackId(nameof(FindFeedback_ReturnNull_WhenFeedbackIsNotFound), id);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(FindFeedback_WhenFeedbackIsNotFound))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(FindFeedback_ReturnNull_WhenFeedbackIsNotFound))))
             {
                 var feedbackService = new FeedbackService(assertContext, paginatedListMocked.Object, dateTimeWrapperMocked.Object, censorMocked.Object);
 

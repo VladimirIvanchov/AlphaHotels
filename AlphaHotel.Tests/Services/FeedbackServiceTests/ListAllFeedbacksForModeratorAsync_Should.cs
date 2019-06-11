@@ -62,7 +62,7 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var censorMocked = new Mock<ICensor>();
 
-            FeedbackTestUtils.InitializeAutoMapper();
+            //FeedbackTestUtils.InitializeAutoMapper();
             FeedbackTestUtils.GetContextWithFeedbackIdAndBusinessAndModerator(nameof(ListAllFeedbacksForModeratorAsync_ReturnFeedbacks_WhenModeratorIsFound), feedbackId, moderatorId, businessId);
 
             using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ListAllFeedbacksForModeratorAsync_ReturnFeedbacks_WhenModeratorIsFound))))
