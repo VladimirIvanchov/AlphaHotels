@@ -51,7 +51,7 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
             var rating = 5;
             var author = "gosho";
             var businessId = 1;
-            var feedbackId = 1;
+            var feedbackId = 2;
             var paginatedListMocked = new Mock<IPaginatedList<FeedbackDTO>>();
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var censorMocked = new Mock<ICensor>();

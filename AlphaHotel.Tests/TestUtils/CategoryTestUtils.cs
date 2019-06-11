@@ -31,5 +31,33 @@ namespace AlphaHotel.Tests.TestUtils
         {
             Mapper.Reset();
         }
+
+        //ListAllCategoriesAsync_Should
+        public static void GetContextWithCategories(string DbName, int categoryId)
+        {
+            var options = GetOptions(DbName);
+
+            var context = new AlphaHotelDbContext(options);
+            var category = new Category()
+            {
+                Id = categoryId
+            };
+            context.Categories.Add(category);
+            context.SaveChanges();
+        }
+
+        //AddCategory_Should
+        public static void GetContextWithCategory(string DbName, string categoryName)
+        {
+            var options = GetOptions(DbName);
+
+            var context = new AlphaHotelDbContext(options);
+            var category = new Category()
+            {
+                Name = categoryName
+            };
+            context.Categories.Add(category);
+            context.SaveChanges();
+        }
     }
 }

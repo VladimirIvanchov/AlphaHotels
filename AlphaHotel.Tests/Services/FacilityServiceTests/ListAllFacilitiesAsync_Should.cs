@@ -21,7 +21,7 @@ namespace AlphaHotel.Tests.Services.FacilityServiceTests
             FacilityTestUtils.InitializeAutoMapper();
             FacilityTestUtils.GetContextWithFacilities(nameof(ListAllFacilitiesAsync_ReturnFacilities), facilityId);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ListAllFacilitiesAsync_ReturnFacilities))))
+            using (var assertContext = new AlphaHotelDbContext(FacilityTestUtils.GetOptions(nameof(ListAllFacilitiesAsync_ReturnFacilities))))
             {
                 var facilityService = new FacilityService(assertContext);
                 var facilities = await facilityService.ListAllFacilitiesAsync();

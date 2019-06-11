@@ -59,12 +59,12 @@ namespace AlphaHotel.Services
 
         public async Task<ICollection<LogBookDTO>> ListBusinessLogbooksAsync(int id)
         {
-            var businesses = await this.context.LogBooks
+            var logbooks = await this.context.LogBooks
                 .Where(l => l.BusinessId == id)
                 .ProjectTo<LogBookDTO>()
                 .ToListAsync();
 
-            return businesses;
+            return logbooks;
         }
 
         public async Task<BusinessDTO> CreateBusiness(string name, string location, string about, string shortDescription, string coverPicture, ICollection<string> pictures, ICollection<int> businessFacilities)
@@ -75,7 +75,7 @@ namespace AlphaHotel.Services
 
             if (business != null)
             {
-                throw new ArgumentException($"Business {name} already exist!");
+                throw new ArgumentException($"Business {name} already exists!");
             }
 
             var newBusiness = new Business()
@@ -108,7 +108,7 @@ namespace AlphaHotel.Services
 
             if (logbook != null)
             {
-                throw new ArgumentException($"Logbook {logBookName} already exist!");
+                throw new ArgumentException($"Logbook {logBookName} already exists!");
             }
 
             var newLogbook = new LogBook
@@ -132,7 +132,7 @@ namespace AlphaHotel.Services
 
             if (business == null)
             {
-                throw new ArgumentException($"Business whit id: {businessId} do not exist!");
+                throw new ArgumentException($"Business whit id: {businessId} do not exists!");
             }
 
             var feedbacks = await this.context.Feedbacks
