@@ -1,11 +1,11 @@
 ﻿@media only screen and (min-width:480px) {
-    .container-logs, .container-feedback, .container-edit-feedback, .container-create-business, .container-register {
+    .container-logs, .container-feedback, .container-edit-feedback, .container-create-business, .container-register, .container-edit-account, .container-create-logbook, .container-create-category {
         font-size: 14px
     }
 }
 
 @media only screen and (min-width:720px) {
-    .container-logs, .container-feedback, .container-edit-feedback, .container-create-business, .container-register {
+    .container-logs, .container-feedback, .container-edit-feedback, .container-create-business, .container-register, .container-edit-account, .container-create-logbook, .container-create-category {
         font-size: 16px
     }
 }
@@ -17,22 +17,22 @@
     color: white
 }
 
-#log-grid, #feedback-grid, #edit-feedback-grid, #create-business-grid, #register-grid {
+#log-grid, #feedback-grid, #edit-feedback-grid, #create-business-grid, #register-grid, #all-accounts-grid, #edit-account-grid, #create-logbook-grid, #create-category-grid {
     background: url('../images/background-logs.jpg') no-repeat center center fixed;
     background-size: cover;
     height: 100%;
     overflow: hidden;
 }
 
-.container-edit-feedback, .container-create-business, .container-register {
+.container-edit-feedback, .container-create-business, .container-register, .container-edit-account, .container-create-logbook, .container-create-category {
     color: white;
 }
 
-    .container-edit-feedback input, .container-create-business input, .container-register input{
+    .container-edit-feedback input, .container-create-business input, .container-register input, .container-edit-account input, .container-create-logbook input, .container-create-category input {
         background-color: #2b2b2d;
         color: white;
     }
 
-        .container-edit-feedback input:read-only {
+        .container-edit-feedback input:read-only, .container-edit-account input:read-only {
             background-color: black;
         }
