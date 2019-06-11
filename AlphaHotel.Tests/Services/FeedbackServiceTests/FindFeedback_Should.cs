@@ -14,6 +14,8 @@ using AlphaHotel.Infrastructure.PagingProvider;
 using AlphaHotel.DTOs;
 using AlphaHotel.Infrastructure.Censorship;
 using AutoMapper;
+using AutoMapper.Configuration;
+using AlphaHotel.Infrastructure.MappingProviders.Mappings;
 
 namespace AlphaHotel.Tests.Services.FeedbackServiceTests
 {
@@ -28,7 +30,8 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var censorMocked = new Mock<ICensor>();
 
-            //FeedbackTestUtils.InitializeAutoMapper();
+            FeedbackTestUtils.ResetAutoMapper();
+            FeedbackTestUtils.InitializeAutoMapper();
             FeedbackTestUtils.GetContextWithFeedbackId(nameof(FindFeedback_WhenFeedbackIsFound), id);
 
             using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(FindFeedback_WhenFeedbackIsFound))))
@@ -50,7 +53,8 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var censorMocked = new Mock<ICensor>();
 
-            //FeedbackTestUtils.InitializeAutoMapper();
+            FeedbackTestUtils.ResetAutoMapper();
+            FeedbackTestUtils.InitializeAutoMapper();
             FeedbackTestUtils.GetContextWithFeedbackId(nameof(FindFeedback_ReturnNull_WhenFeedbackIsNotFound), id);
 
             using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(FindFeedback_ReturnNull_WhenFeedbackIsNotFound))))

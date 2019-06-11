@@ -13,6 +13,7 @@ using AlphaHotel.Infrastructure.PagingProvider;
 using AlphaHotel.Services.Utilities;
 using AlphaHotel.Infrastructure.Censorship;
 using AlphaHotel.DTOs;
+using AutoMapper;
 
 namespace AlphaHotel.Tests.Services.FeedbackServiceTests
 {
@@ -32,7 +33,8 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var censorMocked = new Mock<ICensor>();
 
-            //FeedbackTestUtils.InitializeAutoMapper();
+            FeedbackTestUtils.ResetAutoMapper();
+            FeedbackTestUtils.InitializeAutoMapper();
             FeedbackTestUtils.GetContextWithFeedbackIdAndBusiness(nameof(ListAllFeedbacksForModeratorAsync_Return_WhenUserIsFound), feedbackId, businessId);
 
             using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ListAllFeedbacksForModeratorAsync_Return_WhenUserIsFound))))

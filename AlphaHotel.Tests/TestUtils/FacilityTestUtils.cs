@@ -21,10 +21,16 @@ namespace AlphaHotel.Tests.TestUtils
 
         public static void InitializeAutoMapper()
         {
-            Mapper.Initialize(cfg => {
+            Mapper.Initialize(cfg =>
+            {
                 cfg.AddProfile<MappingProfiles>();
                 cfg.AddProfile<MappingProfile>();
             });
+        }
+
+        public static void ResetAutoMapper()
+        {
+            Mapper.Reset();
         }
 
         public static void GetContextWithFacilities(string DbName, int facilityId)

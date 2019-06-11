@@ -1,6 +1,7 @@
 ﻿using AlphaHotel.Data;
 using AlphaHotel.Services;
 using AlphaHotel.Tests.TestUtils;
+using AutoMapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -16,8 +17,8 @@ namespace AlphaHotel.Tests.Services.FacilityServiceTests
         public async Task ListAllFacilitiesAsync_ReturnFacilities()
         {
             var facilityId = 1;
-
-            //FacilityTestUtils.InitializeAutoMapper();
+            FacilityTestUtils.ResetAutoMapper();
+            FacilityTestUtils.InitializeAutoMapper();
             FacilityTestUtils.GetContextWithFacilities(nameof(ListAllFacilitiesAsync_ReturnFacilities), facilityId);
 
             using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ListAllFacilitiesAsync_ReturnFacilities))))

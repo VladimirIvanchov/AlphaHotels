@@ -26,5 +26,10 @@ namespace AlphaHotel.Tests.TestUtils
                 cfg.AddProfile<MappingProfile>();
             });
         }
+
+        public static void ResetAutoMapper()
+        {
+            Mapper.Reset();
+        }
     }
 }

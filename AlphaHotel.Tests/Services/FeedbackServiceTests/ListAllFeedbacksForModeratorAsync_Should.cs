@@ -14,6 +14,9 @@ using AlphaHotel.Infrastructure.Censorship;
 using AlphaHotel.Infrastructure.PagingProvider;
 using AlphaHotel.DTOs;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper.Configuration;
+using AlphaHotel.Infrastructure.MappingProviders.Mappings;
+using AutoMapper;
 
 namespace AlphaHotel.Tests.Services.FeedbackServiceTests
 {
@@ -23,6 +26,11 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
         [TestMethod]
         public async Task ListAllFeedbacksForModeratorAsync_ReturnNull_WhenModeratorIsNotFound()
         {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfiles());
+            });
+
             var businessId = 1;
             var feedbackId = 1;
 
@@ -35,7 +43,8 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var censorMocked = new Mock<ICensor>();
 
-            //FeedbackTestUtils.InitializeAutoMapper();
+            FeedbackTestUtils.ResetAutoMapper();
+            FeedbackTestUtils.InitializeAutoMapper();
             FeedbackTestUtils.GetContextWithFeedbackIdAndBusinessAndModerator(nameof(ListAllFeedbacksForModeratorAsync_ReturnNull_WhenModeratorIsNotFound), feedbackId, moderatorId, businessId);
 
             using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ListAllFeedbacksForModeratorAsync_ReturnNull_WhenModeratorIsNotFound))))
@@ -62,7 +71,8 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var censorMocked = new Mock<ICensor>();
 
-            //FeedbackTestUtils.InitializeAutoMapper();
+            FeedbackTestUtils.ResetAutoMapper();
+            FeedbackTestUtils.InitializeAutoMapper();
             FeedbackTestUtils.GetContextWithFeedbackIdAndBusinessAndModerator(nameof(ListAllFeedbacksForModeratorAsync_ReturnFeedbacks_WhenModeratorIsFound), feedbackId, moderatorId, businessId);
 
             using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ListAllFeedbacksForModeratorAsync_ReturnFeedbacks_WhenModeratorIsFound))))

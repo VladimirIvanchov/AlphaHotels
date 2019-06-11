@@ -22,10 +22,16 @@ namespace AlphaHotel.Tests.TestUtils
 
         public static void InitializeAutoMapper()
         {
-            Mapper.Initialize(cfg => {
+            Mapper.Initialize(cfg =>
+            {
                 cfg.AddProfile<MappingProfiles>();
                 cfg.AddProfile<MappingProfile>();
             });
+        }
+
+        public static void ResetAutoMapper()
+        {
+            Mapper.Reset();
         }
 
         //FindFeedback_Should
@@ -92,7 +98,7 @@ namespace AlphaHotel.Tests.TestUtils
             context.Businesses.Add(business);
             context.SaveChanges();
         }
-        
+
         //ListAllFeedbacksForModeratorAsync_Should
         public static void GetContextWithFeedbackIdAndBusinessAndModerator(string DbName, int feedbackId, string moderatorId, int businessId)
         {
