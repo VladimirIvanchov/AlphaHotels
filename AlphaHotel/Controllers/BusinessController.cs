@@ -54,17 +54,8 @@ namespace AlphaHotel.Controllers
                 return BadRequest("Invalid parameters");
             }
 
-            try
-            {
-                await this.feedbackService.AddFeedbackAsync(model.FeedbackText, model.Rating, model.Author, model.BusinessId);
-
-                return Json(model);
-            }
-            catch (ArgumentException ex)
-            {
-                this.ModelState.AddModelError("Error", ex.Message);
-                return BadRequest(ex.Message);
-            }
+            await this.feedbackService.AddFeedbackAsync(model.FeedbackText, model.Rating, model.Author, model.BusinessId);
+            return Json(model);
         }
     }
 }
