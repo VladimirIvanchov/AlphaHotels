@@ -2,6 +2,7 @@
 using AlphaHotel.DTOs;
 using AlphaHotel.Infrastructure.MappingProviders;
 using AlphaHotel.Infrastructure.PagingProvider;
+using AlphaHotel.Models;
 using AlphaHotel.Services;
 using AlphaHotel.Services.Utilities;
 using AlphaHotel.Tests.TestUtils;
@@ -56,34 +57,32 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
             var pics = new List<string>() { "path", "otherPath" };
             var facilities = new List<int>() { 1, 2 };
 
-            var mappingProviderMocked = new Mock<IMappingProvider>();
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var paginatedListMocked = new Mock<IPaginatedList<BusinessShortInfoDTO>>();
+            var mappingProviderMocked = new Mock<IMappingProvider>();
+
+            Business mapInput = null;
+            mappingProviderMocked.Setup(mpm => mpm.MapTo<BusinessDTO>(It.IsAny<Business>()))
+               .Callback<object>(inputArg => mapInput = inputArg as Business);
 
             var createdOn = dateTimeWrapperMocked.Object.Now();
 
             BusinessTestUtils.ResetAutoMapper();
             BusinessTestUtils.InitializeAutoMapper();
-            //BusinessTestUtils.GetContextWithFullBusiness(nameof(CreateBusiness_ReturnBusiness_WhenAllParametersArePassed), name, location, about, shortDescription, coverPicture);
 
             using (var assertContext = new AlphaHotelDbContext(BusinessTestUtils.GetOptions(nameof(CreateBusiness_ReturnBusiness_WhenAllParametersArePassed))))
             {
                 var businessService = new BusinessService(assertContext, mappingProviderMocked.Object, dateTimeWrapperMocked.Object, paginatedListMocked.Object);
-                var businessDto = await businessService.CreateBusiness(name, location, about, shortDescription, coverPicture, pics, facilities);
+                await businessService.CreateBusiness(name, location, about, shortDescription, coverPicture, pics, facilities);
 
-                var business = await assertContext.Businesses.FirstOrDefaultAsync(b => b.Name == name);
-
-                Assert.AreEqual(name, business.Name);
-                Assert.AreEqual(location, business.Location);
-                Assert.AreEqual(about, business.About);
-                Assert.AreEqual(shortDescription, business.ShortDescription);
-                Assert.AreEqual(coverPicture, business.CoverPicture);
-                Assert.AreEqual(pics.Count, business.Pictures.Count);
-                Assert.AreEqual(facilities.Count, business.BusinessesFacilities.Count);
-                Assert.AreEqual(createdOn, business.CreatedOn);
-
-                Assert.AreEqual(name, businessDto.Name);
-
+                Assert.AreEqual(name, mapInput.Name);
+                Assert.AreEqual(location, mapInput.Location);
+                Assert.AreEqual(about, mapInput.About);
+                Assert.AreEqual(shortDescription, mapInput.ShortDescription);
+                Assert.AreEqual(coverPicture, mapInput.CoverPicture);
+                Assert.AreEqual(pics.Count, mapInput.Pictures.Count);
+                Assert.AreEqual(facilities.Count, mapInput.BusinessesFacilities.Count);
+                Assert.AreEqual(createdOn, mapInput.CreatedOn);
             }
         }
     }
