@@ -80,20 +80,20 @@ namespace AlphaHotel.Tests.TestUtils
                 Id = userId,
                 UserName = username
             };
-            var log = new Log
-            {
-                LogBookId = logbookId,
-                AuthorId = userId,
-                CategoryId = categoryId,
-                Description = description,
-                IsDeleted = isDeleted,
-                StatusId = statusId
-            };
+            //var log = new Log
+            //{
+            //    LogBookId = logbookId,
+            //    AuthorId = userId,
+            //    CategoryId = categoryId,
+            //    Description = description,
+            //    IsDeleted = isDeleted,
+            //    StatusId = statusId
+            //};
             var logbook = new LogBook()
             {
                 Id = logbookId
             };
-            context.Logs.Add(log);
+            //context.Logs.Add(log);
             context.Users.Add(user);
             context.Statuses.Add(status);
             context.Categories.Add(category);
@@ -150,6 +150,53 @@ namespace AlphaHotel.Tests.TestUtils
             context.Logs.Add(log);
             context.Statuses.Add(status);
             context.Statuses.Add(status2);
+            context.SaveChanges();
+        }
+
+        //AddLog_Should
+        public static void GetContextWithLogBook(string DbName, int logbookId)
+        {
+            var options = GetOptions(DbName);
+
+            var context = new AlphaHotelDbContext(options);
+            var logbook = new LogBook()
+            {
+                Id = logbookId
+            };
+            context.LogBooks.Add(logbook);
+            context.SaveChanges();
+        }
+
+        //FindLog_Should
+        public static void GetContextWithLogAndAuthorAndStatusAndCategory(string DbName, int logId, string description)
+        {
+            var options = GetOptions(DbName);
+
+            var context = new AlphaHotelDbContext(options);
+            var user = new User()
+            {
+                Id = "user"
+            };
+            var status = new Status()
+            {
+                Id = 1
+            };
+            var category = new Category()
+            {
+                Id = 1
+            };
+            var log = new Log()
+            {
+                Id = logId,
+                Description = description,
+                Author = user,
+                Category = category,
+                Status = status
+            };
+            context.Logs.Add(log);
+            context.Users.Add(user);
+            context.Statuses.Add(status);
+            context.Categories.Add(category);
             context.SaveChanges();
         }
 

@@ -12,6 +12,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,34 +57,35 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
             var categoryId = 1;
             var username = "gosho";
             var statusId = 1;
-            var status = "todo";
-            var category = "category";
+            var statusType = "todo";
+            var categoryName = "category";
 
             var mappingProviderMocked = new Mock<IMappingProvider>();
             var paginatedListMocked = new Mock<IPaginatedList<LogDTO>>();
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var userManagerWrapperMocked = new Mock<IUserManagerWrapper<User>>();
 
+            Log mapInput = null;
+            mappingProviderMocked.Setup(mpm => mpm.MapTo<LogDTO>(It.IsAny<Log>()))
+               .Callback<object>(inputArg => mapInput = inputArg as Log);
+
             LogBookTestUtils.ResetAutoMapper();
             LogBookTestUtils.InitializeAutoMapper();
-            LogBookTestUtils.GetContextWithFullLogAndLogBookAndUserAndStatusAndCategory(nameof(ReturnLogDTO_WhenAllParametersArePassed), logbookId, userId, categoryId, description, username, statusId, status, category);
+            LogBookTestUtils.GetContextWithFullLogAndLogBookAndUserAndStatusAndCategory(nameof(ReturnLogDTO_WhenAllParametersArePassed), logbookId, userId, categoryId, description, username, statusId, statusType, categoryName);
 
             using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ReturnLogDTO_WhenAllParametersArePassed))))
             {
                 var logbookService = new LogBookService(assertContext, mappingProviderMocked.Object, paginatedListMocked.Object, dateTimeWrapperMocked.Object, userManagerWrapperMocked.Object);
-
-                var logDto = await logbookService.AddLog(logbookId, userId, description, categoryId);
+                await logbookService.AddLog(logbookId, userId, description, categoryId);
 
                 var log = await assertContext.Logs.FirstOrDefaultAsync(l => l.LogBookId == logbookId);
 
-                Assert.AreEqual(log.Id, logDto.Id);
-                Assert.AreEqual(log.LogBookId, logDto.LogBookId);
-                Assert.AreEqual(log.Author.UserName, logDto.AuthorUsername);
-                Assert.AreEqual(log.Category.Name, logDto.Category);
-                Assert.AreEqual(log.Description, logDto.Description);
-                Assert.AreEqual(log.StatusId, logDto.StatusId);
-                Assert.AreEqual(log.CreatedOn, logDto.CreatedOn);
-                Assert.IsFalse(logDto.IsDeleted);
+                Assert.AreEqual(log.Id, mapInput.Id);
+                Assert.AreEqual(log.LogBookId, mapInput.LogBookId);
+                Assert.AreEqual(log.Description, mapInput.Description);
+                Assert.AreEqual(log.StatusId, mapInput.StatusId);
+                Assert.AreEqual(log.CreatedOn, mapInput.CreatedOn);
+                Assert.IsFalse(mapInput.IsDeleted);
             }
         }
     }

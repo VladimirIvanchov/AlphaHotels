@@ -31,19 +31,22 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var userManagerWrapperMocked = new Mock<IUserManagerWrapper<User>>();
 
+            Log mapInput = null;
+            mappingProviderMocked.Setup(mpm => mpm.MapTo<LogDTO>(It.IsAny<Log>()))
+               .Callback<object>(inputArg => mapInput = inputArg as Log);
 
             LogBookTestUtils.ResetAutoMapper();
             LogBookTestUtils.InitializeAutoMapper();
-            LogBookTestUtils.GetContextWithLog(nameof(ReturnLogDTO_WhenLogIsFound), logId, description);
+            LogBookTestUtils.GetContextWithLogAndAuthorAndStatusAndCategory(nameof(ReturnLogDTO_WhenLogIsFound), logId, description);
 
             using (var assertContext = new AlphaHotelDbContext(LogBookTestUtils.GetOptions(nameof(ReturnLogDTO_WhenLogIsFound))))
             {
                 var logbookService = new LogBookService(assertContext, mappingProviderMocked.Object, paginatedListMocked.Object, dateTimeWrapperMocked.Object, userManagerWrapperMocked.Object);
-
                 var log = await assertContext.Logs.FirstOrDefaultAsync(l => l.Id == logId);
-                var logDTO = await logbookService.FindLog(logId);
+                await logbookService.FindLog(logId);
 
-                Assert.AreEqual(logId, logDTO.Id);
+
+                Assert.AreEqual(log.Id, mapInput.Id);
             }
         }
 
