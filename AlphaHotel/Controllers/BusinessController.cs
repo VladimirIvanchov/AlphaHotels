@@ -13,9 +13,9 @@ namespace AlphaHotel.Controllers
         private const int feedbacksCount = 4;
         private readonly IBusinessService businessService;
         private readonly IFeedbackService feedbackService;
-        private readonly ILoggerFactory logger;
+        private readonly ILogger<BusinessController> logger;
 
-        public BusinessController(IBusinessService businessService, IFeedbackService feedbackService, ILoggerFactory logger)
+        public BusinessController(IBusinessService businessService, IFeedbackService feedbackService, ILogger<BusinessController> logger)
         {
             this.businessService = businessService ?? throw new ArgumentNullException(nameof(businessService));
             this.feedbackService = feedbackService ?? throw new ArgumentNullException(nameof(feedbackService));
@@ -25,8 +25,8 @@ namespace AlphaHotel.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var vm = await this.businessService.FindDetaliedBusinessAsync(id, feedbacksCount);
-            //var log = this.logger.CreateLogger("BusinessController");
-            //log.LogInformation("Error", "Test");
+            //var log = this.logger.LogInformation("BusinessController");
+            logger.LogWarning("Proba", "neshot stana");
             return View(vm);
         }
 
