@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AlphaHotel.Models;
 using AlphaHotel.Services.Contracts;
@@ -31,13 +29,6 @@ namespace AlphaHotel.Controllers
             //log.LogInformation("Error", "Test");
             return View(vm);
         }
-
-        //public async Task<IActionResult> DetailsBusinessByName(string myHotel)
-        //{
-        //    var vm = await this.businessService.FindDetaliedBusinessByNameAsync(myHotel, feedbacksCount);
-
-        //    return View("Details", vm);
-        //}
 
         public async Task<IActionResult> ShowAllBusinesses(int? pageNumber)
         {
