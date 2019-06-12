@@ -82,7 +82,7 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
                 Assert.AreEqual(facilities.Count, business.BusinessesFacilities.Count);
                 Assert.AreEqual(createdOn, business.CreatedOn);
 
-                //Assert.AreEqual(name, businessDto.Name);
+                Assert.AreEqual(name, businessDto.Name);
 
             }
         }

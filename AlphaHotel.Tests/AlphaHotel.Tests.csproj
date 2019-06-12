@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\LogBookServiceTests\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AlphaHotel.Data\AlphaHotel.Data.csproj" />
     <ProjectReference Include="..\AlphaHotel.Services\AlphaHotel.Services.csproj" />
     <ProjectReference Include="..\AlphaHotel\AlphaHotel.csproj" />

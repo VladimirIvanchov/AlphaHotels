@@ -125,7 +125,7 @@ namespace AlphaHotel.Services
 
             if (statusId < 0 || statusId > statusesCount)
             {
-                throw new ArgumentException($"Status: {statusId} do not exist!");
+                throw new ArgumentException($"Status: {statusId} does not exist!");
             }
 
             log.StatusId = statusId;
