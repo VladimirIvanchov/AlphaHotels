@@ -21,7 +21,7 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
     public class FindLog_Should
     {
         [TestMethod]
-        public async Task FindLog_ReturnLogDTO_WhenLogIsFound()
+        public async Task ReturnLogDTO_WhenLogIsFound()
         {
             var logId = 1;
             var description = "description";
@@ -34,9 +34,9 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
 
             LogBookTestUtils.ResetAutoMapper();
             LogBookTestUtils.InitializeAutoMapper();
-            LogBookTestUtils.GetContextWithLog(nameof(FindLog_ReturnLogDTO_WhenLogIsFound), logId, description);
+            LogBookTestUtils.GetContextWithLog(nameof(ReturnLogDTO_WhenLogIsFound), logId, description);
 
-            using (var assertContext = new AlphaHotelDbContext(LogBookTestUtils.GetOptions(nameof(FindLog_ReturnLogDTO_WhenLogIsFound))))
+            using (var assertContext = new AlphaHotelDbContext(LogBookTestUtils.GetOptions(nameof(ReturnLogDTO_WhenLogIsFound))))
             {
                 var logbookService = new LogBookService(assertContext, mappingProviderMocked.Object, paginatedListMocked.Object, dateTimeWrapperMocked.Object, userManagerWrapperMocked.Object);
 
@@ -48,7 +48,7 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
         }
 
         [TestMethod]
-        public async Task FindLog_ThrowException_WhenLogIsNotFound()
+        public async Task ThrowException_WhenLogIsNotFound()
         {
             var logId = 1;
 
@@ -61,7 +61,7 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
             LogBookTestUtils.InitializeAutoMapper();
             //LogBookTestUtils.(nameof(FindLog_ThrowException_WhenLogIsNotFound));
 
-            using (var assertContext = new AlphaHotelDbContext(LogBookTestUtils.GetOptions(nameof(FindLog_ThrowException_WhenLogIsNotFound))))
+            using (var assertContext = new AlphaHotelDbContext(LogBookTestUtils.GetOptions(nameof(ThrowException_WhenLogIsNotFound))))
             {
                 var logbookService = new LogBookService(assertContext, mappingProviderMocked.Object, paginatedListMocked.Object, dateTimeWrapperMocked.Object, userManagerWrapperMocked.Object);
 

@@ -20,7 +20,7 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
     public class ListAllStatusesAsync_Should
     {
         [TestMethod]
-        public async Task ListAllStatusesAsync_ReturnStatuses()
+        public async Task ReturnAllStatuses()
         {
             var logId = 1;
             var statusId = 1;
@@ -33,9 +33,9 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
 
             LogBookTestUtils.ResetAutoMapper();
             LogBookTestUtils.InitializeAutoMapper();
-            LogBookTestUtils.GetContextWithLogAndStatuses(nameof(ListAllStatusesAsync_ReturnStatuses), logId, statusId, statusId2);
+            LogBookTestUtils.GetContextWithLogAndStatuses(nameof(ReturnAllStatuses), logId, statusId, statusId2);
 
-            using (var assertContext = new AlphaHotelDbContext(LogBookTestUtils.GetOptions(nameof(ListAllStatusesAsync_ReturnStatuses))))
+            using (var assertContext = new AlphaHotelDbContext(LogBookTestUtils.GetOptions(nameof(ReturnAllStatuses))))
             {
                 var logbookService = new LogBookService(assertContext, mappingProviderMocked.Object, paginatedListMocked.Object, dateTimeWrapperMocked.Object, userManagerWrapperMocked.Object);
                 var logbooks = await logbookService.ListAllStatusesAsync();

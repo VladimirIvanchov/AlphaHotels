@@ -21,7 +21,7 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
     public class EditFeedback_Should
     {
         [TestMethod]
-        public async Task EditFeedback_ThrowException_WhenFeedbackIsNotFound()
+        public async Task ThrowException_WhenFeedbackIsNotFound()
         {
             var text = "text";
             var author = "gosho";
@@ -34,9 +34,9 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var censorMocked = new Mock<ICensor>();
 
-            FeedbackTestUtils.GetContextWithFullFeedback(nameof(EditFeedback_ThrowException_WhenFeedbackIsNotFound), text, rating, author, businessId, feedbackId);
+            FeedbackTestUtils.GetContextWithFullFeedback(nameof(ThrowException_WhenFeedbackIsNotFound), text, rating, author, businessId, feedbackId);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(EditFeedback_ThrowException_WhenFeedbackIsNotFound))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ThrowException_WhenFeedbackIsNotFound))))
             {
                 var feedbackService = new FeedbackService(assertContext, paginatedListMocked.Object, dateTimeWrapperMocked.Object, censorMocked.Object);
 
@@ -46,7 +46,7 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
         }
         
         [TestMethod]
-        public async Task EditFeedback_Return_WhenFeedbackIsDeleted()
+        public async Task Return_WhenFeedbackIsDeleted()
         {
             var text = "text";
             var author = "gosho";
@@ -64,9 +64,9 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var censorMocked = new Mock<ICensor>();
 
-            FeedbackTestUtils.GetContextWithFullFeedback(nameof(EditFeedback_Return_WhenFeedbackIsDeleted), text, rating, author, businessId, feedbackId);
+            FeedbackTestUtils.GetContextWithFullFeedback(nameof(Return_WhenFeedbackIsDeleted), text, rating, author, businessId, feedbackId);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(EditFeedback_Return_WhenFeedbackIsDeleted))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(Return_WhenFeedbackIsDeleted))))
             {
                 var feedbackService = new FeedbackService(assertContext, paginatedListMocked.Object, dateTimeWrapperMocked.Object, censorMocked.Object);
                 await feedbackService.EditFeedback(feedbackId, editedAuthor, editedText, editedRating, isDeleted);
@@ -83,7 +83,7 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
         }
 
         [TestMethod]
-        public async Task EditFeedback_Return_WhenFeedbackIsNotDeleted()
+        public async Task Return_WhenFeedbackIsNotDeleted()
         {
             var text = "text";
             var author = "gosho";
@@ -101,9 +101,9 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var censorMocked = new Mock<ICensor>();
 
-            FeedbackTestUtils.GetContextWithFullFeedback(nameof(EditFeedback_Return_WhenFeedbackIsNotDeleted), text, rating, author, businessId, feedbackId);
+            FeedbackTestUtils.GetContextWithFullFeedback(nameof(Return_WhenFeedbackIsNotDeleted), text, rating, author, businessId, feedbackId);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(EditFeedback_Return_WhenFeedbackIsNotDeleted))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(Return_WhenFeedbackIsNotDeleted))))
             {
                 var feedbackService = new FeedbackService(assertContext, paginatedListMocked.Object, dateTimeWrapperMocked.Object, censorMocked.Object);
                 await feedbackService.EditFeedback(feedbackId, editedAuthor, editedText, editedRating, isDeleted);

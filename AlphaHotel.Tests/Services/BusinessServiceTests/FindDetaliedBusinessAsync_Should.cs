@@ -18,7 +18,7 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
     public class FindDetaliedBusinessAsync_Should
     {
         [TestMethod]
-        public async Task FindDetailedBusinessAsync_ThrowException_WhenBusinessIsNotFound()
+        public async Task ThrowException_WhenBusinessIsNotFound()
         {
             var businessId = 1;
             var wrongBusinessId = 2;
@@ -32,9 +32,9 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
 
             BusinessTestUtils.ResetAutoMapper();
             BusinessTestUtils.InitializeAutoMapper();
-            BusinessTestUtils.GetContextWithBusinessAndFeedback(nameof(FindDetailedBusinessAsync_ThrowException_WhenBusinessIsNotFound), businessId, feedbackRating);
+            BusinessTestUtils.GetContextWithBusinessAndFeedback(nameof(ThrowException_WhenBusinessIsNotFound), businessId, feedbackRating);
 
-            using (var assertContext = new AlphaHotelDbContext(BusinessTestUtils.GetOptions(nameof(FindDetailedBusinessAsync_ThrowException_WhenBusinessIsNotFound))))
+            using (var assertContext = new AlphaHotelDbContext(BusinessTestUtils.GetOptions(nameof(ThrowException_WhenBusinessIsNotFound))))
             {
                 var businessService = new BusinessService(assertContext, mappingProviderMocked.Object, dateTimeWrapperMocked.Object, paginatedListMocked.Object);
 

@@ -24,7 +24,7 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
     public class ListAllFeedbacksForModeratorAsync_Should
     {
         [TestMethod]
-        public async Task ListAllFeedbacksForModeratorAsync_ReturnNull_WhenModeratorIsNotFound()
+        public async Task ReturnNull_WhenModeratorIsNotFound()
         {
             var config = new MapperConfiguration(cfg =>
             {
@@ -45,9 +45,9 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
 
             FeedbackTestUtils.ResetAutoMapper();
             FeedbackTestUtils.InitializeAutoMapper();
-            FeedbackTestUtils.GetContextWithFeedbackIdAndBusinessAndModerator(nameof(ListAllFeedbacksForModeratorAsync_ReturnNull_WhenModeratorIsNotFound), feedbackId, moderatorId, businessId);
+            FeedbackTestUtils.GetContextWithFeedbackIdAndBusinessAndModerator(nameof(ReturnNull_WhenModeratorIsNotFound), feedbackId, moderatorId, businessId);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ListAllFeedbacksForModeratorAsync_ReturnNull_WhenModeratorIsNotFound))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ReturnNull_WhenModeratorIsNotFound))))
             {
                 var feedbackService = new FeedbackService(assertContext, paginatedListMocked.Object, dateTimeWrapperMocked.Object, censorMocked.Object);
                 var feedbacks = await feedbackService.ListAllFeedbacksForModeratorAsync(wrongModeratorId, pageNumber, pageSize);
@@ -57,7 +57,7 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
         }
 
         [TestMethod]
-        public async Task ListAllFeedbacksForModeratorAsync_ReturnFeedbacks_WhenModeratorIsFound()
+        public async Task ReturnFeedbacks_WhenModeratorIsFound()
         {
             var businessId = 1;
             var feedbackId = 1;
@@ -73,9 +73,9 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
 
             FeedbackTestUtils.ResetAutoMapper();
             FeedbackTestUtils.InitializeAutoMapper();
-            FeedbackTestUtils.GetContextWithFeedbackIdAndBusinessAndModerator(nameof(ListAllFeedbacksForModeratorAsync_ReturnFeedbacks_WhenModeratorIsFound), feedbackId, moderatorId, businessId);
+            FeedbackTestUtils.GetContextWithFeedbackIdAndBusinessAndModerator(nameof(ReturnFeedbacks_WhenModeratorIsFound), feedbackId, moderatorId, businessId);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ListAllFeedbacksForModeratorAsync_ReturnFeedbacks_WhenModeratorIsFound))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ReturnFeedbacks_WhenModeratorIsFound))))
             {
                 var feedbackService = new FeedbackService(assertContext, paginatedListMocked.Object, dateTimeWrapperMocked.Object, censorMocked.Object);
                 var feedbacks = await feedbackService.ListAllFeedbacksForModeratorAsync(moderatorId, pageNumber, pageSize);

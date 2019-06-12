@@ -43,7 +43,7 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
         }
 
         [TestMethod]
-        public async Task ListTopNBusinessesAsync_ReturnBusinesses()
+        public async Task ReturnTopNBusinesses()
         {
             var count = 1;
 
@@ -56,9 +56,9 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
 
             BusinessTestUtils.ResetAutoMapper();
             BusinessTestUtils.InitializeAutoMapper();
-            BusinessTestUtils.GetContextWithBusinessAndFeedback(nameof(ListTopNBusinessesAsync_ReturnBusinesses), businessId, feedbackRating);
+            BusinessTestUtils.GetContextWithBusinessAndFeedback(nameof(ReturnTopNBusinesses), businessId, feedbackRating);
 
-            using (var assertContext = new AlphaHotelDbContext(BusinessTestUtils.GetOptions(nameof(ListTopNBusinessesAsync_ReturnBusinesses))))
+            using (var assertContext = new AlphaHotelDbContext(BusinessTestUtils.GetOptions(nameof(ReturnTopNBusinesses))))
             {
                 var businessService = new BusinessService(assertContext, mappingProviderMocked.Object, dateTimeWrapperMocked.Object, paginatedListMocked.Object);
                 var businesses = await businessService.ListTopNBusinessesAsync(count);

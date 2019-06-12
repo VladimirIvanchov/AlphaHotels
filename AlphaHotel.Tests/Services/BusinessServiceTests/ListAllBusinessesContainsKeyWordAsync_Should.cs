@@ -18,7 +18,7 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
     public class ListAllBusinessesContainsKeyWordAsync_Should
     {
         [TestMethod]
-        public async Task ListAllBusinessesContainsKeyWordAsync_ReturnBusinesses()
+        public async Task ReturnBusinesses_ContainingKeyword()
         {
             var businessId = 1;
             var businessName = "business";
@@ -30,9 +30,9 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
 
             BusinessTestUtils.ResetAutoMapper();
             BusinessTestUtils.InitializeAutoMapper();
-            BusinessTestUtils.GetContextWithBusiness(nameof(ListAllBusinessesContainsKeyWordAsync_ReturnBusinesses), businessId, businessName);
+            BusinessTestUtils.GetContextWithBusiness(nameof(ReturnBusinesses_ContainingKeyword), businessId, businessName);
 
-            using (var assertContext = new AlphaHotelDbContext(BusinessTestUtils.GetOptions(nameof(ListAllBusinessesContainsKeyWordAsync_ReturnBusinesses))))
+            using (var assertContext = new AlphaHotelDbContext(BusinessTestUtils.GetOptions(nameof(ReturnBusinesses_ContainingKeyword))))
             {
                 var businessService = new BusinessService(assertContext, mappingProviderMocked.Object, dateTimeWrapperMocked.Object, paginatedListMocked.Object);
                 var businesses = await businessService.ListAllBusinessesContainsKeyWordAsync(keyword);

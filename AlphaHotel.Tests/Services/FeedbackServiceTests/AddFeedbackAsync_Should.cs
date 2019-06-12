@@ -21,7 +21,7 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
     public class AddFeedbackAsync_Should
     {
         [TestMethod]
-        public async Task AddFeedback_ThrowException_WhenBusinessIsNotFound()
+        public async Task ThrowException_WhenBusinessIsNotFound()
         {
             var text = "text";
             var rating = 5;
@@ -33,9 +33,9 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var censorMocked = new Mock<ICensor>();
 
-            FeedbackTestUtils.GetContextWithFullFeedback(nameof(AddFeedback_ThrowException_WhenBusinessIsNotFound), text, rating, author, businessId, feedbackId);
+            FeedbackTestUtils.GetContextWithFullFeedback(nameof(ThrowException_WhenBusinessIsNotFound), text, rating, author, businessId, feedbackId);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(AddFeedback_ThrowException_WhenBusinessIsNotFound))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ThrowException_WhenBusinessIsNotFound))))
             {
                 var feedbackService = new FeedbackService(assertContext, paginatedListMocked.Object, dateTimeWrapperMocked.Object, censorMocked.Object);
 
@@ -74,7 +74,7 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
         }
 
         [TestMethod]
-        public async Task AddFeedback_Return_WhenAllParametersArePassedAndAuthorIsAnonymous()
+        public async Task Return_WhenAllParametersArePassedAndAuthorIsAnonymous()
         {
             var feedbackText = "text";
             var rating = 5;
@@ -84,9 +84,9 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var censorMocked = new Mock<ICensor>();
 
-            FeedbackTestUtils.GetContextWithFullFeedbackAndAnonymousAuthor(nameof(AddFeedback_Return_WhenAllParametersArePassedAndAuthorIsAnonymous), feedbackText, rating, author, businessId);
+            FeedbackTestUtils.GetContextWithFullFeedbackAndAnonymousAuthor(nameof(Return_WhenAllParametersArePassedAndAuthorIsAnonymous), feedbackText, rating, author, businessId);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(AddFeedback_Return_WhenAllParametersArePassedAndAuthorIsAnonymous))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(Return_WhenAllParametersArePassedAndAuthorIsAnonymous))))
             {
                 var feedbackService = new FeedbackService(assertContext, paginatedListMocked.Object, dateTimeWrapperMocked.Object, censorMocked.Object);
                 await feedbackService.AddFeedbackAsync(feedbackText, rating, author, businessId);

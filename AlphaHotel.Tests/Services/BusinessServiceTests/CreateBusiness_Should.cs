@@ -20,7 +20,7 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
     public class CreateBusiness_Should
     {
         [TestMethod]
-        public async Task CreateBusiness_ThrowException_WhenLogBookAlreadyExists()
+        public async Task ThrowException_WhenBusinessAlreadyExists()
         {
             var businessName = "business";
             var location = "tsarigradsko";
@@ -35,9 +35,9 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var paginatedListMocked = new Mock<IPaginatedList<BusinessShortInfoDTO>>();
 
-            BusinessTestUtils.GetContextWithBusiness(nameof(CreateBusiness_ThrowException_WhenLogBookAlreadyExists), businessId, businessName);
+            BusinessTestUtils.GetContextWithBusiness(nameof(ThrowException_WhenBusinessAlreadyExists), businessId, businessName);
 
-            using (var assertContext = new AlphaHotelDbContext(CategoryTestUtils.GetOptions(nameof(CreateBusiness_ThrowException_WhenLogBookAlreadyExists))))
+            using (var assertContext = new AlphaHotelDbContext(CategoryTestUtils.GetOptions(nameof(ThrowException_WhenBusinessAlreadyExists))))
             {
                 var businessService = new BusinessService(assertContext, mappingProviderMocked.Object, dateTimeWrapperMocked.Object, paginatedListMocked.Object);
 
@@ -47,7 +47,7 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
         }
 
         [TestMethod]
-        public async Task CreateBusiness_ReturnBusiness_WhenAllParametersArePassed()
+        public async Task ReturnBusiness_WhenAllParametersArePassed()
         {
             var name = "business";
             var location = "tsarigradsko";
@@ -70,7 +70,7 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
             BusinessTestUtils.ResetAutoMapper();
             BusinessTestUtils.InitializeAutoMapper();
 
-            using (var assertContext = new AlphaHotelDbContext(BusinessTestUtils.GetOptions(nameof(CreateBusiness_ReturnBusiness_WhenAllParametersArePassed))))
+            using (var assertContext = new AlphaHotelDbContext(BusinessTestUtils.GetOptions(nameof(ReturnBusiness_WhenAllParametersArePassed))))
             {
                 var businessService = new BusinessService(assertContext, mappingProviderMocked.Object, dateTimeWrapperMocked.Object, paginatedListMocked.Object);
                 await businessService.CreateBusiness(name, location, about, shortDescription, coverPicture, pics, facilities);

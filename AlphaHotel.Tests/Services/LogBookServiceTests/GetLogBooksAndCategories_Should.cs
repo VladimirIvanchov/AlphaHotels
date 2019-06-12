@@ -22,7 +22,7 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
     public class GetLogBooksAndCategories_Should
     {
         [TestMethod]
-        public async Task GetLogBooksAndCategories_ThrowException_WhenUserIsNotFound()
+        public async Task ThrowException_WhenUserIsNotFound()
         {
             var userId = "userId";
 
@@ -36,7 +36,7 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
             LogBookTestUtils.InitializeAutoMapper();
             //LogBookTestUtils.GetContextWithLog(nameof(GetLogBooksAndCategories_ThrowException_WhenUserIsNotFound), logId);
 
-            using (var assertContext = new AlphaHotelDbContext(LogBookTestUtils.GetOptions(nameof(GetLogBooksAndCategories_ThrowException_WhenUserIsNotFound))))
+            using (var assertContext = new AlphaHotelDbContext(LogBookTestUtils.GetOptions(nameof(ThrowException_WhenUserIsNotFound))))
             {
                 var logbookService = new LogBookService(assertContext, mappingProviderMocked.Object, paginatedListMocked.Object, dateTimeWrapperMocked.Object, userManagerWrapperMocked.Object);
 

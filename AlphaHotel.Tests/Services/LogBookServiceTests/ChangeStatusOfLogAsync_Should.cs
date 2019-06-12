@@ -21,7 +21,7 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
     public class ChangeStatusOfLogAsync_Should
     {
         [TestMethod]
-        public async Task ChangeStatusOfLogAsync_ThrowException_WhenLogIsNotFound()
+        public async Task ThrowException_WhenLogIsNotFound()
         {
             var logId = 1;
             var statusId = 1;
@@ -35,7 +35,7 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
             LogBookTestUtils.InitializeAutoMapper();
             //LogBookTestUtils.GetContextWithLog(nameof(AddLog_ThrowException_WhenLogBookIsNotFound), logId);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ChangeStatusOfLogAsync_ThrowException_WhenLogIsNotFound))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ThrowException_WhenLogIsNotFound))))
             {
                 var logbookService = new LogBookService(assertContext, mappingProviderMocked.Object, paginatedListMocked.Object, dateTimeWrapperMocked.Object, userManagerWrapperMocked.Object);
 
@@ -45,7 +45,7 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
         }
 
         [TestMethod]
-        public async Task ChangeStatusOfLogAsync_ThrowException_WhenStatusIdIsSmallerThanZero()
+        public async Task ThrowException_WhenStatusIdIsSmallerThanZero()
         {
             var logId = 1;
             var statusId = -1;
@@ -57,9 +57,9 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
 
             LogBookTestUtils.ResetAutoMapper();
             LogBookTestUtils.InitializeAutoMapper();
-            LogBookTestUtils.GetContextWithLogAndStatuses(nameof(ChangeStatusOfLogAsync_ThrowException_WhenStatusIdIsSmallerThanZero), logId);
+            LogBookTestUtils.GetContextWithLogAndStatuses(nameof(ThrowException_WhenStatusIdIsSmallerThanZero), logId);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ChangeStatusOfLogAsync_ThrowException_WhenStatusIdIsSmallerThanZero))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ThrowException_WhenStatusIdIsSmallerThanZero))))
             {
                 var logbookService = new LogBookService(assertContext, mappingProviderMocked.Object, paginatedListMocked.Object, dateTimeWrapperMocked.Object, userManagerWrapperMocked.Object);
 
@@ -69,7 +69,7 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
         }
 
         [TestMethod]
-        public async Task ChangeStatusOfLogAsync_ThrowException_WhenStatusIdIsLargerThanStatusesCount()
+        public async Task ThrowException_WhenStatusIdIsLargerThanStatusesCount()
         {
             var logId = 1;
             var statusId = 5;
@@ -81,9 +81,9 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
 
             LogBookTestUtils.ResetAutoMapper();
             LogBookTestUtils.InitializeAutoMapper();
-            LogBookTestUtils.GetContextWithLogAndStatuses(nameof(ChangeStatusOfLogAsync_ThrowException_WhenStatusIdIsLargerThanStatusesCount), logId);
+            LogBookTestUtils.GetContextWithLogAndStatuses(nameof(ThrowException_WhenStatusIdIsLargerThanStatusesCount), logId);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ChangeStatusOfLogAsync_ThrowException_WhenStatusIdIsLargerThanStatusesCount))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ThrowException_WhenStatusIdIsLargerThanStatusesCount))))
             {
                 var logbookService = new LogBookService(assertContext, mappingProviderMocked.Object, paginatedListMocked.Object, dateTimeWrapperMocked.Object, userManagerWrapperMocked.Object);
                 await Assert.ThrowsExceptionAsync<ArgumentException>(
@@ -92,7 +92,7 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
         }
 
         [TestMethod]
-        public async Task ChangeStatusOfLogAsync_Return_WhenStatusIsChanged()
+        public async Task Return_WhenStatusIsChanged()
         {
             var logId = 1;
             var oldStatusId = 1;
@@ -105,9 +105,9 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
 
             LogBookTestUtils.ResetAutoMapper();
             LogBookTestUtils.InitializeAutoMapper();
-            LogBookTestUtils.GetContextWithLogAndStatuses(nameof(ChangeStatusOfLogAsync_Return_WhenStatusIsChanged), logId, oldStatusId, newStatusId);
+            LogBookTestUtils.GetContextWithLogAndStatuses(nameof(Return_WhenStatusIsChanged), logId, oldStatusId, newStatusId);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ChangeStatusOfLogAsync_Return_WhenStatusIsChanged))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(Return_WhenStatusIsChanged))))
             {
                 var logbookService = new LogBookService(assertContext, mappingProviderMocked.Object, paginatedListMocked.Object, dateTimeWrapperMocked.Object, userManagerWrapperMocked.Object);
 

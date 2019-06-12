@@ -13,15 +13,15 @@ namespace AlphaHotel.Tests.Services.CategoryServiceTests
     public class ListAllCategoriesAsync_Should
     {
         [TestMethod]
-        public async Task ListAllCategoriesAsync_ReturnCategories()
+        public async Task ReturnAllCategories()
         {
             var categoryId = 1;
 
             CategoryTestUtils.ResetAutoMapper();
             CategoryTestUtils.InitializeAutoMapper();
-            CategoryTestUtils.GetContextWithCategories(nameof(ListAllCategoriesAsync_ReturnCategories), categoryId);
+            CategoryTestUtils.GetContextWithCategories(nameof(ReturnAllCategories), categoryId);
 
-            using (var assertContext = new AlphaHotelDbContext(CategoryTestUtils.GetOptions(nameof(ListAllCategoriesAsync_ReturnCategories))))
+            using (var assertContext = new AlphaHotelDbContext(CategoryTestUtils.GetOptions(nameof(ReturnAllCategories))))
             {
                 var categoryService = new CategoryService(assertContext);
                 var categories = await categoryService.ListAllCategoriesAsync();

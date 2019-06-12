@@ -21,7 +21,7 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
     public class ListAllFeedbacksForUserAsync_Should
     {
         [TestMethod]
-        public async Task ListAllFeedbacksForModeratorAsync_Return_WhenUserIsFound()
+        public async Task ReturnFeedbacks_WhenUserIsFound()
         {
             var businessId = 1;
             var feedbackId = 1;
@@ -35,9 +35,9 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
 
             FeedbackTestUtils.ResetAutoMapper();
             FeedbackTestUtils.InitializeAutoMapper();
-            FeedbackTestUtils.GetContextWithFeedbackIdAndBusiness(nameof(ListAllFeedbacksForModeratorAsync_Return_WhenUserIsFound), feedbackId, businessId);
+            FeedbackTestUtils.GetContextWithFeedbackIdAndBusiness(nameof(ReturnFeedbacks_WhenUserIsFound), feedbackId, businessId);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ListAllFeedbacksForModeratorAsync_Return_WhenUserIsFound))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ReturnFeedbacks_WhenUserIsFound))))
             {
                 var feedbackService = new FeedbackService(assertContext, paginatedListMocked.Object, dateTimeWrapperMocked.Object, censorMocked.Object);
                 var feedbacks = await feedbackService.ListAllFeedbacksForUserAsync(businessId, pageNumber, pageSize);

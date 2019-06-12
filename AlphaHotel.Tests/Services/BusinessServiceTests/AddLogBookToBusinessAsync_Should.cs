@@ -19,7 +19,7 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
     public class AddLogBookToBusinessAsync_Should
     {
         [TestMethod]
-        public async Task AddLogBookToBusinessAsync_ThrowException_WhenLogBookAlreadyExists()
+        public async Task ThrowException_WhenLogBookAlreadyExists()
         {
             var logbookName = "logbook";
             var businessId = 1;
@@ -28,9 +28,9 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var paginatedListMocked = new Mock<IPaginatedList<BusinessShortInfoDTO>>();
 
-            BusinessTestUtils.GetContextWithBusinessAndLogBook(nameof(AddLogBookToBusinessAsync_ThrowException_WhenLogBookAlreadyExists), businessId, logbookName);
+            BusinessTestUtils.GetContextWithBusinessAndLogBook(nameof(ThrowException_WhenLogBookAlreadyExists), businessId, logbookName);
 
-            using (var assertContext = new AlphaHotelDbContext(BusinessTestUtils.GetOptions(nameof(AddLogBookToBusinessAsync_ThrowException_WhenLogBookAlreadyExists))))
+            using (var assertContext = new AlphaHotelDbContext(BusinessTestUtils.GetOptions(nameof(ThrowException_WhenLogBookAlreadyExists))))
             {
                 var businessService = new BusinessService(assertContext, mappingProviderMocked.Object, dateTimeWrapperMocked.Object, paginatedListMocked.Object);
 
@@ -40,7 +40,7 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
         }
 
         [TestMethod]
-        public async Task AddLogBookToBusinessAsync_Return_WhenLogBookIsAdded()
+        public async Task Return_WhenLogBookIsAdded()
         {
             var logbookName = "logbook";
             var businessId = 1;
@@ -49,9 +49,9 @@ namespace AlphaHotel.Tests.Services.BusinessServiceTests
             var dateTimeWrapperMocked = new Mock<IDateTimeWrapper>();
             var paginatedListMocked = new Mock<IPaginatedList<BusinessShortInfoDTO>>();
 
-            //BusinessTestUtils.GetContextWithCategory(nameof(AddCategory_Return_WhenCategoryAllParametersArePassed), categoryName);
+            //BusinessTestUtils.GetContextWithCategory(nameof(Return_WhenLogBookIsAdded), categoryName);
 
-            using (var assertContext = new AlphaHotelDbContext(BusinessTestUtils.GetOptions(nameof(AddLogBookToBusinessAsync_Return_WhenLogBookIsAdded))))
+            using (var assertContext = new AlphaHotelDbContext(BusinessTestUtils.GetOptions(nameof(Return_WhenLogBookIsAdded))))
             {
                 var businessService = new BusinessService(assertContext, mappingProviderMocked.Object, dateTimeWrapperMocked.Object, paginatedListMocked.Object);
                 await businessService.AddLogBookToBusinessAsync(logbookName, businessId);

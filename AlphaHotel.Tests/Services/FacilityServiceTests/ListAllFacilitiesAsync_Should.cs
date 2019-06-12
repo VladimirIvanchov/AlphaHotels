@@ -14,14 +14,14 @@ namespace AlphaHotel.Tests.Services.FacilityServiceTests
     public class ListAllFacilitiesAsync_Should
     {
         [TestMethod]
-        public async Task ListAllFacilitiesAsync_ReturnFacilities()
+        public async Task ReturnAllFacilities()
         {
             var facilityId = 1;
             FacilityTestUtils.ResetAutoMapper();
             FacilityTestUtils.InitializeAutoMapper();
-            FacilityTestUtils.GetContextWithFacilities(nameof(ListAllFacilitiesAsync_ReturnFacilities), facilityId);
+            FacilityTestUtils.GetContextWithFacilities(nameof(ReturnAllFacilities), facilityId);
 
-            using (var assertContext = new AlphaHotelDbContext(FacilityTestUtils.GetOptions(nameof(ListAllFacilitiesAsync_ReturnFacilities))))
+            using (var assertContext = new AlphaHotelDbContext(FacilityTestUtils.GetOptions(nameof(ReturnAllFacilities))))
             {
                 var facilityService = new FacilityService(assertContext);
                 var facilities = await facilityService.ListAllFacilitiesAsync();

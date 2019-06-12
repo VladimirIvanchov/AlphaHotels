@@ -15,13 +15,13 @@ namespace AlphaHotel.Tests.Services.CategoryServiceTests
     public class AddCategory_Should
     {
         [TestMethod]
-        public async Task AddCategory_ThrowException_WhenCategoryAlreadyExists()
+        public async Task ThrowException_WhenCategoryAlreadyExists()
         {
             var categoryName = "category";
 
-            CategoryTestUtils.GetContextWithCategory(nameof(AddCategory_ThrowException_WhenCategoryAlreadyExists), categoryName);
+            CategoryTestUtils.GetContextWithCategory(nameof(ThrowException_WhenCategoryAlreadyExists), categoryName);
 
-            using (var assertContext = new AlphaHotelDbContext(CategoryTestUtils.GetOptions(nameof(AddCategory_ThrowException_WhenCategoryAlreadyExists))))
+            using (var assertContext = new AlphaHotelDbContext(CategoryTestUtils.GetOptions(nameof(ThrowException_WhenCategoryAlreadyExists))))
             {
                 var categoryService = new CategoryService(assertContext);
 
@@ -31,13 +31,13 @@ namespace AlphaHotel.Tests.Services.CategoryServiceTests
         }
 
         [TestMethod]
-        public async Task AddCategory_Return_WhenCategoryAllParametersArePassed()
+        public async Task AddCategory_Return_WhenAllParametersArePassed()
         {
             var categoryName = "category";
 
             //CategoryTestUtils.GetContextWithCategory(nameof(AddCategory_Return_WhenCategoryAllParametersArePassed), categoryName);
 
-            using (var assertContext = new AlphaHotelDbContext(CategoryTestUtils.GetOptions(nameof(AddCategory_Return_WhenCategoryAllParametersArePassed))))
+            using (var assertContext = new AlphaHotelDbContext(CategoryTestUtils.GetOptions(nameof(AddCategory_Return_WhenAllParametersArePassed))))
             {
                 var categoryService = new CategoryService(assertContext);
                 await categoryService.AddCategory(categoryName);

@@ -23,7 +23,7 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
     public class FindFeedback_Should
     {
         [TestMethod]
-        public async Task FindFeedback_WhenFeedbackIsFound()
+        public async Task ReturnFeedback_WhenFeedbackIsFound()
         {
             var id = 1;
             var paginatedListMocked = new Mock<IPaginatedList<FeedbackDTO>>();
@@ -32,9 +32,9 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
 
             FeedbackTestUtils.ResetAutoMapper();
             FeedbackTestUtils.InitializeAutoMapper();
-            FeedbackTestUtils.GetContextWithFeedbackId(nameof(FindFeedback_WhenFeedbackIsFound), id);
+            FeedbackTestUtils.GetContextWithFeedbackId(nameof(ReturnFeedback_WhenFeedbackIsFound), id);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(FindFeedback_WhenFeedbackIsFound))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ReturnFeedback_WhenFeedbackIsFound))))
             {
                 var feedbackService = new FeedbackService(assertContext, paginatedListMocked.Object, dateTimeWrapperMocked.Object, censorMocked.Object);
 
@@ -45,7 +45,7 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
         }
 
         [TestMethod]
-        public async Task FindFeedback_ReturnNull_WhenFeedbackIsNotFound()
+        public async Task ReturnNull_WhenFeedbackIsNotFound()
         {
             var id = 1;
             var wrongId = 2;
@@ -55,9 +55,9 @@ namespace AlphaHotel.Tests.Services.FeedbackServiceTests
 
             FeedbackTestUtils.ResetAutoMapper();
             FeedbackTestUtils.InitializeAutoMapper();
-            FeedbackTestUtils.GetContextWithFeedbackId(nameof(FindFeedback_ReturnNull_WhenFeedbackIsNotFound), id);
+            FeedbackTestUtils.GetContextWithFeedbackId(nameof(ReturnNull_WhenFeedbackIsNotFound), id);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(FindFeedback_ReturnNull_WhenFeedbackIsNotFound))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ReturnNull_WhenFeedbackIsNotFound))))
             {
                 var feedbackService = new FeedbackService(assertContext, paginatedListMocked.Object, dateTimeWrapperMocked.Object, censorMocked.Object);
 

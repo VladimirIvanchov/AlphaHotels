@@ -22,7 +22,7 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
     public class AddLog_Should
     {
         [TestMethod]
-        public async Task AddLog_ThrowException_WhenLogBookIsNotFound()
+        public async Task ThrowException_WhenLogBookIsNotFound()
         {
             var logbookId = 1;
             var userId = "userId";
@@ -38,7 +38,7 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
             LogBookTestUtils.InitializeAutoMapper();
             //LogBookTestUtils.GetContextWithLog(nameof(AddLog_ThrowException_WhenLogBookIsNotFound), logId);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(AddLog_ThrowException_WhenLogBookIsNotFound))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ThrowException_WhenLogBookIsNotFound))))
             {
                 var logbookService = new LogBookService(assertContext, mappingProviderMocked.Object, paginatedListMocked.Object, dateTimeWrapperMocked.Object, userManagerWrapperMocked.Object);
 
@@ -48,7 +48,7 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
         }
 
         [TestMethod]
-        public async Task AddLog_ReturnLogDTO_WhenAllParametersArePassed()
+        public async Task ReturnLogDTO_WhenAllParametersArePassed()
         {
             var logbookId = 1;
             var userId = "userId";
@@ -66,9 +66,9 @@ namespace AlphaHotel.Tests.Services.LogBookServiceTests
 
             LogBookTestUtils.ResetAutoMapper();
             LogBookTestUtils.InitializeAutoMapper();
-            LogBookTestUtils.GetContextWithFullLogAndLogBookAndUserAndStatusAndCategory(nameof(AddLog_ReturnLogDTO_WhenAllParametersArePassed), logbookId, userId, categoryId, description, username, statusId, status, category);
+            LogBookTestUtils.GetContextWithFullLogAndLogBookAndUserAndStatusAndCategory(nameof(ReturnLogDTO_WhenAllParametersArePassed), logbookId, userId, categoryId, description, username, statusId, status, category);
 
-            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(AddLog_ReturnLogDTO_WhenAllParametersArePassed))))
+            using (var assertContext = new AlphaHotelDbContext(FeedbackTestUtils.GetOptions(nameof(ReturnLogDTO_WhenAllParametersArePassed))))
             {
                 var logbookService = new LogBookService(assertContext, mappingProviderMocked.Object, paginatedListMocked.Object, dateTimeWrapperMocked.Object, userManagerWrapperMocked.Object);
 
