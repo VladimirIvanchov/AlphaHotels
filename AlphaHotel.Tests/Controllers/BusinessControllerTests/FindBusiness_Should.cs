@@ -23,7 +23,7 @@ namespace AlphaHotel.Tests.Controllers.BusinessControllerTests
 
             var businessServiceMocked = new Mock<IBusinessService>();
             var feedbackServiceMocked = new Mock<IFeedbackService>();
-            var loggerFactoryMocked = new Mock<ILoggerFactory>();
+            var loggerFactoryMocked = new Mock<ILogger<BusinessController>>();
             var businessDTO = new BusinessDTO { Name = businessName };
             var businesses = new List<BusinessDTO> { businessDTO };
 
@@ -45,7 +45,7 @@ namespace AlphaHotel.Tests.Controllers.BusinessControllerTests
 
             var businessServiceMocked = new Mock<IBusinessService>();
             var feedbackServiceMocked = new Mock<IFeedbackService>();
-            var loggerFactoryMocked = new Mock<ILoggerFactory>();
+            var loggerFactoryMocked = new Mock<ILogger<BusinessController>>();
             var businessDTO = new BusinessDTO { Name = businessName };
             var businesses = new List<BusinessDTO> { businessDTO };
 
@@ -67,7 +67,7 @@ namespace AlphaHotel.Tests.Controllers.BusinessControllerTests
 
             var businessServiceMocked = new Mock<IBusinessService>();
             var feedbackServiceMocked = new Mock<IFeedbackService>();
-            var loggerFactoryMocked = new Mock<ILoggerFactory>();
+            var loggerFactoryMocked = new Mock<ILogger<BusinessController>>();
             var businessDTO = new BusinessDTO { Name = businessName };
             var businesses = new List<BusinessDTO> { businessDTO };
 
