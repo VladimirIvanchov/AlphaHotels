@@ -26,6 +26,8 @@ using Microsoft.Extensions.Logging;
 using AlphaHotel.Infrastructure.Censorship;
 using AlphaHotel.Infrastructure.ReaderProvider;
 using AlphaHotel.Areas.Manager.Hubs;
+using NLog.Web;
+using NLog.Extensions.Logging;
 
 namespace AlphaHotel
 {
@@ -92,7 +94,12 @@ namespace AlphaHotel
             app.UseStaticFiles();
 
             app.UseAuthentication();
-            loggerFactory.AddLog4Net();
+
+            env.ConfigureNLog("nlog.config");
+            loggerFactory.AddNLog();
+            app.AddNLogWeb();
+
+
             app.UseSignalR(
                 routes =>
                 {

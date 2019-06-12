@@ -10,6 +10,8 @@ namespace AlphaHotel.Models
     {
         public int BusinessId { get; set; }
 
+        [Required]
+        [Range(1, 5)]
         public int Rating { get; set; }
 
         [MaxLength(20)]
