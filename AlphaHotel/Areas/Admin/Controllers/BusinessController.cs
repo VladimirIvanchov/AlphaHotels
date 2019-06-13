@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using AlphaHotel.Areas.Admin.Models;
 using AlphaHotel.Common;
@@ -9,7 +7,6 @@ using AlphaHotel.DTOs;
 using AlphaHotel.Infrastructure.MappingProviders;
 using AlphaHotel.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaHotel.Areas.Admin.Controllers

@@ -5,14 +5,10 @@ using AlphaHotel.DTOs;
 using AlphaHotel.Infrastructure.MappingProviders;
 using AlphaHotel.Services.Contracts;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 

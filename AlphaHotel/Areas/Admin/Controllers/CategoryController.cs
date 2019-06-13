@@ -40,21 +40,10 @@ namespace AlphaHotel.Areas.Admin.Controllers
             if (!this.ModelState.IsValid)
             {
                 return BadRequest("Invalid parameters!");
-                //return View(model);
             }
 
-            try
-            {
-                await this.categoryService.AddCategory(model.CategoryName);
-
-                return Json(model);
-                //return RedirectToAction(nameof(CreateLogBook));
-            }
-            catch (ArgumentException ex)
-            {
-                this.ModelState.AddModelError("Error", ex.Message);
-                return BadRequest(ex.Message);
-            }
+            await this.categoryService.AddCategory(model.CategoryName);
+            return Json(model);
         }
     }
 }
