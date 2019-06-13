@@ -114,33 +114,33 @@ namespace AlphaHotel.Areas.Manager.Controllers
             }
         }
 
-        [HttpGet]
-        public async Task<IActionResult> ShowCategories()
-        {
-            var userId = this.userHelper.GetId(User);
-            var categories = await this.logBookService.GetLogBooksAndCategories(userId);
-            //var vm = this.mapper.MapTo<StatusForLogViewModel>(categories);
+        //[HttpGet]
+        //public async Task<IActionResult> ShowCategories()
+        //{
+        //    var userId = this.userHelper.GetId(User);
+        //    var categories = await this.logBookService.GetLogBooksAndCategories(userId);
+        //    //var vm = this.mapper.MapTo<StatusForLogViewModel>(categories);
 
-            return PartialView("_CategoriesPartial", categories);
-        }
+        //    return PartialView("_CategoriesPartial", categories);
+        //}
 
-        [HttpGet]
-        public async Task<IActionResult> ShowLogBooks()
-        {
-            var userId = this.userHelper.GetId(User);
-            var logbooks = await this.logBookService.GetLogBooksAndCategories(userId);
-            //var vm = this.mapper.MapTo<StatusForLogViewModel>(categories);
+        //[HttpGet]
+        //public async Task<IActionResult> ShowLogBooks()
+        //{
+        //    var userId = this.userHelper.GetId(User);
+        //    var logbooks = await this.logBookService.GetLogBooksAndCategories(userId);
+        //    //var vm = this.mapper.MapTo<StatusForLogViewModel>(categories);
 
-            return PartialView("_LogBookPartial", logbooks);
-        }
+        //    return PartialView("_LogBookPartial", logbooks);
+        //}
 
-        public async Task<IActionResult> ShowLogBookss()
-        {
-            var userId = this.userHelper.GetId(User);
-            var logbooks = await this.logBookService.GetLogBooksAndCategories(userId);
-            //var vm = this.mapper.MapTo<StatusForLogViewModel>(categories);
+        //public async Task<IActionResult> ShowLogBookss()
+        //{
+        //    var userId = this.userHelper.GetId(User);
+        //    var logbooks = await this.logBookService.GetLogBooksAndCategories(userId);
+        //    //var vm = this.mapper.MapTo<StatusForLogViewModel>(categories);
 
-            return PartialView("_LogBookPartial", logbooks);
-        }
+        //    return PartialView("_LogBookPartial", logbooks);
+        //}
     }
 }

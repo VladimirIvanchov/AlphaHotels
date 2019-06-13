@@ -4,6 +4,7 @@ using AlphaHotel.Infrastructure.MappingProviders.Mappings;
 using AlphaHotel.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace AlphaHotel.Tests.TestUtils
 {
@@ -46,11 +47,38 @@ namespace AlphaHotel.Tests.TestUtils
         }
 
         //GetLogBooksAndCategories_Should
+        public static void GetContextWithUserAndLogBookAndCategory(string DbName, string userId)
+        {
+            var options = GetOptions(DbName);
+
+            var context = new AlphaHotelDbContext(options);
+            var usersLogBooks = new List<UsersLogbooks>() { new UsersLogbooks { UserId = userId, LogBookId = 1 } };
+            var category = new Category()
+            {
+                Id = 1
+            };
+            var logbook = new LogBook()
+            {
+                Id = 1,
+                ManagersLogbooks = usersLogBooks
+            };
+            var user = new User()
+            {
+                Id = userId
+            };
+            context.Users.Add(user);
+            context.Categories.Add(category);
+            context.LogBooks.Add(logbook);
+            context.SaveChanges();
+        }
+
+        //GetLogBooksAndCategories_Should
         public static void GetContextWithUser(string DbName, string userId)
         {
             var options = GetOptions(DbName);
 
             var context = new AlphaHotelDbContext(options);
+
             var user = new User()
             {
                 Id = userId
