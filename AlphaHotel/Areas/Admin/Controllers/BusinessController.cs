@@ -57,32 +57,24 @@ namespace AlphaHotel.Areas.Admin.Controllers
                 return View(model);
             }
 
-            try
+            var coverPicture = await this.pictureHelper.ConvertPicturePath(model.CoverPicture);
+            var pictures = new List<string>();
+            foreach (var picture in model.Pictures)
             {
-                var coverPicture = await this.pictureHelper.ConvertPicturePath(model.CoverPicture);
-                var pictures = new List<string>();
-                foreach (var picture in model.Pictures)
-                {
-                    pictures.Add(await this.pictureHelper.ConvertPicturePath(picture));
-                }
-
-                var business = await this.businessService.CreateBusiness(model.Name, model.Location, model.About,
-                                                          model.ShortDescription, coverPicture, pictures,
-                                                          model.FacilitiesForTheBusiness);
-
-                return RedirectToRoute(
-                     new
-                     {
-                         controller = "Business",
-                         action = "Details",
-                         id = business.BusinessId
-                     });
+                pictures.Add(await this.pictureHelper.ConvertPicturePath(picture));
             }
-            catch (ArgumentException ex)
-            {
-                this.ModelState.AddModelError("Error", ex.Message);
-                return View(model);
-            }
+
+            var business = await this.businessService.CreateBusiness(model.Name, model.Location, model.About,
+                                                      model.ShortDescription, coverPicture, pictures,
+                                                      model.FacilitiesForTheBusiness);
+
+            return RedirectToRoute(
+                 new
+                 {
+                     controller = "Business",
+                     action = "Details",
+                     id = business.BusinessId
+                 });
         }
 
         [HttpGet("{id}")]
@@ -119,17 +111,8 @@ namespace AlphaHotel.Areas.Admin.Controllers
                 return BadRequest("Invalid parameters!");
             }
 
-            try
-            {
-                await this.businessService.AddLogBookToBusinessAsync(model.LogBookName, model.BusinessId);
-
-                return Json(model);
-            }
-            catch (ArgumentException ex)
-            {
-                this.ModelState.AddModelError("Error", ex.Message);
-                return BadRequest(ex.Message);
-            }
+            await this.businessService.AddLogBookToBusinessAsync(model.LogBookName, model.BusinessId);
+            return Json(model);
         }
     }
 }
