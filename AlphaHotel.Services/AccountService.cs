@@ -35,7 +35,7 @@ namespace AlphaHotel.Services
 
         public async Task<IReadOnlyCollection<AccountDTO>> ListAllUsersAsync()
         {
-            return await userManager.Users
+            return await context.Users
                   .Include(u => u.UsersLogbooks)
                       .ThenInclude(ul => ul.LogBook)
                   .Include(u => u.Business)
@@ -45,7 +45,7 @@ namespace AlphaHotel.Services
 
         public async Task<AccountDetailsDTO> FindAccountAsync(string accountId)
         {
-            var user = await this.userManager.Users
+            var user = await this.context.Users
                   .Include(u => u.UsersLogbooks)
                         .ThenInclude(ul => ul.LogBook)
                   .Include(u => u.Business)
@@ -67,7 +67,7 @@ namespace AlphaHotel.Services
 
         public async Task<int> EditAccountAsync(string id, string username, string email, bool isDeleted, ICollection<int> logBooks)
         {
-            var user = await this.userManager.Users
+            var user = await this.context.Users
                   .Include(u => u.UsersLogbooks)
                         .ThenInclude(ul => ul.LogBook)
                   .Where(u => u.Id == id)

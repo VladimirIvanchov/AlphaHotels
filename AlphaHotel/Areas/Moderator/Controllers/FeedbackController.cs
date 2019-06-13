@@ -49,17 +49,8 @@ namespace AlphaHotel.Areas.Moderator.Controllers
                 return BadRequest("Invalid parameters!");
             }
 
-            try
-            {
-                await this.feedbackService.EditFeedback(model.Id, model.Author, model.Text, model.Rate, model.IsDeleted);
-
-                return Json(model);
-            }
-            catch (ArgumentException ex)
-            {
-                this.ModelState.AddModelError("Error", ex.Message);
-                return BadRequest(ex.Message);
-            }
+            await this.feedbackService.EditFeedback(model.Id, model.Author, model.Text, model.Rate, model.IsDeleted);
+            return Json(model);
         }
     }
 }
